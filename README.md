@@ -1,24 +1,25 @@
 Para Completar por grupo
 
-🌐 Nombre del Proyecto
+🌐 GarantyApp
 
-Escribe aquí una descripción corta del proyecto.
+GarantyApp es una aplicación móvil / web en español diseñada para centralizar el registro, seguimiento y notificación de garantías de productos personales, eliminando la dependencia de papeles físicos y evitando que el usuario pierda sus derechos por olvido.
 
 👥 Integrantes
 
-Nombre completo – Código
-Nombre completo – Código
+Verónica Cerquera – 1202756
+Samanta Manosalva – 1202769
+Isabel Obando - 1202730
+
 
 🎯 1. Objetivo General
 
-Escribir un solo párrafo donde expliquen:
-Qué quieren lograr con el sistema.
-Qué problema buscan solucionar.
+Desarrollar una aplicación móvil / Web que permita a los usuarios registrar, organizar y hacer seguimiento de las garantías de sus productos, mediante un registro digital centralizado y recordatorios automáticos sobre sus fechas de vencimiento. Con esta aplicación se busca solucionar el problema de la pérdida de garantías por olvido o falta de información sobre sus fechas de vigencia, evitando así posibles pérdidas económicas y facilitando el acceso a información sobre los derechos del consumidor en Colombia relacionados con las garantías.
+
 
 🌍 2. Contexto de Uso
 
-¿Quién va a usar el sistema?
-¿Cómo se va a utilizar el sistema?
+El sistema será utilizado por consumidores hispanohablantes entre 18 y 60 años que realizan compras de productos con garantía, como electrodomésticos, celulares, computadores, muebles y herramientas. Los usuarios podrán registrar digitalmente sus productos y la información relacionada con sus garantías, organizar y consultar fácilmente sus datos, y recibir recordatorios antes de las fechas de vencimiento, con el fin de mantener un seguimiento adecuado y evitar la pérdida de sus derechos de garantía por olvido, extravío de comprobantes o desconocimiento de las fechas de vigencia.
+
 
 📋 3. Requerimientos del Sistema
 3.1 Requerimientos Funcionales
@@ -47,9 +48,9 @@ Explicar qué proceso representa.
 
 🎨 5. URL del Prototipo
 
-Colocar aquí el enlace público de Figma:
+Enlace público de Figma:
 
-https://figma.com/xxxxx
+https://www.figma.com/design/WlO61BO3snQnISWMoZemX7/GarantyApp-Atomic-desing?node-id=39-881&t=hinoLJ3cLaNjImts-1
 
 
 🗄️ 6. Diseño de Base de Datos
