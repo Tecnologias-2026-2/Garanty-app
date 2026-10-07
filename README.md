@@ -1,11 +1,11 @@
 Para Completar por grupo
-Holaaa
+Prueba
 🌐 GarantyApp
 
 GarantyApp es una aplicación móvil / web en español diseñada para centralizar el registro, seguimiento y notificación de garantías de productos personales, eliminando la dependencia de papeles físicos y evitando que el usuario pierda sus derechos por olvido.
 
 👥 Integrantes
-
+Prueba
 Verónica Cerquera – 1202756
 Samanta Manosalva – 1202769
 Isabel Obando - 1202730
