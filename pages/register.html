@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2b0a3d">
+    <title>Crear cuenta | GarantyApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles_landing.css">
+  </head>
+  <body class="auth-page">
+    <main class="auth-layout auth-layout--register">
+      <section class="auth-main" aria-labelledby="register-title">
+        <a class="auth-brand" href="index.html" aria-label="GarantyApp, inicio">
+          <img src="../assets/garantyapp-logo.png" alt="GarantyApp">
+        </a>
+        <form class="auth-card register-card" action="#" method="get">
+          <header class="auth-card-heading">
+            <h1 id="register-title">Crea tu cuenta</h1>
+            <p>Regístrate para comenzar a gestionar tus garantías.</p>
+          </header>
+          <div class="auth-fields">
+            <label class="auth-field">
+              <span>Nombre completo</span>
+              <span class="auth-input-wrap">
+                <img src="../assets/register-user.svg" alt="" aria-hidden="true">
+                <input type="text" name="name" placeholder="Juan Pepito perez" autocomplete="name" required>
+              </span>
+            </label>
+            <label class="auth-field">
+              <span>Correo electrónico</span>
+              <span class="auth-input-wrap">
+                <img src="../assets/register-email.svg" alt="" aria-hidden="true">
+                <input type="email" name="email" placeholder="tu@gmail.com" autocomplete="email" required>
+              </span>
+            </label>
+            <label class="auth-field">
+              <span>Contraseña</span>
+              <span class="auth-input-wrap">
+                <img src="../assets/auth-lock.svg" alt="" aria-hidden="true">
+                <input type="password" name="password" placeholder="••••••••" autocomplete="new-password" required>
+                <img class="auth-input-trailing" src="../assets/auth-eye.svg" alt="" aria-hidden="true">
+              </span>
+            </label>
+            <label class="auth-field">
+              <span>Confirmar contraseña</span>
+              <span class="auth-input-wrap">
+                <img src="../assets/auth-lock.svg" alt="" aria-hidden="true">
+                <input type="password" name="confirm-password" placeholder="••••••••" autocomplete="new-password" required>
+                <img class="auth-input-trailing" src="../assets/auth-eye.svg" alt="" aria-hidden="true">
+              </span>
+            </label>
+          </div>
+          <label class="terms-option">
+            <input type="checkbox" name="terms" required>
+            <span>Acepto los <a href="terms.html">términos y condiciones</a> y la <a href="terms.html">política de privacidad</a>.</span>
+          </label>
+          <div class="auth-actions">
+            <button class="auth-submit" type="submit">Crear cuenta</button>
+            <div class="auth-divider"><span></span><span>o</span><span></span></div>
+            <button class="auth-google" type="button">Continuar con google</button>
+          </div>
+          <p class="auth-switch">¿Ya tienes una cuenta? <a href="login.html">Iniciar sesión</a></p>
+        </form>
+      </section>
+
+      <aside class="auth-aside auth-aside--register" aria-label="Empieza a usar GarantyApp">
+        <div class="auth-badge auth-badge--success"><img src="../assets/auth-check.svg" alt=""><span>Gratis para siempre</span></div>
+        <div class="shield-illustration" aria-hidden="true">
+          <span class="shield-orbit"></span>
+          <span class="shield-tile"><img src="../assets/auth-shield.svg" alt=""></span>
+          <span class="floating-icon floating-icon--check"><img src="../assets/auth-check.svg" alt=""></span>
+          <span class="floating-icon floating-icon--star"><img src="../assets/auth-star.svg" alt=""></span>
+          <span class="floating-icon floating-icon--bolt"><img src="../assets/auth-lightning.svg" alt=""></span>
+        </div>
+        <div class="auth-aside-intro">
+          <h2>Empieza hoy,<br><span>sin compromisos</span></h2>
+          <p>Únete a más de 50,000 personas que ya cuidan sus productos con GarantyApp.</p>
+        </div>
+        <div class="auth-benefits">
+          <article class="auth-benefit">
+            <span class="auth-benefit-icon"><img src="../assets/register-user-benefit.svg" alt=""></span>
+            <span><strong>Crea tu cuenta</strong><span>Regístrate en menos de 2 minutos con tu correo o Google.</span></span>
+          </article>
+          <article class="auth-benefit">
+            <span class="auth-benefit-icon"><img src="../assets/register-document.svg" alt=""></span>
+            <span><strong>Agrega productos</strong><span>Guarda garantías con foto de factura y certificado.</span></span>
+          </article>
+          <article class="auth-benefit">
+            <span class="auth-benefit-icon"><img src="../assets/register-email.svg" alt=""></span>
+            <span><strong>Recibe alertas</strong><span>Te avisamos antes de que venzan tus garantías.</span></span>
+          </article>
+        </div>
+        <div class="auth-trust-row">
+          <div><span><img src="../assets/auth-shield.svg" alt=""></span><small>Datos cifrados</small></div>
+          <div><span><img src="../assets/register-check.svg" alt=""></span><small>Sin spam</small></div>
+          <div><span><img src="../assets/register-world.svg" alt=""></span><small>Multi-dispositivo</small></div>
+        </div>
+      </aside>
+    </main>
+  </body>
+</html>

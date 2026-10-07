@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2b0a3d">
+    <title>Iniciar sesión | GarantyApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles_landing.css">
+  </head>
+  <body class="auth-page">
+    <main class="auth-layout auth-layout--login">
+      <section class="auth-main" aria-labelledby="login-title">
+        <a class="auth-brand" href="index.html" aria-label="GarantyApp, inicio">
+          <img src="../assets/garantyapp-logo.png" alt="GarantyApp">
+        </a>
+        <form class="auth-card login-card" action="#" method="get">
+          <header class="auth-card-heading">
+            <h1 id="login-title">Bienvenido de nuevo</h1>
+            <p>Ingresa a tu cuenta para gestionar tus garantías.</p>
+          </header>
+          <div class="auth-fields">
+            <label class="auth-field">
+              <span>Correo electrónico</span>
+              <span class="auth-input-wrap">
+                <img src="../assets/auth-mail.svg" alt="" aria-hidden="true">
+                <input type="email" name="email" placeholder="tu@email.com" autocomplete="email" required>
+              </span>
+            </label>
+            <label class="auth-field">
+              <span class="auth-field-label">
+                <span>Contraseña</span>
+                <a href="recover-password.html">¿Olvidaste tu contraseña?</a>
+              </span>
+              <span class="auth-input-wrap">
+                <img src="../assets/auth-lock.svg" alt="" aria-hidden="true">
+                <input type="password" name="password" placeholder="••••••••" autocomplete="current-password" required>
+                <img class="auth-input-trailing" src="../assets/auth-eye.svg" alt="" aria-hidden="true">
+              </span>
+            </label>
+          </div>
+          <label class="remember-option">
+            <input type="checkbox" name="remember">
+            <span>Recordarme</span>
+          </label>
+          <div class="auth-actions">
+            <button class="auth-submit" type="submit">Iniciar sesión</button>
+            <div class="auth-divider"><span></span><span>o</span><span></span></div>
+            <button class="auth-google" type="button">Continuar con google</button>
+          </div>
+          <p class="auth-switch">¿No tienes una cuenta? <a href="register.html">Crear cuenta</a></p>
+        </form>
+      </section>
+
+      <aside class="auth-aside auth-aside--login" aria-label="Ventajas de GarantyApp">
+        <div class="auth-badge"><img src="../assets/auth-star.svg" alt=""><span>Gestión de garantías #1</span></div>
+        <div class="shield-illustration" aria-hidden="true">
+          <span class="shield-orbit"></span>
+          <span class="shield-tile"><img src="../assets/auth-shield.svg" alt=""></span>
+          <span class="floating-icon floating-icon--check"><img src="../assets/auth-check.svg" alt=""></span>
+          <span class="floating-icon floating-icon--star"><img src="../assets/auth-star.svg" alt=""></span>
+          <span class="floating-icon floating-icon--bolt"><img src="../assets/auth-lightning.svg" alt=""></span>
+        </div>
+        <div class="auth-aside-intro">
+          <h2>Tus garantías,<br><span>siempre protegidas</span></h2>
+          <p>Organiza, rastrea y gestiona todas las garantías de tus productos desde un solo lugar.</p>
+        </div>
+        <div class="auth-benefits">
+          <article class="auth-benefit">
+            <span class="auth-benefit-icon"><img src="../assets/auth-guarantee.svg" alt=""></span>
+            <span><strong>Garantías protegidas</strong><span>Guarda y organiza todas tus garantías en un solo lugar</span></span>
+          </article>
+          <article class="auth-benefit">
+            <span class="auth-benefit-icon"><img src="../assets/auth-alert.svg" alt=""></span>
+            <span><strong>Alertas inteligentes</strong><span>Recibe notificaciones antes de que venzan tus productos</span></span>
+          </article>
+          <article class="auth-benefit">
+            <span class="auth-benefit-icon"><img src="../assets/auth-growth.svg" alt=""></span>
+            <span><strong>Historial completo</strong><span>Accede al historial de todos tus productos y garantías</span></span>
+          </article>
+        </div>
+        <div class="auth-stats" aria-label="Estadísticas de GarantyApp">
+          <div><strong>50K+</strong><span>Usuarios</span></div>
+          <div><strong>200K+</strong><span>Garantías</span></div>
+          <div><strong>99.9%</strong><span>Uptime</span></div>
+        </div>
+      </aside>
+    </main>
+  </body>
+</html>
