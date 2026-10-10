@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2b0a3d">
+    <meta name="description" content="Consulta desde tu panel el estado de tus productos y garantías en GarantyApp.">
+    <title>Inicio | GarantyApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles_dashboard.css">
+  </head>
+  <body class="dashboard-page">
+    <header class="dashboard-header">
+      <a class="dashboard-brand" href="dashboard.html" aria-label="GarantyApp, inicio">Garanty<span>App</span></a>
+      <label class="dashboard-search">
+        <span class="visually-hidden">Buscar garantías</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+        <input type="search" placeholder="Buscar garantía...">
+      </label>
+      <div class="dashboard-user">
+        <a class="notification-button" href="settings.html" aria-label="Notificaciones">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path><path d="M10 21h4"></path></svg>
+        </a>
+        <a class="user-link" href="settings.html" aria-label="Configuración de María A.">
+          <span class="user-avatar">MA</span><span>María A.</span>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"></path></svg>
+        </a>
+      </div>
+    </header>
+
+    <div class="dashboard-shell">
+      <main class="dashboard-main">
+        <section class="welcome-block">
+          <h1>Buen día, María <span aria-hidden="true">👋</span></h1>
+          <p>Tienes 2 garantías próximas a vencer.</p>
+        </section>
+
+        <section class="summary-grid" aria-label="Resumen de garantías">
+          <a class="summary-card summary-card--active" href="consumer-rights.html">
+            <span><span class="summary-label">Garantías Activas</span><strong>4</strong><span class="summary-link">Ver listado <span aria-hidden="true">›</span></span></span>
+            <span class="summary-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="m8 12 2.5 2.5L16 9"></path><circle cx="12" cy="12" r="9"></circle></svg>
+            </span>
+          </a>
+          <a class="summary-card summary-card--expired" href="consumer-rights.html">
+            <span><span class="summary-label">Garantías vencidas</span><strong>3</strong><span class="summary-link">Ver listado <span aria-hidden="true">›</span></span></span>
+            <span class="summary-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 8v5"></path><path d="M12 16h.01"></path><path d="m10.3 3.8-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3.2l-8-14a2 2 0 0 0-3.4 0Z"></path></svg>
+            </span>
+          </a>
+        </section>
+
+        <section class="recent-section" aria-labelledby="recent-title">
+          <div class="section-heading">
+            <h2 id="recent-title">Garantías recientes</h2>
+            <a href="consumer-rights.html">Ver todas <span aria-hidden="true">›</span></a>
+          </div>
+          <div class="product-grid">
+            <article class="product-card">
+              <div class="product-heading">
+                <span class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 18v3"></path></svg></span>
+                <div><h3>MacBook Air M2</h3><p>Computadores</p></div>
+                <span class="product-status product-status--active">Activa</span>
+              </div>
+              <div class="product-dates"><p>Comprado<strong>15 ene 2024</strong></p><p>Vence<strong>15 ene 2025</strong></p></div>
+              <p class="product-remaining"><span aria-hidden="true">◷</span> 17 días restantes</p>
+              <a class="product-details" href="consumer-rights.html">Detalles <span aria-hidden="true">›</span></a>
+            </article>
+            <article class="product-card">
+              <div class="product-heading">
+                <span class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"></rect><path d="M11 18h2"></path></svg></span>
+                <div><h3>iPhone 13 Pro</h3><p>Smartphones</p></div>
+                <span class="product-status product-status--soon">Próximo a vencer</span>
+              </div>
+              <div class="product-dates"><p>Comprado<strong>3 mar 2024</strong></p><p>Vence<strong>3 mar 2025</strong></p></div>
+              <p class="product-remaining"><span aria-hidden="true">◷</span> 18 días restantes</p>
+              <a class="product-details" href="consumer-rights.html">Detalles <span aria-hidden="true">›</span></a>
+            </article>
+            <article class="product-card">
+              <div class="product-heading">
+                <span class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M9 7h6M9 17h6"></path></svg></span>
+                <div><h3>Refrigerador LG</h3><p>Electrodomésticos</p></div>
+                <span class="product-status product-status--active">Activa</span>
+              </div>
+              <div class="product-dates"><p>Comprado<strong>10 dic 2023</strong></p><p>Vence<strong>10 dic 2024</strong></p></div>
+              <p class="product-remaining"><span aria-hidden="true">◷</span> 7 días restantes</p>
+              <a class="product-details" href="consumer-rights.html">Detalles <span aria-hidden="true">›</span></a>
+            </article>
+            <article class="product-card">
+              <div class="product-heading">
+                <span class="product-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 18v3"></path></svg></span>
+                <div><h3>Smart TV Samsung</h3><p>Televisores</p></div>
+                <span class="product-status product-status--soon">Próximo a vencer</span>
+              </div>
+              <div class="product-dates"><p>Comprado<strong>10 dic 2023</strong></p><p>Vence<strong>10 dic 2024</strong></p></div>
+              <p class="product-remaining"><span aria-hidden="true">◷</span> 7 días restantes</p>
+              <a class="product-details" href="consumer-rights.html">Detalles <span aria-hidden="true">›</span></a>
+            </article>
+          </div>
+        </section>
+        <a class="add-product" href="consumer-rights.html" aria-label="Agregar garantía">+</a>
+      </main>
+
+      <nav class="dashboard-nav" aria-label="Navegación principal">
+        <a class="nav-link nav-link--active" href="dashboard.html"><span aria-hidden="true">⌂</span>Inicio</a>
+        <a class="nav-link" href="consumer-rights.html"><span aria-hidden="true">▤</span>Mis garantías</a>
+        <a class="nav-link" href="settings.html"><span aria-hidden="true">⚙</span>Configuración</a>
+        <a class="nav-link nav-link--logout" href="login.html"><span aria-hidden="true">↪</span>Cerrar sesión</a>
+      </nav>
+    </div>
+  </body>
+</html>

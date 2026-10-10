@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2b0a3d">
+    <meta name="description" content="Revisa tu plan de GarantyApp y completa la suscripción de demostración.">
+    <title>Completa tu suscripción | GarantyApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles_checkout.css">
+  </head>
+  <body>
+    <header class="checkout-header">
+      <a href="index.html#inicio" aria-label="GarantyApp, inicio">
+        <img src="../assets/garantyapp-logo.png" alt="GarantyApp">
+      </a>
+    </header>
+
+    <main class="checkout-main">
+      <div class="checkout-heading">
+        <p class="plan-badge"><span aria-hidden="true"></span> Plan Profesional</p>
+        <h1>Gestiona garantías<br><span>sin límites.</span></h1>
+        <p class="checkout-intro">Automatiza tus operaciones, conecta tu ERP y mantén a tu equipo sincronizado en tiempo real.</p>
+      </div>
+
+      <div class="checkout-grid">
+        <section class="plan-summary" aria-label="Resumen del plan">
+          <div class="plan-card">
+            <h2>Profesional</h2>
+            <p class="plan-price"><span>$120,000</span><span>/mes</span></p>
+            <p class="plan-description">Para equipos en crecimiento con operaciones complejas.</p>
+            <ul class="plan-features">
+              <li>Hasta 800 garantías activas</li>
+              <li>Alertas por email + SMS + WhatsApp</li>
+              <li>5 usuarios incluidos</li>
+              <li>Flujos automatizados</li>
+              <li>Integraciones ERP/API</li>
+              <li>Soporte por chat</li>
+            </ul>
+          </div>
+          <div class="plan-benefits" aria-label="Beneficios del servicio">
+            <div><strong>99.9%</strong><span>Disponibilidad</span></div>
+            <div><strong>24/7</strong><span>Soporte</span></div>
+            <div><strong>Gratis</strong><span>Instalación</span></div>
+          </div>
+        </section>
+
+        <section class="payment-card" aria-labelledby="payment-title">
+          <h2 id="payment-title">Completa tu suscripción</h2>
+          <p class="demo-notice" role="note">Prototipo: no ingreses datos reales. Este formulario no procesa ni guarda pagos.</p>
+          <div class="payment-fields">
+            <label class="payment-field">
+              <span>Nombre completo</span>
+              <input type="text" autocomplete="off" placeholder="Nombre y apellido">
+            </label>
+            <label class="payment-field">
+              <span>Empresa</span>
+              <input type="text" autocomplete="off" placeholder="Nombre de tu empresa">
+            </label>
+            <label class="payment-field payment-field--wide">
+              <span>Email</span>
+              <input type="email" autocomplete="off" placeholder="nombre@empresa.com">
+            </label>
+          </div>
+
+          <div class="card-fields" aria-label="Datos de pago de demostración">
+            <h3>Información de pago</h3>
+            <label class="payment-field">
+              <span>Número de tarjeta</span>
+              <input type="text" inputmode="numeric" autocomplete="off" placeholder="0000 0000 0000 0000">
+            </label>
+            <div class="payment-fields payment-fields--compact">
+              <label class="payment-field">
+                <span>Vencimiento</span>
+                <input type="text" autocomplete="off" placeholder="MM/AA">
+              </label>
+              <label class="payment-field">
+                <span>CVV</span>
+                <input type="text" inputmode="numeric" autocomplete="off" placeholder="000">
+              </label>
+            </div>
+          </div>
+
+          <a class="checkout-submit" href="payment-success.html">
+            <img src="../assets/icon-lock.svg" alt="">
+            <span>Suscribirme al Plan Profesional</span>
+          </a>
+          <p class="payment-security">Tus datos están protegidos con cifrado SSL de 256 bits</p>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

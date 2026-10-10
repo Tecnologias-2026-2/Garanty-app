@@ -1,0 +1,271 @@
+:root {
+  color-scheme: dark;
+  --settings-bg: #2b0a3d;
+  --settings-header: #1a0528;
+  --settings-card: #3a1254;
+  --settings-text: #f0e8ff;
+  --settings-muted: #b89fcc;
+  --settings-pink: #e5398a;
+  --settings-font: "Poppins", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--settings-bg);
+  color: var(--settings-text);
+  font-family: var(--settings-font);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.settings-header {
+  height: 60px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--settings-header);
+}
+
+.settings-brand {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+}
+
+.settings-brand span {
+  color: var(--settings-pink);
+}
+
+.settings-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+}
+
+.settings-user > span:first-child {
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f04c9b, #a22ac2);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.settings-shell {
+  min-height: calc(100vh - 60px);
+  padding-right: 164px;
+  position: relative;
+}
+
+.settings-main {
+  width: min(100%, 790px);
+  min-height: calc(100vh - 60px);
+  margin: 0 auto;
+  padding: 42px 32px;
+}
+
+.settings-main > h1 {
+  margin: 0 0 18px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.profile-card {
+  width: min(100%, 510px);
+  margin-inline: auto;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 16px;
+  background: var(--settings-card);
+}
+
+.profile-photo-row,
+.profile-info-row {
+  min-height: 50px;
+  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  border: 1px solid rgba(217, 168, 255, 0.5);
+  background: rgba(58, 18, 84, 0.28);
+}
+
+.profile-photo-row {
+  min-height: 68px;
+}
+
+.profile-avatar {
+  width: 39px;
+  height: 39px;
+  flex: 0 0 39px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f04c9b, #a22ac2);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.profile-prompt {
+  flex: 1;
+  color: var(--settings-muted);
+  font-size: 10px;
+}
+
+.profile-photo-row > a,
+.profile-info-row > a {
+  flex: 0 0 auto;
+  color: var(--settings-muted);
+  font-size: 9px;
+}
+
+.profile-info-row {
+  justify-content: space-between;
+}
+
+.profile-info-row h2,
+.profile-info-row p {
+  margin: 0;
+}
+
+.profile-info-row h2 {
+  color: var(--settings-muted);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.profile-info-row p {
+  font-size: 10px;
+}
+
+.settings-nav {
+  width: 164px;
+  padding: 18px 10px;
+  position: absolute;
+  inset: 0 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-left: 1px solid rgba(217, 168, 255, 0.07);
+  background: rgba(26, 5, 40, 0.18);
+}
+
+.settings-nav a {
+  min-height: 29px;
+  padding: 6px 9px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  color: var(--settings-muted);
+  font-size: 9px;
+}
+
+.settings-nav a > span {
+  width: 13px;
+  text-align: center;
+}
+
+.settings-nav .settings-nav-active {
+  background: rgba(229, 57, 138, 0.16);
+  color: var(--settings-pink);
+}
+
+.settings-nav .settings-logout {
+  margin-top: auto;
+  color: #f0839c;
+}
+
+a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 800px) {
+  .settings-shell {
+    padding-right: 138px;
+  }
+
+  .settings-nav {
+    width: 138px;
+  }
+
+  .settings-main {
+    padding-inline: 20px;
+  }
+}
+
+@media (max-width: 620px) {
+  .settings-header {
+    padding-inline: 16px;
+  }
+
+  .settings-shell {
+    min-height: calc(100vh - 60px);
+    padding: 0 0 60px;
+  }
+
+  .settings-main {
+    min-height: calc(100vh - 120px);
+    padding: 26px 16px;
+  }
+
+  .profile-card {
+    padding: 12px;
+  }
+
+  .settings-nav {
+    width: 100%;
+    height: 60px;
+    padding: 4px 8px;
+    position: fixed;
+    z-index: 2;
+    inset: auto 0 0;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 4px;
+    border-top: 1px solid rgba(217, 168, 255, 0.12);
+    border-left: 0;
+    background: var(--settings-header);
+  }
+
+  .settings-nav a {
+    min-height: 48px;
+    padding: 4px 7px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+    font-size: 8px;
+  }
+
+  .settings-nav .settings-logout {
+    margin-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
