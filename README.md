@@ -58,10 +58,11 @@ https://www.figma.com/design/WlO61BO3snQnISWMoZemX7/GarantyApp-Atomic-desing?nod
 Agregar imagen del modelo.
 Tablas principales
 
-🧩 7. Documentación del Sistema
-Estructura de Carpetas
-/css
-/assets
+🧩 7. Documentación del Sistema de estructura de Carpetas
+
+- **`css/`**: Carpeta que contiene los archivos CSS encargados de definir los estilos y la apariencia visual de las distintas páginas del proyecto.
+- **`pages/`**: Carpeta que contiene los archivos HTML correspondientes a las diferentes páginas del sitio web.
+
 
 Explicar brevemente qué contiene cada carpeta.
 
