@@ -10,7 +10,7 @@
   --red: #ff6371;
   --amber: #f5a623;
   --font-body: "Poppins", sans-serif;
-  --font-display: "Inter", sans-serif;
+  --font-display: "Poppins", sans-serif;
 }
 
 *,
@@ -26,7 +26,8 @@ body {
   background: var(--background);
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 a {
@@ -35,34 +36,36 @@ a {
 }
 
 .dashboard-header {
-  height: 60px;
+  height: 64px;
   padding: 0 30px;
-  display: grid;
-  grid-template-columns: 160px minmax(180px, 1fr) auto;
+  display: flex;
   align-items: center;
   gap: 24px;
   background: var(--header);
 }
 
 .dashboard-brand {
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: -0.6px;
+  flex: 0 0 160px;
 }
 
-.dashboard-brand span {
-  color: var(--pink);
+.dashboard-brand img {
+  width: 140px;
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .dashboard-search {
   width: min(100%, 410px);
+  flex: 1 1 180px;
+  min-width: 0;
   height: 35px;
   padding: 0 12px;
   display: flex;
   align-items: center;
   gap: 9px;
   border-radius: 999px;
-  background: rgba(76, 23, 106, 0.55);
+  background: rgba(58, 18, 84, 0.55);
 }
 
 .dashboard-search svg,
@@ -79,7 +82,7 @@ a {
 }
 
 .dashboard-search svg {
-  color: #9f82b1;
+  color: #b89fcc;
 }
 
 .dashboard-search input {
@@ -90,17 +93,18 @@ a {
   background: transparent;
   color: var(--text);
   font: inherit;
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .dashboard-search input::placeholder {
-  color: #9f82b1;
+  color: #b89fcc;
 }
 
 .dashboard-user {
   display: flex;
   align-items: center;
   gap: 18px;
+  margin-left: auto;
 }
 
 .notification-button {
@@ -111,7 +115,7 @@ a {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .user-avatar {
@@ -120,9 +124,9 @@ a {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: linear-gradient(135deg, #f04c9b, #a22ac2);
-  color: #fff;
-  font-size: 10px;
+  background: linear-gradient(135deg, #e5398a, #e5398a);
+  color: #f0e8ff;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -158,18 +162,20 @@ a {
 .welcome-block p {
   margin: 4px 0 0;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .summary-grid {
   width: min(100%, 570px);
   margin: 30px auto 38px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 14px;
 }
 
 .summary-card {
+  flex: 1 1 220px;
+  min-width: 0;
   min-height: 76px;
   padding: 12px 16px;
   display: flex;
@@ -186,7 +192,7 @@ a {
 
 .summary-card--expired {
   border-color: rgba(255, 99, 113, 0.38);
-  background: rgba(142, 35, 75, 0.24);
+  background: rgba(255, 99, 113, 0.24);
   color: var(--red);
 }
 
@@ -197,7 +203,7 @@ a {
 }
 
 .summary-label {
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .summary-card strong {
@@ -209,7 +215,7 @@ a {
 .summary-link {
   margin-top: 3px;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 14px;
 }
 
 .summary-icon {
@@ -218,7 +224,7 @@ a {
   display: grid;
   place-items: center;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(240, 232, 255, 0.08);
 }
 
 .summary-icon svg {
@@ -241,35 +247,40 @@ a {
 
 .section-heading h2 {
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .section-heading > a {
   color: var(--pink);
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .product-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
 }
 
 .product-card {
+  flex: 1 1 calc(25% - 12px);
   min-width: 0;
   padding: 13px 12px 10px;
-  border: 1px solid rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(240, 232, 255, 0.025);
   border-radius: 13px;
   background: var(--card);
 }
 
 .product-heading {
   min-height: 38px;
-  display: grid;
-  grid-template-columns: 22px minmax(0, 1fr) auto;
+  display: flex;
   align-items: start;
   gap: 7px;
+}
+
+.product-heading > div {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .product-icon {
@@ -278,7 +289,7 @@ a {
   display: grid;
   place-items: center;
   border-radius: 6px;
-  background: rgba(217, 168, 255, 0.12);
+  background: rgba(184, 159, 204, 0.12);
   color: var(--muted);
 }
 
@@ -299,7 +310,7 @@ a {
 
 .product-heading h3 {
   overflow: hidden;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -308,13 +319,13 @@ a {
 .product-heading p {
   margin-top: 1px;
   color: var(--muted);
-  font-size: 8px;
+  font-size: 14px;
 }
 
 .product-status {
   padding: 3px 5px;
   border-radius: 999px;
-  font-size: 7px;
+  font-size: 14px;
   line-height: 1.1;
   text-align: center;
 }
@@ -332,9 +343,15 @@ a {
 
 .product-dates {
   margin-top: 11px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+}
+
+.product-dates p {
+  flex: 1 1 120px;
+  min-width: 120px;
+  line-height: 1.5;
 }
 
 .product-dates p,
@@ -345,20 +362,22 @@ a {
 .product-dates p {
   margin: 0;
   color: var(--muted);
-  font-size: 8px;
+  font-size: 14px;
 }
 
 .product-dates strong {
-  margin-top: 2px;
+  margin-top: 4px;
   color: var(--text);
-  font-size: 8px;
+  font-size: 14px;
   font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
 }
 
 .product-remaining {
   margin: 8px 0 10px;
   color: var(--muted);
-  font-size: 8px;
+  font-size: 14px;
 }
 
 .product-details {
@@ -368,26 +387,33 @@ a {
   justify-content: center;
   gap: 5px;
   border-radius: 8px;
-  background: rgba(76, 23, 106, 0.42);
+  background: rgba(58, 18, 84, 0.42);
   color: var(--muted);
-  font-size: 9px;
+  font-size: 14px;
 }
 
 .add-product {
-  width: 38px;
-  height: 38px;
+  min-height: 38px;
+  padding: 0 14px;
   position: absolute;
   right: 54px;
   bottom: 62px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #f04b9b, #b328ca);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #e5398a, #e5398a);
   box-shadow: 0 6px 20px rgba(229, 57, 138, 0.24);
-  color: #fff;
-  font-size: 27px;
-  font-weight: 300;
+  color: #f0e8ff;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 1;
+}
+
+.add-product > span {
+  font-size: 20px;
+  font-weight: 400;
 }
 
 .dashboard-nav {
@@ -398,7 +424,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  border-left: 1px solid rgba(217, 168, 255, 0.07);
+  border-left: 1px solid rgba(184, 159, 204, 0.07);
   background: rgba(26, 5, 40, 0.18);
 }
 
@@ -410,7 +436,7 @@ a {
   gap: 9px;
   border-radius: 8px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .nav-link > span {
@@ -425,7 +451,7 @@ a {
 
 .nav-link--logout {
   margin-top: auto;
-  color: #f0839c;
+  color: #ff6371;
 }
 
 .visually-hidden {
@@ -440,7 +466,7 @@ a {
 
 a:focus-visible,
 input:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid #f0e8ff;
   outline-offset: 3px;
 }
 
@@ -458,26 +484,31 @@ input:focus-visible {
   }
 
   .product-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .product-card {
+    flex-basis: calc(50% - 12px);
   }
 }
 
 @media (max-width: 680px) {
   .dashboard-header {
     height: auto;
-    min-height: 60px;
+    min-height: 64px;
     padding: 10px 16px;
-    grid-template-columns: 1fr auto;
+    flex-wrap: wrap;
     gap: 10px;
   }
 
   .dashboard-brand {
+    flex: 1 1 auto;
     font-size: 16px;
   }
 
   .dashboard-search {
-    grid-column: 1 / -1;
-    grid-row: 2;
+    flex-basis: 100%;
+    order: 3;
     width: 100%;
   }
 
@@ -514,26 +545,27 @@ input:focus-visible {
   }
 
   .summary-label {
-    font-size: 9px;
+    font-size: 14px;
   }
 
   .product-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 
   .product-card {
+    flex: 1 1 auto;
     padding: 14px;
   }
 
   .product-heading h3 {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .product-heading p,
   .product-dates p,
   .product-dates strong,
   .product-remaining {
-    font-size: 9px;
+    font-size: 14px;
   }
 
   .dashboard-nav {
@@ -546,7 +578,7 @@ input:focus-visible {
     flex-direction: row;
     justify-content: space-around;
     gap: 4px;
-    border-top: 1px solid rgba(217, 168, 255, 0.12);
+    border-top: 1px solid rgba(184, 159, 204, 0.12);
     border-left: 0;
     background: var(--header);
   }
@@ -558,7 +590,7 @@ input:focus-visible {
     flex-direction: column;
     justify-content: center;
     gap: 3px;
-    font-size: 8px;
+    font-size: 14px;
   }
 
   .nav-link--logout {

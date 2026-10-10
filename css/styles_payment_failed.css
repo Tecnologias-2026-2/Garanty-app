@@ -3,9 +3,9 @@
   --background: #2b0a3d;
   --header: #1a0528;
   --pink: #e5398a;
-  --error: #ef4966;
+  --error: #ff6371;
   --text: #f0e8ff;
-  --muted: #c5afd5;
+  --muted: #b89fcc;
   --font-body: "Poppins", sans-serif;
 }
 
@@ -22,6 +22,8 @@ body {
   background: var(--background);
   color: var(--text);
   font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .status-header {
@@ -45,8 +47,9 @@ body {
 .status-main {
   min-height: calc(100vh - 64px);
   padding: 32px 20px;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .status-content {
@@ -63,17 +66,17 @@ body {
   margin-bottom: 12px;
   display: grid;
   place-items: center;
-  border: 2px solid rgba(239, 73, 102, 0.65);
+  border: 2px solid rgba(255, 99, 113, 0.65);
   border-radius: 50%;
-  background: rgba(239, 73, 102, 0.28);
-  box-shadow: 0 0 0 4px rgba(239, 73, 102, 0.12);
+  background: rgba(255, 99, 113, 0.28);
+  box-shadow: 0 0 0 4px rgba(255, 99, 113, 0.12);
 }
 
 .status-icon svg {
   width: 28px;
   height: 28px;
   fill: none;
-  stroke: #fff;
+  stroke: #f0e8ff;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.6;
@@ -89,7 +92,7 @@ body {
 .status-content > p {
   margin: 12px 0 0;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
@@ -103,25 +106,25 @@ body {
   justify-content: center;
   border-radius: 11px;
   background: var(--pink);
-  color: #fff;
-  font-size: 12px;
+  color: #f0e8ff;
+  font-size: 14px;
   font-weight: 600;
   transition: background-color 160ms ease, transform 160ms ease;
 }
 
 .status-button:hover {
-  background: #d92b7d;
+  background: #e5398a;
   transform: translateY(-1px);
 }
 
 .status-button:focus-visible {
-  outline: 3px solid #fff;
+  outline: 3px solid #f0e8ff;
   outline-offset: 3px;
 }
 
 .status-content > .demo-caption {
   margin-top: 12px;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 @media (max-width: 600px) {

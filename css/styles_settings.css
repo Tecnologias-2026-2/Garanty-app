@@ -22,6 +22,8 @@ body {
   background: var(--settings-bg);
   color: var(--settings-text);
   font-family: var(--settings-font);
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 a {
@@ -30,7 +32,7 @@ a {
 }
 
 .settings-header {
-  height: 60px;
+  height: 64px;
   padding: 0 30px;
   display: flex;
   align-items: center;
@@ -39,20 +41,21 @@ a {
 }
 
 .settings-brand {
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: -0.6px;
+  display: block;
 }
 
-.settings-brand span {
-  color: var(--settings-pink);
+.settings-brand img {
+  width: 140px;
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .settings-user {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .settings-user > span:first-child {
@@ -61,8 +64,8 @@ a {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: linear-gradient(135deg, #f04c9b, #a22ac2);
-  font-size: 10px;
+  background: linear-gradient(135deg, #e5398a, #e5398a);
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -103,7 +106,7 @@ a {
   display: flex;
   align-items: center;
   gap: 11px;
-  border: 1px solid rgba(217, 168, 255, 0.5);
+  border: 1px solid rgba(184, 159, 204, 0.5);
   background: rgba(58, 18, 84, 0.28);
 }
 
@@ -118,23 +121,23 @@ a {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: linear-gradient(135deg, #f04c9b, #a22ac2);
-  color: #fff;
-  font-size: 13px;
+  background: linear-gradient(135deg, #e5398a, #e5398a);
+  color: #f0e8ff;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .profile-prompt {
   flex: 1;
   color: var(--settings-muted);
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .profile-photo-row > a,
 .profile-info-row > a {
   flex: 0 0 auto;
   color: var(--settings-muted);
-  font-size: 9px;
+  font-size: 14px;
 }
 
 .profile-info-row {
@@ -148,12 +151,12 @@ a {
 
 .profile-info-row h2 {
   color: var(--settings-muted);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .profile-info-row p {
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .settings-nav {
@@ -164,7 +167,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  border-left: 1px solid rgba(217, 168, 255, 0.07);
+  border-left: 1px solid rgba(184, 159, 204, 0.07);
   background: rgba(26, 5, 40, 0.18);
 }
 
@@ -176,7 +179,7 @@ a {
   gap: 8px;
   border-radius: 8px;
   color: var(--settings-muted);
-  font-size: 9px;
+  font-size: 14px;
 }
 
 .settings-nav a > span {
@@ -191,11 +194,11 @@ a {
 
 .settings-nav .settings-logout {
   margin-top: auto;
-  color: #f0839c;
+  color: #ff6371;
 }
 
 a:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid #f0e8ff;
   outline-offset: 3px;
 }
 
@@ -242,7 +245,7 @@ a:focus-visible {
     flex-direction: row;
     justify-content: space-around;
     gap: 4px;
-    border-top: 1px solid rgba(217, 168, 255, 0.12);
+    border-top: 1px solid rgba(184, 159, 204, 0.12);
     border-left: 0;
     background: var(--settings-header);
   }
@@ -253,7 +256,7 @@ a:focus-visible {
     flex-direction: column;
     justify-content: center;
     gap: 3px;
-    font-size: 8px;
+    font-size: 14px;
   }
 
   .settings-nav .settings-logout {

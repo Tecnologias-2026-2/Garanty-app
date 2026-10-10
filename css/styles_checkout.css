@@ -2,13 +2,13 @@
   color-scheme: dark;
   --background: #2b0a3d;
   --header: #1a0528;
-  --card: rgba(95, 42, 119, 0.78);
+  --card: rgba(58, 18, 84, 0.78);
   --pink: #e5398a;
-  --pink-light: #f04b9b;
+  --pink-light: #e5398a;
   --text: #f0e8ff;
-  --muted: #c5afd5;
+  --muted: #b89fcc;
   --font-body: "Poppins", sans-serif;
-  --font-display: "Inter", sans-serif;
+  --font-display: "Poppins", sans-serif;
 }
 
 *,
@@ -24,6 +24,8 @@ body {
   background: var(--background);
   color: var(--text);
   font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 a {
@@ -63,7 +65,7 @@ a {
   border-radius: 999px;
   background: rgba(229, 57, 138, 0.16);
   color: var(--muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .plan-badge span:last-child {
@@ -95,15 +97,24 @@ a {
   margin: 8px auto 0;
   color: var(--muted);
   font-family: var(--font-display);
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.5;
 }
 
 .checkout-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 42px;
+}
+
+.plan-summary {
+  flex: 0.92 1 280px;
+}
+
+.payment-card {
+  flex: 1.08 1 340px;
+  min-width: 0;
 }
 
 .plan-card {
@@ -132,22 +143,22 @@ a {
 
 .plan-price span:last-child {
   margin-left: 5px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 400;
 }
 
 .plan-description {
   margin-top: 8px !important;
-  color: #e4d4ed;
-  font-size: 11px;
+  color: #f0e8ff;
+  font-size: 14px;
   line-height: 1.45;
 }
 
 .plan-features {
   margin: 12px 0 0;
   padding-left: 15px;
-  color: #f4eafa;
-  font-size: 10px;
+  color: #f0e8ff;
+  font-size: 14px;
   line-height: 1.45;
 }
 
@@ -157,12 +168,13 @@ a {
 
 .plan-benefits {
   margin-top: 12px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   gap: 8px;
 }
 
 .plan-benefits div {
+  flex: 1 1 0;
+  min-width: 0;
   min-height: 48px;
   padding: 7px 4px;
   display: flex;
@@ -170,23 +182,23 @@ a {
   align-items: center;
   justify-content: center;
   border-radius: 9px;
-  background: rgba(76, 23, 106, 0.55);
+  background: rgba(58, 18, 84, 0.55);
   text-align: center;
 }
 
 .plan-benefits strong {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.2;
 }
 
 .plan-benefits span {
   color: var(--muted);
-  font-size: 8px;
+  font-size: 14px;
 }
 
 .payment-card {
   padding: 20px;
-  border: 1px solid rgba(217, 168, 255, 0.38);
+  border: 1px solid rgba(184, 159, 204, 0.38);
   border-radius: 16px;
   background: var(--card);
   box-shadow: 0 10px 30px rgba(13, 2, 20, 0.12);
@@ -200,35 +212,36 @@ a {
 
 .demo-notice {
   margin: 0 0 12px;
-  color: #f6c2dc;
-  font-size: 10px;
+  color: #f0e8ff;
+  font-size: 14px;
   line-height: 1.45;
 }
 
 .payment-fields {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 9px;
 }
 
 .payment-field {
-  min-width: 0;
+  flex: 1 1 calc(50% - 9px);
+  min-width: min(100%, 180px);
   display: flex;
   flex-direction: column;
   gap: 4px;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 14px;
 }
 
 .payment-field--wide {
-  grid-column: 1 / -1;
+  flex-basis: 100%;
 }
 
 .payment-field input {
   width: 100%;
   height: 31px;
   padding: 6px 9px;
-  border: 1px solid rgba(217, 168, 255, 0.45);
+  border: 1px solid rgba(184, 159, 204, 0.45);
   border-radius: 8px;
   outline: none;
   background: rgba(58, 18, 84, 0.55);
@@ -237,7 +250,7 @@ a {
 }
 
 .payment-field input::placeholder {
-  color: rgba(197, 175, 213, 0.65);
+  color: rgba(184, 159, 204, 0.65);
 }
 
 .payment-field input:focus-visible {
@@ -248,13 +261,13 @@ a {
 .card-fields {
   margin-top: 13px;
   padding-top: 12px;
-  border-top: 1px solid rgba(217, 168, 255, 0.25);
+  border-top: 1px solid rgba(184, 159, 204, 0.25);
 }
 
 .card-fields h3 {
   margin: 0 0 8px;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 14px;
   font-weight: 500;
   text-transform: uppercase;
 }
@@ -274,22 +287,22 @@ a {
   gap: 7px;
   border-radius: 999px;
   background: var(--pink);
-  color: #fff;
-  font-size: 10px;
+  color: #f0e8ff;
+  font-size: 14px;
   font-weight: 600;
   text-align: center;
   transition: background-color 160ms ease, transform 160ms ease;
 }
 
 .checkout-submit:hover {
-  background: #d92b7d;
+  background: #e5398a;
   transform: translateY(-1px);
 }
 
 .checkout-submit:focus-visible,
 .payment-failure-link:focus-visible,
 .checkout-error a:focus-visible {
-  outline: 3px solid #fff;
+  outline: 3px solid #f0e8ff;
   outline-offset: 3px;
 }
 
@@ -302,7 +315,7 @@ a {
   margin-top: 8px;
   display: block;
   color: var(--muted);
-  font-size: 9px;
+  font-size: 14px;
   text-align: center;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -310,8 +323,8 @@ a {
 
 .payment-security {
   margin: 8px 0 0;
-  color: rgba(197, 175, 213, 0.68);
-  font-size: 8px;
+  color: rgba(184, 159, 204, 0.68);
+  font-size: 14px;
   text-align: center;
 }
 
@@ -347,8 +360,19 @@ a {
   }
 
   .checkout-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: stretch;
     gap: 18px;
+  }
+
+  .plan-summary,
+  .payment-card {
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  .payment-field {
+    flex-basis: 100%;
   }
 
   .plan-card {

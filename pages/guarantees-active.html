@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2b0a3d">
+    <meta name="description" content="Consulta tus garantías activas en GarantyApp.">
+    <title>Garantías activas | GarantyApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles_guarantees.css">
+    <link rel="stylesheet" href="../css/styles_tokens.css">
+  </head>
+  <body class="guarantees-page">
+    <header class="guarantees-header">
+      <a class="guarantees-brand" href="dashboard.html" aria-label="GarantyApp, inicio"><img src="../assets/garantyapp-logo.png" alt="GarantyApp"><span><strong>Mis garantías</strong><small>Controla tus productos</small></span></a>
+      <a class="add-guarantee" href="dashboard.html"><span aria-hidden="true">+</span> Añadir garantía</a>
+    </header>
+    <main class="guarantees-main">
+      <nav class="guarantee-filters" aria-label="Filtrar garantías">
+        <a class="filter-link" href="guarantees.html">Todas <span class="filter-count">10</span></a>
+        <a class="filter-link" href="guarantees-expiring.html">Por vencer <span class="filter-count">3</span></a>
+        <a class="filter-link filter-link--active" href="guarantees-active.html" aria-current="page">Activas <span class="filter-count">4</span></a>
+        <a class="filter-link" href="guarantees-expired.html">Vencidas <span class="filter-count">3</span></a>
+      </nav>
+      <label class="guarantee-search"><span class="visually-hidden">Buscar garantía</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg><input type="search" placeholder="Buscar garantía..."></label>
+      <section class="guarantee-list" aria-label="Garantías activas">
+        <article class="guarantee-card"><div class="guarantee-identity"><span class="guarantee-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16v12H4zM8 4h8M9 19v2m6-2v2"></path></svg></span><div class="guarantee-product"><h2>Sony WH-1000XM5</h2><p>Audio · Audífonos</p></div></div><div class="guarantee-status-row"><span class="status status--active">Activa</span></div><div class="guarantee-dates"><p class="guarantee-date"><span>Comprado</span><strong>20/09/2024</strong></p><p class="guarantee-date"><span>Vence</span><strong>20/09/2026</strong></p></div><div class="guarantee-footer"><p class="guarantee-remaining remaining--active"><strong>346</strong><span>días restantes</span></p><a class="guarantee-details" href="guarantees.html">Detalles <span aria-hidden="true">›</span></a></div></article>
+        <article class="guarantee-card"><div class="guarantee-identity"><span class="guarantee-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"></rect><path d="M9 7h6m-6 4h6m-6 4h6"></path></svg></span><div class="guarantee-product"><h2>Lavadora Whirlpool 12 kg</h2><p>Hogar · Línea blanca</p></div></div><div class="guarantee-status-row"><span class="status status--active">Activa</span></div><div class="guarantee-dates"><p class="guarantee-date"><span>Comprado</span><strong>06/06/2024</strong></p><p class="guarantee-date"><span>Vence</span><strong>06/06/2027</strong></p></div><div class="guarantee-footer"><p class="guarantee-remaining remaining--active"><strong>380</strong><span>días restantes</span></p><a class="guarantee-details" href="guarantees.html">Detalles <span aria-hidden="true">›</span></a></div></article>
+        <article class="guarantee-card"><div class="guarantee-identity"><span class="guarantee-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="13" rx="2"></rect><path d="M8 21h8m-4-3v3"></path></svg></span><div class="guarantee-product"><h2>MacBook Pro 14”</h2><p>Apple · Computadores</p></div></div><div class="guarantee-status-row"><span class="status status--active">Activa</span></div><div class="guarantee-dates"><p class="guarantee-date"><span>Comprado</span><strong>15/01/2025</strong></p><p class="guarantee-date"><span>Vence</span><strong>15/01/2027</strong></p></div><div class="guarantee-footer"><p class="guarantee-remaining remaining--active"><strong>171</strong><span>días restantes</span></p><a class="guarantee-details" href="guarantees.html">Detalles <span aria-hidden="true">›</span></a></div></article>
+        <article class="guarantee-card"><div class="guarantee-identity"><span class="guarantee-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"></rect><path d="M9 7h6m-6 4h6m-6 4h6"></path></svg></span><div class="guarantee-product"><h2>Aire acondicionado Daikin</h2><p>Daikin · Electrodomésticos</p></div></div><div class="guarantee-status-row"><span class="status status--active">Activa</span></div><div class="guarantee-dates"><p class="guarantee-date"><span>Comprado</span><strong>15/10/2025</strong></p><p class="guarantee-date"><span>Vence</span><strong>15/10/2027</strong></p></div><div class="guarantee-footer"><p class="guarantee-remaining remaining--active"><strong>210</strong><span>días restantes</span></p><a class="guarantee-details" href="guarantees.html">Detalles <span aria-hidden="true">›</span></a></div></article>
+      </section>
+    </main>
+    <nav class="guarantees-nav" aria-label="Navegación principal"><a href="dashboard.html"><span aria-hidden="true">⌂</span>Inicio</a><a class="guarantees-nav-active" href="guarantees.html"><span aria-hidden="true">▤</span>Mis garantías</a><a href="settings.html"><span aria-hidden="true">⚙</span>Configuración</a><a class="guarantees-logout" href="login.html"><span aria-hidden="true">↪</span>Cerrar sesión</a></nav>
+  </body>
+</html>

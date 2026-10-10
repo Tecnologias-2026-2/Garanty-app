@@ -61,7 +61,9 @@ Tablas principales
 🧩 7. Documentación del Sistema de estructura de Carpetas
 
 - **`css/`**: Carpeta que contiene los archivos CSS encargados de definir los estilos y la apariencia visual de las distintas páginas del proyecto.
+- **`css/styles_tokens.css`**: Define los tokens comunes de color. Cada hoja CSS de página aplica directamente Poppins, texto base de 14 px, encabezados de 64 px y la misma paleta; las opacidades de estados y superficies se conservan.
 - **`pages/`**: Carpeta que contiene los archivos HTML correspondientes a las diferentes páginas del sitio web.
+- El historial de garantías usa `pages/guarantees.html` para la vista general y `pages/guarantees-active.html`, `pages/guarantees-expiring.html` y `pages/guarantees-expired.html` para sus filtros. Las cuatro vistas comparten los estilos de `css/styles_guarantees.css`.
 
 
 Explicar brevemente qué contiene cada carpeta.
