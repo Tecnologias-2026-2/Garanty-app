@@ -274,6 +274,7 @@ a {
 .product-heading {
   min-height: 38px;
   display: flex;
+  flex-wrap: wrap;
   align-items: start;
   gap: 7px;
 }
@@ -323,11 +324,13 @@ a {
 }
 
 .product-status {
+  flex: 0 0 auto;
   padding: 3px 5px;
   border-radius: 999px;
   font-size: 14px;
   line-height: 1.1;
   text-align: center;
+  white-space: nowrap;
 }
 
 .product-status--active {
@@ -336,7 +339,6 @@ a {
 }
 
 .product-status--soon {
-  max-width: 58px;
   background: rgba(245, 166, 35, 0.17);
   color: var(--amber);
 }

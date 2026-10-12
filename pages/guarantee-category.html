@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2b0a3d">
+    <meta name="description" content="Selecciona una categoría para organizar tu producto y su garantía.">
+    <title>Categoría del producto | GarantyApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles_guarantee_category.css">
+    <link rel="stylesheet" href="../css/styles_tokens.css">
+    <script src="../js/guarantee-category.js" defer></script>
+  </head>
+  <body>
+    <header class="category-header">
+      <a href="dashboard.html" aria-label="GarantyApp, inicio">
+        <img src="../assets/garantyapp-logo.png" alt="GarantyApp">
+      </a>
+      <button class="cancel-link" id="cancel-button" type="button">
+        <span aria-hidden="true">×</span>
+        Cancelar registro
+      </button>
+    </header>
+
+    <main class="category-main">
+      <ol class="progress-steps" aria-label="Progreso del registro">
+        <li class="progress-step is-complete">
+          <span class="progress-marker" aria-hidden="true">✓</span>
+          <span>Producto</span>
+        </li>
+        <li class="progress-step is-complete">
+          <span class="progress-marker" aria-hidden="true">✓</span>
+          <span>Fechas</span>
+        </li>
+        <li class="progress-step is-current" aria-current="step">
+          <span class="progress-marker">3</span>
+          <span>Categoría</span>
+        </li>
+        <li class="progress-step">
+          <span class="progress-marker">4</span>
+          <span>Documentos</span>
+        </li>
+        <li class="progress-step">
+          <span class="progress-marker">5</span>
+          <span>Resumen</span>
+        </li>
+      </ol>
+
+      <form class="category-card" id="category-form">
+        <fieldset>
+          <legend>Selecciona una categoría</legend>
+          <div class="category-options" id="category-options"></div>
+        </fieldset>
+
+        <p class="category-feedback" id="category-feedback" role="status" hidden></p>
+        <p class="category-hint">Elige la categoría que mejor describe tu producto.</p>
+        <div class="category-actions">
+          <a class="back-button" href="add-guarantee.html?step=2">‹ Anterior</a>
+          <button class="next-button" type="submit">Siguiente <span aria-hidden="true">›</span></button>
+        </div>
+      </form>
+    </main>
+
+    <dialog class="category-dialog" id="create-category-dialog" aria-labelledby="create-category-title" aria-describedby="create-category-description">
+      <form class="category-dialog-content" id="create-category-form">
+        <span class="cancel-dialog-icon" aria-hidden="true">+</span>
+        <h2 id="create-category-title">Crear categoría</h2>
+        <p id="create-category-description">Escribe un nombre para la nueva categoría.</p>
+        <label class="category-name-field">
+          <span>Nombre de la categoría</span>
+          <input id="category-name" name="categoryName" type="text" maxlength="40" autocomplete="off" required>
+        </label>
+        <p class="dialog-feedback" id="create-category-feedback" role="alert" hidden></p>
+        <div class="category-dialog-actions">
+          <button class="dialog-secondary-button" id="close-create-category" type="button">Cancelar</button>
+          <button class="dialog-primary-button" type="submit">Crear categoría</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="category-dialog" id="delete-category-dialog" aria-labelledby="delete-category-title" aria-describedby="delete-category-description">
+      <div class="category-dialog-content">
+        <span class="cancel-dialog-icon" aria-hidden="true">!</span>
+        <h2 id="delete-category-title">¿Eliminar categoría?</h2>
+        <p id="delete-category-description"></p>
+        <div class="category-dialog-actions">
+          <button class="dialog-secondary-button" id="close-delete-category" type="button">Conservar categoría</button>
+          <button class="dialog-delete-button" id="confirm-delete-category" type="button">Eliminar</button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="cancel-dialog" id="cancel-dialog" aria-labelledby="cancel-dialog-title" aria-describedby="cancel-dialog-description">
+      <div class="cancel-dialog-content">
+        <span class="cancel-dialog-icon" aria-hidden="true">!</span>
+        <h2 id="cancel-dialog-title">¿Cancelar registro?</h2>
+        <p id="cancel-dialog-description">Si sales ahora, perderás la información que ingresaste.</p>
+        <div class="cancel-dialog-actions">
+          <button class="dialog-stay-button" id="stay-button" type="button">Seguir editando</button>
+          <button class="dialog-cancel-button" id="confirm-cancel-button" type="button">Salir sin guardar</button>
+        </div>
+      </div>
+    </dialog>
+  </body>
+</html>

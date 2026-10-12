@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2b0a3d">
+    <meta name="description" content="Confirmación de registro de garantía en GarantyApp.">
+    <title>Garantía guardada | GarantyApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles_guarantee_created.css">
+    <link rel="stylesheet" href="../css/styles_tokens.css">
+    <script src="../js/guarantee-created.js" defer></script>
+  </head>
+  <body>
+    <header class="created-header">
+      <a href="dashboard.html" aria-label="GarantyApp, inicio">
+        <img src="../assets/garantyapp-logo.png" alt="GarantyApp">
+      </a>
+    </header>
+
+    <main class="created-main">
+      <section class="created-content" aria-labelledby="created-title">
+        <span class="created-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" focusable="false">
+            <path class="created-shield" d="M32 5 52 13v15c0 14-8 24-20 31C20 52 12 42 12 28V13L32 5Z"></path>
+            <path class="created-check" d="m22 31 7 7 14-15"></path>
+          </svg>
+        </span>
+        <p class="created-eyebrow">Registro completado</p>
+        <h1 id="created-title">¡Garantía guardada!</h1>
+        <p class="created-message">La garantía de <strong id="created-product">tu producto</strong> se añadió correctamente.</p>
+        <p class="created-category" id="created-category" hidden></p>
+        <div class="created-actions">
+          <a class="created-primary" href="guarantees.html">Ver mis garantías</a>
+          <a class="created-secondary" href="add-guarantee.html" id="add-another-link">Añadir otra garantía</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

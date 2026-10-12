@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2b0a3d">
+    <meta name="description" content="Registra un producto y organiza la información de su garantía en GarantyApp.">
+    <title>Añadir garantía | GarantyApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles_tokens.css">
+    <link rel="stylesheet" href="../css/styles_guarantee_record.css">
+    <link rel="stylesheet" href="../css/styles_add_guarantee.css">
+    <script src="../js/add-guarantee.js" defer></script>
+  </head>
+  <body class="record-page record-page--add">
+    <header class="record-header guarantee-header">
+      <a class="record-brand" href="dashboard.html" aria-label="GarantyApp, inicio">
+        <img src="../assets/garantyapp-logo.png" alt="GarantyApp">
+      </a>
+      <span class="record-header-title">Añadir garantía</span>
+      <button class="cancel-link" id="cancel-button" type="button">
+        <span aria-hidden="true">×</span>
+        Cancelar registro
+      </button>
+    </header>
+
+    <main class="guarantee-main">
+      <div class="guarantee-page-heading">
+        <p class="eyebrow">Tu inventario, siempre protegido</p>
+        <h1>Añadir garantía</h1>
+        <p>Registra tu producto y ten a mano toda la información de su garantía.</p>
+      </div>
+
+      <ol class="progress-steps" aria-label="Progreso del registro">
+        <li class="progress-step is-current" aria-current="step">
+          <span class="progress-marker">1</span>
+          <span>Producto</span>
+        </li>
+        <li class="progress-step">
+          <span class="progress-marker">2</span>
+          <span>Fechas</span>
+        </li>
+        <li class="progress-step">
+          <span class="progress-marker">3</span>
+          <span>Categoría</span>
+        </li>
+        <li class="progress-step">
+          <span class="progress-marker">4</span>
+          <span>Documentos</span>
+        </li>
+        <li class="progress-step">
+          <span class="progress-marker">5</span>
+          <span>Resumen</span>
+        </li>
+      </ol>
+
+      <form class="guarantee-form" id="guarantee-form" novalidate>
+        <section class="form-step" data-step="1" aria-labelledby="product-step-title">
+          <h2 id="product-step-title">Información del producto</h2>
+          <div class="form-grid">
+            <label class="form-field form-field--full">
+              <span>Nombre del producto</span>
+              <input name="product" type="text" placeholder="Ej. Computador portátil" autocomplete="off" required>
+            </label>
+            <label class="form-field">
+              <span>Marca</span>
+              <input name="brand" type="text" placeholder="Ej. Samsung" autocomplete="organization" required>
+            </label>
+            <label class="form-field">
+              <span>Modelo <span class="optional">(opcional)</span></span>
+              <input name="model" type="text" placeholder="Ej. Galaxy S24" autocomplete="off">
+            </label>
+            <label class="form-field">
+              <span>Número de serie <span class="optional">(opcional)</span></span>
+              <input name="serial" type="text" placeholder="Ingresa el número de serie" autocomplete="off">
+            </label>
+            <label class="form-field">
+              <span>Precio de compra</span>
+              <span class="input-with-prefix">
+                <span aria-hidden="true">$</span>
+                <input name="price" type="number" min="0" step="1" placeholder="0" inputmode="numeric" required>
+              </span>
+            </label>
+            <label class="form-field form-field--full">
+              <span>Tienda</span>
+              <input name="store" type="text" placeholder="Nombre de la tienda" autocomplete="organization" required>
+            </label>
+          </div>
+        </section>
+
+        <section class="form-step" data-step="2" aria-labelledby="dates-step-title" hidden>
+          <h2 id="dates-step-title">Fechas y duración</h2>
+          <div class="form-grid">
+            <label class="form-field">
+              <span>Fecha de compra</span>
+              <input name="purchaseDate" type="date" required>
+            </label>
+            <label class="form-field">
+              <span>Duración de la garantía</span>
+              <select name="duration" required>
+                <option value="" selected disabled>Selecciona la duración</option>
+                <option value="6">6 meses</option>
+                <option value="12">1 año</option>
+                <option value="18">18 meses</option>
+                <option value="24">2 años</option>
+                <option value="36">3 años</option>
+                <option value="other">Otra duración</option>
+              </select>
+            </label>
+            <div class="custom-duration form-field--full" id="custom-duration-fields" hidden>
+              <label class="form-field">
+                <span>Duración</span>
+                <input name="durationValue" type="number" min="1" step="1" placeholder="Ej. 3" inputmode="numeric">
+              </label>
+              <label class="form-field">
+                <span>Unidad</span>
+                <select name="durationUnit">
+                  <option value="months" selected>Meses</option>
+                  <option value="years">Años</option>
+                  <option value="days">Días</option>
+                </select>
+              </label>
+            </div>
+            <label class="form-field form-field--full">
+              <span>Fecha de vencimiento</span>
+              <input name="expirationDate" type="date" required>
+            </label>
+          </div>
+          <p class="form-hint">Comprueba las fechas en la factura o el certificado de garantía.</p>
+        </section>
+
+        <section class="form-step" data-step="3" aria-labelledby="documents-step-title" hidden>
+          <h2 id="documents-step-title">Documentos de respaldo</h2>
+          <p class="step-description">Adjunta la factura o el certificado para encontrarlo fácilmente cuando lo necesites.</p>
+          <label class="upload-field">
+            <input name="document" type="file" accept=".pdf,.png,.jpg,.jpeg">
+            <span class="upload-icon" aria-hidden="true">↑</span>
+            <strong>Selecciona un archivo</strong>
+            <span>PDF, PNG o JPG</span>
+          </label>
+          <p class="form-hint">Este paso es opcional. Puedes añadir el documento más tarde.</p>
+        </section>
+
+        <section class="form-step" data-step="4" aria-labelledby="review-step-title" hidden>
+          <h2 id="review-step-title">Revisa tu garantía</h2>
+          <dl class="review-list" id="review-list"></dl>
+        </section>
+
+        <div class="form-actions">
+          <button class="back-button" id="back-button" type="button" hidden>‹ Anterior</button>
+          <button class="next-button" id="next-button" type="button">Siguiente <span aria-hidden="true">›</span></button>
+        </div>
+      </form>
+    </main>
+
+    <dialog class="cancel-dialog" id="cancel-dialog" aria-labelledby="cancel-dialog-title" aria-describedby="cancel-dialog-description">
+      <div class="cancel-dialog-content">
+        <span class="cancel-dialog-icon" aria-hidden="true">!</span>
+        <h2 id="cancel-dialog-title">¿Cancelar registro?</h2>
+        <p id="cancel-dialog-description">Si sales ahora, perderás la información que ingresaste.</p>
+        <div class="cancel-dialog-actions">
+          <button class="dialog-stay-button" id="stay-button" type="button">Seguir editando</button>
+          <button class="dialog-cancel-button" id="confirm-cancel-button" type="button">Salir sin guardar</button>
+        </div>
+      </div>
+    </dialog>
+  </body>
+</html>

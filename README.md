@@ -63,7 +63,15 @@ Tablas principales
 - **`css/`**: Carpeta que contiene los archivos CSS encargados de definir los estilos y la apariencia visual de las distintas páginas del proyecto.
 - **`css/styles_tokens.css`**: Define los tokens comunes de color. Cada hoja CSS de página aplica directamente Poppins, texto base de 14 px, encabezados de 64 px y la misma paleta; las opacidades de estados y superficies se conservan.
 - **`pages/`**: Carpeta que contiene los archivos HTML correspondientes a las diferentes páginas del sitio web.
-- El historial de garantías usa `pages/guarantees.html` para la vista general y `pages/guarantees-active.html`, `pages/guarantees-expiring.html` y `pages/guarantees-expired.html` para sus filtros. Las cuatro vistas comparten los estilos de `css/styles_guarantees.css`.
+- **`pages/add-guarantee.html`**: Asistente para registrar un producto y los datos de su garantía, con estilos en `css/styles_add_guarantee.css` y navegación de pasos en `js/add-guarantee.js`.
+- **`pages/guarantee-category.html`**: Selección, creación y eliminación de categorías dentro del registro de garantías; las categorías se conservan en el navegador y el avance del formulario se conserva temporalmente.
+- **`css/styles_guarantee_category.css`** y **`js/guarantee-category.js`**: Estilos e interacciones de la pantalla de categorías.
+- **`pages/guarantee-created.html`**: Confirmación al finalizar el registro de una garantía, con estilos en `css/styles_guarantee_created.css` y detalles en `js/guarantee-created.js`.
+- **`pages/guarantee-details.html`**, **`pages/guarantee-edit.html`** y **`pages/guarantee-documents.html`**: consulta, edición y gestión de documentos de una garantía; los cambios y archivos adjuntos se guardan localmente en el navegador.
+- **`js/guarantee-records.js`** y **`js/guarantee-links.js`**: datos de ejemplo del historial y conexión de los botones «Detalles» al registro correspondiente.
+- **`css/styles_guarantee_record.css`**: estilos compartidos de las páginas de detalles, edición y documentos; cada vista tiene además su hoja CSS específica.
+- **`js/`**: Scripts de interacción de las páginas que necesitan comportamiento dinámico.
+- El historial de garantías usa `pages/guarantees.html` para la vista general y `pages/guarantees-active.html`, `pages/guarantees-expiring.html` y `pages/guarantees-expired.html` para sus filtros. Las cuatro vistas comparten los estilos de `css/styles_guarantees.css` y permiten filtrar por categoría y búsqueda mediante `js/guarantee-filter.js`.
 
 
 Explicar brevemente qué contiene cada carpeta.

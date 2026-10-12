@@ -11,6 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles_guarantees.css">
     <link rel="stylesheet" href="../css/styles_tokens.css">
+    <script src="../js/guarantee-records.js" defer></script>
+    <script src="../js/guarantee-links.js" defer></script>
+    <script src="../js/guarantee-filter.js" defer></script>
   </head>
   <body class="guarantees-page">
     <header class="guarantees-header">
@@ -24,7 +27,10 @@
         <a class="filter-link filter-link--active" href="guarantees-active.html" aria-current="page">Activas <span class="filter-count">4</span></a>
         <a class="filter-link" href="guarantees-expired.html">Vencidas <span class="filter-count">3</span></a>
       </nav>
-      <label class="guarantee-search"><span class="visually-hidden">Buscar garantía</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg><input type="search" placeholder="Buscar garantía..."></label>
+      <div class="guarantee-controls">
+        <label class="guarantee-search"><span class="visually-hidden">Buscar garantía</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg><input type="search" placeholder="Buscar garantía..."></label>
+        <label class="category-filter"><span class="visually-hidden">Filtrar por categoría</span><select id="category-filter"><option value="">Todas las categorías</option></select></label>
+      </div>
       <section class="guarantee-list" aria-label="Garantías activas">
         <article class="guarantee-card"><div class="guarantee-identity"><span class="guarantee-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16v12H4zM8 4h8M9 19v2m6-2v2"></path></svg></span><div class="guarantee-product"><h2>Sony WH-1000XM5</h2><p>Audio · Audífonos</p></div></div><div class="guarantee-status-row"><span class="status status--active">Activa</span></div><div class="guarantee-dates"><p class="guarantee-date"><span>Comprado</span><strong>20/09/2024</strong></p><p class="guarantee-date"><span>Vence</span><strong>20/09/2026</strong></p></div><div class="guarantee-footer"><p class="guarantee-remaining remaining--active"><strong>346</strong><span>días restantes</span></p><a class="guarantee-details" href="guarantees.html">Detalles <span aria-hidden="true">›</span></a></div></article>
         <article class="guarantee-card"><div class="guarantee-identity"><span class="guarantee-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"></rect><path d="M9 7h6m-6 4h6m-6 4h6"></path></svg></span><div class="guarantee-product"><h2>Lavadora Whirlpool 12 kg</h2><p>Hogar · Línea blanca</p></div></div><div class="guarantee-status-row"><span class="status status--active">Activa</span></div><div class="guarantee-dates"><p class="guarantee-date"><span>Comprado</span><strong>06/06/2024</strong></p><p class="guarantee-date"><span>Vence</span><strong>06/06/2027</strong></p></div><div class="guarantee-footer"><p class="guarantee-remaining remaining--active"><strong>380</strong><span>días restantes</span></p><a class="guarantee-details" href="guarantees.html">Detalles <span aria-hidden="true">›</span></a></div></article>

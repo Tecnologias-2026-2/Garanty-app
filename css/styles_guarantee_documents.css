@@ -1,0 +1,126 @@
+.documents-main {
+  max-width: 1040px;
+}
+
+.documents-content {
+  display: grid;
+  gap: 0;
+}
+
+.saved-document {
+  min-height: 58px;
+  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  border: 1px solid rgba(184, 159, 204, 0.22);
+  border-radius: 10px;
+  background: rgba(26, 5, 40, 0.28);
+}
+
+.document-file-icon {
+  width: 36px;
+  height: 38px;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 8px;
+  background: rgba(229, 57, 138, 0.15);
+  color: var(--record-pink);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.saved-document-copy {
+  min-width: 0;
+  flex: 1 1 auto;
+  display: grid;
+  overflow-wrap: anywhere;
+}
+
+.saved-document-copy span,
+.document-empty {
+  color: var(--record-muted);
+  font-size: 12px;
+}
+
+.saved-document-name {
+  width: fit-content;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font-weight: 500;
+}
+
+.saved-document-name:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.document-remove {
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 7px;
+  background: rgba(255, 99, 113, 0.13);
+  color: var(--record-red);
+  font: inherit;
+  cursor: pointer;
+}
+
+.document-empty {
+  margin: 0 0 15px;
+}
+
+.document-dropzone {
+  min-height: 150px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px dashed rgba(184, 159, 204, 0.42);
+  border-radius: 12px;
+  color: var(--record-text);
+  text-align: center;
+  cursor: pointer;
+}
+
+.document-dropzone:hover {
+  border-color: var(--record-pink);
+  background: rgba(229, 57, 138, 0.06);
+}
+
+.document-dropzone > span:last-of-type {
+  color: var(--record-muted);
+  font-size: 12px;
+}
+
+.document-upload-icon {
+  width: 34px;
+  height: 34px;
+  margin-bottom: 3px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(229, 57, 138, 0.14);
+  color: var(--record-pink);
+  font-size: 20px;
+}
+
+.document-dropzone input {
+  max-width: 100%;
+  margin-top: 7px;
+  color: var(--record-muted);
+  font: inherit;
+  font-size: 12px;
+}
+
+.document-save {
+  margin-top: 10px;
+  margin-left: auto;
+  display: flex;
+}
+
+.documents-content > .record-actions {
+  margin-top: 0;
+}

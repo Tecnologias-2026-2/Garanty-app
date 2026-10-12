@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2b0a3d">
+    <meta name="description" content="Administra las facturas y comprobantes de una garantía en GarantyApp.">
+    <title>Documentos de garantía | GarantyApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles_tokens.css">
+    <link rel="stylesheet" href="../css/styles_guarantee_record.css">
+    <link rel="stylesheet" href="../css/styles_guarantee_documents.css">
+    <script src="../js/guarantee-records.js" defer></script>
+    <script src="../js/guarantee-documents.js" defer></script>
+  </head>
+  <body class="record-page">
+    <header class="record-header">
+      <a class="record-back" id="documents-back-link" href="guarantees.html" aria-label="Volver a los detalles"><span aria-hidden="true">←</span></a>
+      <a class="record-brand" href="dashboard.html" aria-label="GarantyApp, inicio"><img src="../assets/garantyapp-logo.png" alt="GarantyApp"></a>
+      <span class="record-header-title">Documentos</span>
+      <span class="record-header-spacer" aria-hidden="true"></span>
+    </header>
+    <main class="record-main documents-main">
+      <p class="record-unavailable" id="document-unavailable" role="alert" hidden>No encontramos esta garantía. <a href="guarantees.html">Volver a mis garantías</a>.</p>
+      <div class="documents-content">
+        <section class="record-hero edit-hero" aria-labelledby="documents-title">
+          <span class="record-product-icon" aria-hidden="true">▤</span>
+          <div class="record-hero-copy"><p class="record-eyebrow">Documentos de garantía</p><h1 id="documents-title">Factura y comprobantes</h1><p id="document-product"></p></div>
+        </section>
+        <section class="record-panel" aria-labelledby="saved-document-heading">
+          <div class="record-panel-heading"><span class="record-section-icon" aria-hidden="true">▤</span><h2 id="saved-document-heading">Documento adjunto</h2></div>
+          <div class="saved-document" id="saved-document" hidden>
+            <span class="document-file-icon" aria-hidden="true">PDF</span>
+            <div class="saved-document-copy"><a class="saved-document-name" id="open-document-link" target="_blank" rel="noopener"></a><span>Guardado en este navegador</span></div>
+            <button class="document-remove" id="remove-document-button" type="button">Eliminar</button>
+          </div>
+          <p class="document-empty" id="document-empty">Todavía no has añadido una factura o comprobante.</p>
+          <form id="document-upload-form">
+            <label class="document-dropzone" for="guarantee-file">
+              <span class="document-upload-icon" aria-hidden="true">↑</span>
+              <strong>Selecciona un archivo</strong>
+              <span>PDF o imagen · máximo 1,5 MB</span>
+              <input id="guarantee-file" type="file" accept="application/pdf,image/*">
+            </label>
+            <p class="record-feedback" id="document-feedback" role="status" aria-live="polite"></p>
+            <button class="record-button record-button--primary document-save" type="submit">Guardar documento</button>
+          </form>
+        </section>
+        <div class="record-actions"><a class="record-button record-button--secondary" id="documents-back-button" href="guarantees.html">Volver a los detalles</a></div>
+      </div>
+    </main>
+    <nav class="record-nav" aria-label="Navegación principal">
+      <a href="dashboard.html"><span aria-hidden="true">⌂</span>Inicio</a>
+      <a class="record-nav-active" href="guarantees.html"><span aria-hidden="true">▤</span>Mis garantías</a>
+      <a href="settings.html"><span aria-hidden="true">⚙</span>Configuración</a>
+      <a class="record-logout" href="login.html"><span aria-hidden="true">↪</span>Cerrar sesión</a>
+    </nav>
+  </body>
+</html>

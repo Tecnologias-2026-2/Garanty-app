@@ -1,0 +1,487 @@
+:root {
+  color-scheme: dark;
+  --record-bg: #2b0a3d;
+  --record-header: #1a0528;
+  --record-panel: #3a1254;
+  --record-text: #f0e8ff;
+  --record-muted: #b89fcc;
+  --record-pink: #e5398a;
+  --record-green: #30c56a;
+  --record-amber: #f5a623;
+  --record-red: #ff6371;
+}
+
+.record-page--details .record-header,
+.record-page--edit .record-header {
+  width: 100%;
+  position: fixed;
+  z-index: 12;
+  inset: 0 0 auto;
+}
+
+.record-page--details .record-main,
+.record-page--edit .record-main {
+  padding-top: 88px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@media (max-width: 680px) {
+  .record-page--details .record-main,
+  .record-page--edit .record-main {
+    padding-top: 80px;
+    padding-bottom: 82px;
+  }
+}
+
+body.record-page {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--record-bg);
+  color: var(--record-text);
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.record-page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.record-header {
+  min-height: 64px;
+  padding: 8px 30px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) 120px;
+  align-items: center;
+  gap: 12px;
+  background: var(--record-header);
+}
+
+.record-back {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--record-muted);
+  font-size: 22px;
+}
+
+.record-back:hover {
+  background: rgba(240, 232, 255, 0.08);
+  color: var(--record-text);
+}
+
+.record-brand {
+  width: 120px;
+  display: block;
+}
+
+.record-brand img {
+  width: 120px;
+  max-width: 40vw;
+  height: auto;
+  display: block;
+}
+
+.record-header-title {
+  justify-self: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.record-main {
+  width: min(calc(100vw - 184px - 48px), 1146px);
+  min-height: calc(100vh - 64px);
+  margin: 0 24px 0 calc(184px + max(24px, (100vw - 184px - 1146px) / 2));
+  padding: 24px 24px 48px;
+}
+
+.record-hero,
+.record-panel {
+  margin-bottom: 12px;
+  padding: 20px 24px;
+  border: 1px solid rgba(184, 159, 204, 0.12);
+  border-radius: 14px;
+  background: var(--record-panel);
+}
+
+.record-hero {
+  min-height: 124px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.record-product-icon,
+.record-section-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(229, 57, 138, 0.14);
+  color: var(--record-pink);
+  font-size: 20px;
+}
+
+.record-hero-copy {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.record-eyebrow {
+  margin: 0 0 3px;
+  color: var(--record-muted);
+  font-size: 12px;
+}
+
+.record-hero h1 {
+  margin: 0;
+  font-size: clamp(18px, 3vw, 24px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.record-hero-copy > p:last-child {
+  margin: 4px 0 0;
+  color: var(--record-muted);
+}
+
+.detail-status {
+  padding: 5px 11px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.detail-status--active {
+  background: rgba(48, 197, 106, 0.14);
+  color: var(--record-green);
+}
+
+.detail-status--soon {
+  background: rgba(245, 166, 35, 0.17);
+  color: var(--record-amber);
+}
+
+.detail-status--expired {
+  background: rgba(255, 99, 113, 0.16);
+  color: var(--record-red);
+}
+
+.record-countdown {
+  min-width: 110px;
+  padding-left: 18px;
+  display: grid;
+  gap: 1px;
+  border-left: 1px solid rgba(184, 159, 204, 0.2);
+  text-align: right;
+}
+
+.record-countdown strong {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.record-countdown span,
+.record-data-grid dt,
+.record-notes > p,
+.record-document-link,
+.record-text-link {
+  color: var(--record-muted);
+}
+
+.record-panel-heading {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.record-section-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  font-size: 16px;
+}
+
+.record-panel-heading h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.record-data-grid {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px 28px;
+}
+
+.record-data-grid > div {
+  min-width: 0;
+}
+
+.record-data-grid dt {
+  margin-bottom: 3px;
+  font-size: 12px;
+}
+
+.record-data-grid dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-weight: 500;
+}
+
+.record-warranty {
+  border-color: rgba(229, 57, 138, 0.2);
+}
+
+.record-document-link {
+  width: fit-content;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  overflow-wrap: anywhere;
+}
+
+.record-document-link:hover,
+.record-text-link:hover {
+  color: var(--record-text);
+}
+
+.record-text-link {
+  margin-top: 10px;
+  display: inline-block;
+  font-size: 12px;
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+.record-notes > p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.record-actions {
+  margin: 18px 0 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.record-button {
+  min-height: 40px;
+  padding: 8px 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.record-button--primary {
+  background: var(--record-pink);
+  color: #fff !important;
+}
+
+.record-button--primary:hover {
+  background: #ee4c99;
+}
+
+.record-button--secondary {
+  border-color: rgba(184, 159, 204, 0.35);
+  background: transparent;
+  color: var(--record-text);
+}
+
+.record-button--secondary:hover {
+  background: rgba(240, 232, 255, 0.07);
+}
+
+.record-nav {
+  width: 184px;
+  padding: 14px 10px;
+  position: fixed;
+  z-index: 2;
+  inset: 64px auto 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-right: 1px solid rgba(184, 159, 204, 0.12);
+  background: var(--record-header);
+}
+
+.record-nav a {
+  min-height: 40px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-radius: 8px;
+  color: var(--record-muted);
+}
+
+.record-nav a:hover,
+.record-nav .record-nav-active {
+  background: rgba(229, 57, 138, 0.13);
+  color: var(--record-text);
+}
+
+.record-nav .record-logout {
+  margin-top: auto;
+  color: var(--record-red);
+}
+
+.record-unavailable {
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid rgba(255, 99, 113, 0.35);
+  border-radius: 12px;
+  background: rgba(255, 99, 113, 0.08);
+}
+
+.record-unavailable a {
+  color: var(--record-text);
+  text-decoration: underline;
+}
+
+.record-page [hidden] {
+  display: none !important;
+}
+
+.record-page a:focus-visible,
+.record-page button:focus-visible,
+.record-page input:focus-visible,
+.record-page textarea:focus-visible,
+.record-page select:focus-visible {
+  outline: 2px solid var(--record-text);
+  outline-offset: 3px;
+}
+
+.record-page button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+@media (max-width: 900px) {
+  .record-main {
+    width: min(100% - 32px, 760px);
+    margin-inline: auto;
+    padding-inline: 8px;
+  }
+
+  .record-nav {
+    width: 100%;
+    height: 60px;
+    padding: 4px 8px;
+    inset: auto 0 0;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 4px;
+    border-top: 1px solid rgba(184, 159, 204, 0.12);
+    border-right: 0;
+  }
+
+  .record-nav a {
+    min-height: 48px;
+    padding: 4px 7px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    font-size: 11px;
+  }
+
+  .record-nav .record-logout {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .record-header {
+    grid-template-columns: 90px minmax(0, 1fr) 90px;
+    gap: 7px;
+    padding-inline: 12px;
+  }
+
+  .record-brand,
+  .record-brand img {
+    width: 90px;
+  }
+
+  .record-header-title {
+    font-size: 14px;
+  }
+
+  .record-main {
+    width: calc(100% - 20px);
+    padding: 16px 0 82px;
+  }
+
+  .record-hero,
+  .record-panel {
+    padding: 16px;
+  }
+
+  .record-hero {
+    flex-wrap: wrap;
+    gap: 11px;
+  }
+
+  .record-product-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .record-hero-copy {
+    flex-basis: calc(100% - 50px);
+  }
+
+  .detail-status {
+    margin-left: 47px;
+  }
+
+  .record-countdown {
+    min-width: 0;
+    margin-left: auto;
+    padding-left: 10px;
+  }
+
+  .record-data-grid {
+    gap: 14px 12px;
+  }
+
+  .record-actions {
+    justify-content: stretch;
+  }
+
+  .record-actions > * {
+    flex: 1 1 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
