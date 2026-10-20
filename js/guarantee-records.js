@@ -43,32 +43,52 @@
     }
   }
 
-  window.GuaranteeStore = {
-    slugify,
-    list: records,
-    get(id) {
-      const record = records.find((item) => slugify(item.product) === id);
-      if (!record) return null;
-      const overrides = readStored("garantyapp-guarantee-overrides");
-      return { ...record, ...(overrides[id] ?? {}) };
-    },
-    save(id, changes) {
-      const overrides = readStored("garantyapp-guarantee-overrides");
-      overrides[id] = { ...(overrides[id] ?? {}), ...changes };
-      return writeStored("garantyapp-guarantee-overrides", overrides);
-    },
-    getDocument(id) {
-      return readStored("garantyapp-guarantee-documents")[id] ?? null;
-    },
-    saveDocument(id, document) {
-      const documents = readStored("garantyapp-guarantee-documents");
-      documents[id] = document;
-      return writeStored("garantyapp-guarantee-documents", documents);
-    },
-    removeDocument(id) {
-      const documents = readStored("garantyapp-guarantee-documents");
-      delete documents[id];
-      return writeStored("garantyapp-guarantee-documents", documents);
+window.GuaranteeStore = {
+  records,
+  slugify,
+
+  getCustomRecords() {
+    try {
+      const value = localStorage.getItem("garantyapp-custom-guarantees");
+      return value ? JSON.parse(value) : [];
+    } catch (error) {
+      console.error("No se pudieron leer las garantías creadas.", error);
+      return [];
     }
+  },
+
+  create(record) {
+    try {
+      const customRecords = this.getCustomRecords();
+      customRecords.push(record);
+
+      localStorage.setItem(
+        "garantyapp-custom-guarantees",
+        JSON.stringify(customRecords)
+      );
+
+      return true;
+    } catch (error) {
+      console.error("No se pudo guardar la nueva garantía.", error);
+      return false;
+    }
+  },
+
+ get(id) {
+  const customRecords = this.getCustomRecords();
+
+  const record = [...records, ...customRecords]
+    .find((item) => slugify(item.product) === id);
+
+  if (!record) return null;
+
+  const overrides = readStored("garantyapp-guarantee-overrides");
+
+  return {
+    ...record,
+    ...(overrides[id] ?? {})
   };
+}
+};
+
 })();

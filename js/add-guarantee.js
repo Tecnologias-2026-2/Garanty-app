@@ -292,25 +292,59 @@ function validateDocument() {
 renderStep();
   renderStep();
 
-  nextButton.addEventListener("click", () => {
-    if (!validateCurrentStep()) return;
+ nextButton.addEventListener("click", () => {
+  console.log("CLICK SIGUIENTE", currentStep);
 
-    saveFormState();
-    if (currentStep === 2) {
-      window.location.href = "guarantee-category.html";
-      return;
-    }
+  if (!validateCurrentStep()) return;
 
-    if (currentStep < steps.length) {
-      currentStep += 1;
-      renderStep();
-      steps[currentStep - 1].querySelector("input, select, button")?.focus();
-      return;
-    }
+  saveFormState();
 
-    saveFormState();
-    window.location.href = "guarantee-created.html";
-  });
+  if (currentStep === 2) {
+    window.location.href = "guarantee-category.html";
+    return;
+  }
+
+  if (currentStep < steps.length) {
+    currentStep += 1;
+    renderStep();
+    steps[currentStep - 1].querySelector("input, select, button")?.focus();
+    return;
+  }
+
+  const values = new FormData(form);
+  const selectedCategory =
+    sessionStorage.getItem(`${stateKey}-category`) || "Sin categoría";
+
+  const durationLabel =
+    values.get("duration") === "other"
+      ? `${values.get("durationValue")} ${values.get("durationUnit")}`
+      : `${values.get("duration")} meses`;
+
+  const newGuarantee = {
+    product: String(values.get("product") || "").trim(),
+    brand: String(values.get("brand") || "").trim(),
+    category: selectedCategory,
+    purchased: String(values.get("purchaseDate") || ""),
+    expires: String(values.get("expirationDate") || ""),
+    duration: durationLabel,
+    price: Number(values.get("price")) || 0,
+    store: String(values.get("store") || "").trim(),
+    serial: String(values.get("serial") || "").trim(),
+    notes: "",
+    status: "Activa",
+    remainingDays: 0
+  };
+
+  const saved = window.GuaranteeStore?.create(newGuarantee);
+
+  if (!saved) {
+    alert("No se pudo guardar la garantía. Intenta nuevamente.");
+    return;
+  }
+
+  saveFormState();
+  window.location.href = "guarantee-created.html";
+});
 
   backButton.addEventListener("click", () => {
     if (currentStep === 3) {
