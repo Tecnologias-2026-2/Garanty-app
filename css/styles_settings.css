@@ -71,7 +71,7 @@ a {
 
 .settings-shell {
   min-height: calc(100vh - 60px);
-  padding-right: 164px;
+  padding-left: 164px;
   position: relative;
 }
 
@@ -163,11 +163,12 @@ a {
   width: 164px;
   padding: 18px 10px;
   position: absolute;
-  inset: 0 0 0 auto;
+  inset: 0 auto 0 0;
   display: flex;
   flex-direction: column;
   gap: 5px;
-  border-left: 1px solid rgba(184, 159, 204, 0.07);
+  border-right: 1px solid rgba(184, 159, 204, 0.07);
+  border-left: 0;
   background: rgba(26, 5, 40, 0.18);
 }
 
@@ -204,8 +205,8 @@ a:focus-visible {
 
 @media (max-width: 800px) {
   .settings-shell {
-    padding-right: 138px;
-  }
+  padding-left: 138px;
+}
 
   .settings-nav {
     width: 138px;

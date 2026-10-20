@@ -137,7 +137,7 @@ a {
 
 .dashboard-shell {
   min-height: calc(100vh - 60px);
-  padding-right: 164px;
+  padding-left: 164px;
   position: relative;
 }
 
@@ -422,11 +422,12 @@ a {
   width: 164px;
   padding: 22px 12px;
   position: absolute;
-  inset: 0 0 0 auto;
+  inset: 0 auto 0 0;
   display: flex;
   flex-direction: column;
   gap: 5px;
-  border-left: 1px solid rgba(184, 159, 204, 0.07);
+  border-right: 1px solid rgba(184, 159, 204, 0.07);
+  border-left: 0;
   background: rgba(26, 5, 40, 0.18);
 }
 
@@ -474,8 +475,8 @@ input:focus-visible {
 
 @media (max-width: 1000px) {
   .dashboard-shell {
-    padding-right: 140px;
-  }
+  padding-left: 140px;
+}
 
   .dashboard-nav {
     width: 140px;
@@ -518,10 +519,9 @@ input:focus-visible {
     gap: 10px;
   }
 
-  .user-link > span:nth-child(2),
-  .user-link > svg {
-    display: none;
-  }
+  .user-link > span:nth-child(2) {
+  display: none;
+}
 
   .dashboard-shell {
     min-height: calc(100vh - 105px);

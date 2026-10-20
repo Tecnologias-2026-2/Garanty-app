@@ -228,6 +228,12 @@ button {
   grid-column: 1 / -1;
 }
 
+.form-field--expiration {
+  width: 100%;
+  max-width: 360px;
+  justify-self: start;
+}
+
 .custom-duration {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -264,10 +270,19 @@ button {
   box-shadow: 0 0 0 3px rgba(229, 57, 138, 0.18);
 }
 
+.form-field input[type="date"] {
+  color-scheme: dark;
+}
+
+.form-field input[type="date"]:focus-visible {
+  border-color: #ff78b4;
+  box-shadow: 0 0 0 3px rgba(255, 120, 180, 0.2);
+}
+
 .form-field input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
   filter: invert(1);
-  opacity: 0.75;
+  opacity: 1;
 }
 
 .input-with-prefix {
@@ -292,6 +307,20 @@ button {
   margin: 14px 0 0;
   color: var(--muted);
   font-size: 14px;
+}
+.upload-feedback {
+  min-height: 20px;
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.upload-feedback.is-success {
+  color: #62d69f;
+}
+
+.upload-feedback.is-error {
+  color: #ff8b97;
 }
 
 .upload-field {
@@ -334,7 +363,7 @@ button {
   place-items: center;
   border-radius: 50%;
   background: rgba(229, 57, 138, 0.18);
-  color: var(--pink);
+  color: #ff78b4;
   font-size: 20px;
 }
 
@@ -501,13 +530,16 @@ button {
   display: none !important;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 620px) {
   .guarantee-header {
     height: 64px;
     padding-inline: 12px;
     grid-template-columns: 90px minmax(0, 1fr) auto;
     gap: 6px;
   }
+  .form-field--expiration {
+  max-width: none;
+}
 
   .record-page--add .record-brand,
   .record-page--add .record-brand img {

@@ -123,10 +123,10 @@
                 </select>
               </label>
             </div>
-            <label class="form-field form-field--full">
-              <span>Fecha de vencimiento</span>
-              <input name="expirationDate" type="date" required>
-            </label>
+            <label class="form-field form-field--full form-field--expiration">
+  <span>Fecha de vencimiento</span>
+  <input name="expirationDate" type="date" required>
+</label>
           </div>
           <p class="form-hint">Comprueba las fechas en la factura o el certificado de garantía.</p>
         </section>
@@ -135,11 +135,25 @@
           <h2 id="documents-step-title">Documentos de respaldo</h2>
           <p class="step-description">Adjunta la factura o el certificado para encontrarlo fácilmente cuando lo necesites.</p>
           <label class="upload-field">
-            <input name="document" type="file" accept=".pdf,.png,.jpg,.jpeg">
-            <span class="upload-icon" aria-hidden="true">↑</span>
-            <strong>Selecciona un archivo</strong>
-            <span>PDF, PNG o JPG</span>
-          </label>
+  <input
+    id="guarantee-document"
+    name="document"
+    type="file"
+    accept=".pdf,application/pdf"
+  >
+
+  <span class="upload-icon" aria-hidden="true">↑</span>
+  <strong>Selecciona un archivo</strong>
+  <span>Solo PDF · máximo 1,5 MB</span>
+</label>
+
+<p
+  class="upload-feedback"
+  id="document-feedback"
+  role="status"
+  aria-live="polite"
+></p>
+
           <p class="form-hint">Este paso es opcional. Puedes añadir el documento más tarde.</p>
         </section>
 

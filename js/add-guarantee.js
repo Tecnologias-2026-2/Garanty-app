@@ -12,12 +12,17 @@ if (form) {
   const stayButton = document.querySelector("#stay-button");
   const confirmCancelButton = document.querySelector("#confirm-cancel-button");
   const purchaseDate = form.elements.namedItem("purchaseDate");
-  const duration = form.elements.namedItem("duration");
-  const customDurationFields = document.querySelector("#custom-duration-fields");
-  const durationValue = form.elements.namedItem("durationValue");
-  const durationUnit = form.elements.namedItem("durationUnit");
-  const expirationDate = form.elements.namedItem("expirationDate");
-  const today = new Date();
+const duration = form.elements.namedItem("duration");
+const customDurationFields = document.querySelector("#custom-duration-fields");
+const durationValue = form.elements.namedItem("durationValue");
+const durationUnit = form.elements.namedItem("durationUnit");
+const expirationDate = form.elements.namedItem("expirationDate");
+
+const documentInput = form.elements.namedItem("document");
+const documentFeedback = document.querySelector("#document-feedback");
+const maxDocumentSize = 1500000;
+
+const today = new Date();
   const requestedStep = Number(new URLSearchParams(window.location.search).get("step"));
   let currentStep = [2, 3].includes(requestedStep) ? requestedStep : 1;
 
@@ -237,7 +242,54 @@ if (form) {
     }
     updateExpirationDate();
   }
+function validateDocument() {
+  const file = documentInput?.files?.[0];
 
+  if (!file) {
+    if (documentFeedback) {
+      documentFeedback.textContent = "";
+      documentFeedback.classList.remove("is-success", "is-error");
+    }
+
+    return true;
+  }
+
+  if (file.type !== "application/pdf") {
+    if (documentFeedback) {
+      documentFeedback.textContent = "Solo puedes cargar archivos PDF.";
+      documentFeedback.classList.add("is-error");
+      documentFeedback.classList.remove("is-success");
+    }
+
+    documentInput.value = "";
+    return false;
+  }
+
+  if (file.size > maxDocumentSize) {
+    if (documentFeedback) {
+      documentFeedback.textContent =
+        "El PDF supera el límite de 1,5 MB. Selecciona un archivo más pequeño.";
+
+      documentFeedback.classList.add("is-error");
+      documentFeedback.classList.remove("is-success");
+    }
+
+    documentInput.value = "";
+    return false;
+  }
+
+  if (documentFeedback) {
+    documentFeedback.textContent =
+      `✓ ${file.name} seleccionado correctamente.`;
+
+    documentFeedback.classList.add("is-success");
+    documentFeedback.classList.remove("is-error");
+  }
+
+  return true;
+}
+
+renderStep();
   renderStep();
 
   nextButton.addEventListener("click", () => {
@@ -274,9 +326,11 @@ if (form) {
   });
 
   purchaseDate.addEventListener("change", updateExpirationDate);
-  duration.addEventListener("change", updateCustomDurationFields);
-  durationValue.addEventListener("input", updateExpirationDate);
-  durationUnit.addEventListener("change", updateExpirationDate);
+documentInput?.addEventListener("change", validateDocument);
+
+duration.addEventListener("change", updateCustomDurationFields);
+durationValue.addEventListener("input", updateExpirationDate);
+durationUnit.addEventListener("change", updateExpirationDate);
   form.addEventListener("input", (event) => {
     if (event.target.matches("[aria-invalid='true']") && event.target.checkValidity()) {
       clearFieldError(event.target);

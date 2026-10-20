@@ -467,11 +467,12 @@ a {
   width: 164px;
   padding: 18px 10px;
   position: fixed;
-  inset: 64px 0 0 auto;
+  inset: 64px auto 0 0;
   display: flex;
   flex-direction: column;
   gap: 5px;
-  border-left: 1px solid rgba(184, 159, 204, 0.07);
+  border-right: 1px solid rgba(184, 159, 204, 0.07);
+  border-left: 0;
   background: rgba(26, 5, 40, 0.2);
 }
 
@@ -551,11 +552,11 @@ select:focus-visible {
     flex-basis: 100%;
   }
 
-  .guarantees-main {
-    width: min(100% - 32px, 790px);
-    margin-right: 150px;
-    margin-left: auto;
-  }
+ .guarantees-main {
+  width: min(100% - 32px, 790px);
+  margin-left: 150px;
+  margin-right: auto;
+}
 }
 
 @media (max-width: 620px) {

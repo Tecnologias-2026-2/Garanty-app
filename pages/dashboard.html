@@ -27,9 +27,9 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path><path d="M10 21h4"></path></svg>
         </a>
         <a class="user-link" href="settings.html" aria-label="Configuración de María A.">
-          <span class="user-avatar">MA</span><span>María A.</span>
-          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"></path></svg>
-        </a>
+  <span class="user-avatar">MA</span>
+  <span>María A.</span>
+</a>
       </div>
     </header>
 
@@ -40,19 +40,50 @@
           <p>Tienes 2 garantías próximas a vencer.</p>
         </section>
 
-        <section class="summary-grid" aria-label="Resumen de garantías">
-          <a class="summary-card summary-card--active" href="guarantees.html?filter=active"><a href="guarantees.html">Ver todas <span aria-hidden="true">›</span></a>
-            <span><span class="summary-label">Garantías Activas</span><strong>4</strong><span class="summary-link">Ver listado <span aria-hidden="true">›</span></span></span>
-            <span class="summary-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="m8 12 2.5 2.5L16 9"></path><circle cx="12" cy="12" r="9"></circle></svg>
-            </span>
-          </a>
-          <a href="guarantees.html">Ver todas <span aria-hidden="true">›</span></a>
-            <span><span class="summary-label">Garantías vencidas</span><strong>3</strong><span class="summary-link">Ver listado <span aria-hidden="true">›</span></span></span>
-            <span class="summary-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M12 8v5"></path><path d="M12 16h.01"></path><path d="m10.3 3.8-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3.2l-8-14a2 2 0 0 0-3.4 0Z"></path></svg>
-            </span>
-          </a>
+     <section class="summary-grid" aria-label="Resumen de garantías">
+
+  <a
+    class="summary-card summary-card--active"
+    href="guarantees.html?filter=active"
+  >
+    <span>
+      <span class="summary-label">Garantías Activas</span>
+      <strong>4</strong>
+      <span class="summary-link">
+        Ver listado <span aria-hidden="true">›</span>
+      </span>
+    </span>
+
+    <span class="summary-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
+        <path d="m8 12 2.5 2.5L16 9"></path>
+        <circle cx="12" cy="12" r="9"></circle>
+      </svg>
+    </span>
+  </a>
+
+  <a
+    class="summary-card summary-card--expired"
+    href="guarantees.html?filter=expired"
+  >
+    <span>
+      <span class="summary-label">Garantías vencidas</span>
+      <strong>3</strong>
+      <span class="summary-link">
+        Ver listado <span aria-hidden="true">›</span>
+      </span>
+    </span>
+
+    <span class="summary-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 8v5"></path>
+        <path d="M12 16h.01"></path>
+        <path d="m10.3 3.8-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3.2l-8-14a2 2 0 0 0-3.4 0Z"></path>
+      </svg>
+    </span>
+  </a>
+
+</section>
         </section>
 
         <section class="recent-section" aria-labelledby="recent-title">
@@ -110,7 +141,7 @@
         <a class="nav-link nav-link--active" href="dashboard.html"><span aria-hidden="true">⌂</span>Inicio</a>
         <a class="nav-link" href="guarantees.html"><span aria-hidden="true">▤</span>Mis garantías</a>
         <a class="nav-link" href="settings.html"><span aria-hidden="true">⚙</span>Configuración</a>
-        <a class="nav-link nav-link--logout" href="login.html"><span aria-hidden="true">↪</span>Cerrar sesión</a>
+        <a class="nav-link nav-link--logout" href="index.html"href="login.html"><span aria-hidden="true">↪</span>Cerrar sesión</a>
       </nav>
     </div>
   </body>
