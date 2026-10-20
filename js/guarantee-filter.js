@@ -23,6 +23,60 @@ let selectedStatus = validStatuses.includes(requestedStatus)
 });
 
 if (guaranteeList && categoryFilter && searchInput) {
+  const customRecords =
+  window.GuaranteeStore?.getCustomRecords?.() ?? [];
+
+customRecords.forEach((record) => {
+  const card = document.createElement("article");
+  card.className = "guarantee-card";
+
+  const id = window.GuaranteeStore.slugify(record.product);
+
+  card.innerHTML = `
+    <div class="guarantee-identity">
+      <span class="guarantee-icon" aria-hidden="true">▤</span>
+
+      <div class="guarantee-product">
+        <h2>${record.product}</h2>
+        <p>${record.brand} · ${record.category}</p>
+      </div>
+    </div>
+
+    <div class="guarantee-status-row">
+      <span class="status status--active">
+        Activa
+      </span>
+    </div>
+
+    <div class="guarantee-dates">
+      <p class="guarantee-date">
+        <span>Comprado</span>
+        <strong>${record.purchased}</strong>
+      </p>
+
+      <p class="guarantee-date">
+        <span>Vence</span>
+        <strong>${record.expires}</strong>
+      </p>
+    </div>
+
+    <div class="guarantee-footer">
+      <p class="guarantee-remaining remaining--active">
+        <strong>Activa</strong>
+        <span>garantía registrada</span>
+      </p>
+
+      <a
+        class="guarantee-details"
+        href="guarantee-details.html?id=${encodeURIComponent(id)}"
+      >
+        Detalles <span aria-hidden="true">›</span>
+      </a>
+    </div>
+  `;
+
+  guaranteeList.prepend(card);
+});
   const guaranteeCards = [...guaranteeList.querySelectorAll(".guarantee-card")];
   const emptyMessage = document.createElement("p");
   const normalize = (value) => value
