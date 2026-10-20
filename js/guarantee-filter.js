@@ -6,7 +6,21 @@ const statusFilters = [
   ...document.querySelectorAll("[data-status-filter]")
 ];
 
-let selectedStatus = "all";
+const urlParams = new URLSearchParams(window.location.search);
+const requestedStatus = urlParams.get("filter");
+
+const validStatuses = ["all", "soon", "active", "expired"];
+
+let selectedStatus = validStatuses.includes(requestedStatus)
+  ? requestedStatus
+  : "all";
+
+  statusFilters.forEach((button) => {
+  button.classList.toggle(
+    "is-selected",
+    button.dataset.statusFilter === selectedStatus
+  );
+});
 
 if (guaranteeList && categoryFilter && searchInput) {
   const guaranteeCards = [...guaranteeList.querySelectorAll(".guarantee-card")];
@@ -75,13 +89,23 @@ const isVisible =
     emptyMessage.hidden = visibleCount > 0;
   }
 
-  statusFilters.forEach((button) => {
+ statusFilters.forEach((button) => {
   button.addEventListener("click", () => {
     selectedStatus = button.dataset.statusFilter ?? "all";
 
     statusFilters.forEach((item) => {
       item.classList.toggle("is-selected", item === button);
     });
+
+    const url = new URL(window.location);
+
+    if (selectedStatus === "all") {
+      url.searchParams.delete("filter");
+    } else {
+      url.searchParams.set("filter", selectedStatus);
+    }
+
+    window.history.replaceState({}, "", url);
 
     filterGuarantees();
   });
