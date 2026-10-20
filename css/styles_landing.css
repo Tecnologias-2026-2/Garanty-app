@@ -21,14 +21,6 @@
   box-sizing: border-box;
 }
 
-.landing-page {
-  zoom: 0.96;
-}
-
-.landing-page img[src$="garantyapp-logo.png"] {
-  width: calc(var(--brand-logo-width) / 0.96);
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -1234,33 +1226,47 @@ a {
 
 .button {
   min-height: 48px;
+  padding: 12px 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
+
   border: 1px solid var(--color-pink-border);
-  border-radius: 20px;
+  border-radius: 14px;
+
   background: var(--color-pink);
   color: #f0e8ff;
+
   font-family: var(--font-body);
   font-weight: 600;
   text-align: center;
-  transition: background-color 160ms ease, transform 160ms ease;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
 }
 
 .button:hover {
   background: #e5398a;
+  border-color: #e5398a;
   transform: translateY(-1px);
 }
 
 .button:focus-visible,
 a:focus-visible,
 .pricing-selector label:focus-visible {
-  outline: 3px solid #f0e8ff;
+  outline: 3px solid var(--color-pink);
   outline-offset: 3px;
 }
 
 .button--header {
-  width: 138px;
+  min-width: 138px;
   padding: 12px 18px;
   font-size: 14px;
   line-height: 20px;
@@ -1292,7 +1298,7 @@ a:focus-visible,
   max-width: 1018px;
   margin: 0;
   color: var(--color-pink);
-  font-size: 48px;
+  font-size: clamp(32px, 4vw, 48px);
   font-weight: 800;
   line-height: 1.12;
 }
@@ -1300,16 +1306,16 @@ a:focus-visible,
 .hero-copy > p {
   max-width: 1149px;
   margin: 0;
-  font-size: 20px;
+  font-size: clamp(16px, 1.8vw, 20px);
   font-weight: 500;
-  line-height: 1.25;
+  line-height: 1.4;
 }
 
 .button--hero {
-  width: 390px;
+  width: min(100%, 390px);
   min-height: 56px;
   padding: 10px 20px;
-  font-size: 18px;
+  font-size: clamp(16px, 1.5vw, 18px);
   line-height: 1.2;
 }
 
@@ -1407,13 +1413,11 @@ a:focus-visible,
 }
 
 .steps-panel {
-  min-height: 360px;
-  padding: 34px 8.4%;
+  padding: 48px 8%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 28px;
-  border-radius: 231px;
+  gap: 32px;
+  border-radius: 48px;
   background: var(--color-panel);
   color: var(--color-background);
 }
@@ -1433,23 +1437,22 @@ a:focus-visible,
 }
 
 .steps-grid {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
 }
 
 .step-card {
-  flex: 1 1 calc(33.333% - 24px);
-  min-width: min(100%, 220px);
-  max-width: 450px;
-  min-height: 200px;
-  padding: 14px 16px;
+  width: 100%;
+  min-height: 220px;
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 9px;
-  border-radius: 30px;
+  justify-content: flex-start;
+  gap: 12px;
+  border-radius: 24px;
   background: var(--color-card);
   color: #f0e8ff;
   text-align: center;
@@ -1477,7 +1480,7 @@ a:focus-visible,
 }
 
 .step-card h3 {
-  min-height: 54px;
+  min-height: 44px;
   font-weight: 600;
 }
 
@@ -1505,7 +1508,7 @@ a:focus-visible,
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px;
   border: 1px solid #f0e8ff;
   border-radius: 15px;
@@ -1514,7 +1517,10 @@ a:focus-visible,
 
 .testimonial-quote {
   width: 100%;
+  flex: 1;
   margin: 0;
+  display: flex;
+  align-items: center;
   color: var(--color-lilac);
   font-family: var(--font-display);
   font-size: 16px;
@@ -1537,7 +1543,9 @@ a:focus-visible,
 .testimonial-divider {
   width: 100%;
   height: 1px;
-  object-fit: fill;
+  flex-shrink: 0;
+  margin: 4px 0;
+  background: rgba(240, 232, 255, 0.55);
 }
 
 .testimonial-name,
@@ -1726,10 +1734,11 @@ a:focus-visible,
 .button--plan {
   min-height: 48px;
   align-self: center;
-  gap: 8px;
   padding: 12px 24px;
-  border-color: rgba(58, 18, 84, 0.3);
+
+  border-color: rgba(58, 18, 84, 0.45);
   background: rgba(58, 18, 84, 0.3);
+
   color: var(--color-white);
   font-size: 14px;
   line-height: 20px;
@@ -1738,6 +1747,7 @@ a:focus-visible,
 
 .button--plan:hover {
   background: rgba(58, 18, 84, 0.62);
+  border-color: rgba(58, 18, 84, 0.62);
 }
 
 .button--plan img {
@@ -1787,10 +1797,28 @@ a:focus-visible,
 .social-links a {
   width: 36px;
   height: 36px;
+
   display: grid;
   place-items: center;
+
   border: 1px solid rgba(229, 57, 138, 0.4);
   border-radius: 50%;
+
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.social-links a:hover {
+  background: rgba(229, 57, 138, 0.12);
+  border-color: var(--color-pink);
+  transform: translateY(-2px);
+}
+
+.social-links a:focus-visible {
+  outline: 3px solid var(--color-pink);
+  outline-offset: 3px;
 }
 
 .social-links img {
@@ -1875,31 +1903,17 @@ a:focus-visible,
     gap: 56px;
   }
 
-  .hero h1 {
-    font-size: 44px;
-  }
-
-  .hero-copy > p {
-    font-size: 18px;
-  }
-
   .feature-grid {
     gap: 24px;
   }
 
-  .steps-panel {
-    padding-inline: 5%;
-    border-radius: 100px;
-  }
+.steps-panel {
+  padding: 44px 5%;
+}
 
-  .step-card {
-    padding-inline: 14px;
-  }
-
-  .step-card h3,
-  .step-card p {
-    font-size: 17px;
-  }
+.step-card {
+  padding: 22px 18px;
+}
 
   .section-wrap {
     padding-inline: 40px;
@@ -1943,7 +1957,7 @@ a:focus-visible,
     width: auto;
     min-height: 36px;
     padding: 8px 10px;
-    border-radius: 13px;
+    border-radius: 14px;
     font-size: 14px;
     line-height: 16px;
   }
@@ -1958,20 +1972,9 @@ a:focus-visible,
     gap: 20px;
   }
 
-  .hero h1 {
-    font-size: 32px;
-    line-height: 1.15;
-  }
-
-  .hero-copy > p {
-    font-size: 16px;
-    line-height: 1.4;
-  }
-
   .button--hero {
     width: min(100%, 260px);
     min-height: 50px;
-    font-size: 16px;
   }
 
   .hero-image {
@@ -2006,10 +2009,9 @@ a:focus-visible,
   }
 
   .feature-grid,
-  .steps-grid,
-  .testimonial-grid {
-    flex-direction: column;
-  }
+.testimonial-grid {
+  flex-direction: column;
+}
 
   .feature-grid {
     gap: 14px;
@@ -2031,7 +2033,7 @@ a:focus-visible,
     min-height: 0;
     padding: 36px 20px;
     gap: 22px;
-    border-radius: 34px;
+    border-radius: 28px;
   }
 
   .steps-panel > h2 {
@@ -2039,25 +2041,19 @@ a:focus-visible,
   }
 
   .steps-grid {
-    gap: 14px;
-  }
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
 
   .step-card {
-    flex: 1 1 auto;
-    width: 100%;
-    max-width: none;
-    min-height: 0;
-    padding: 14px;
-  }
+  width: 100%;
+  min-height: 0;
+  padding: 20px 16px;
+}
 
-  .step-card h3 {
-    min-height: 0;
-    font-size: 17px;
-  }
-
-  .step-card p {
-    font-size: 16px;
-  }
+ .step-card h3 {
+  min-height: 0;
+}
 
   .testimonials {
     padding-block: 48px;
