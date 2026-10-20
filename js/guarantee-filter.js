@@ -2,6 +2,12 @@ const guaranteeList = document.querySelector(".guarantee-list");
 const categoryFilter = document.querySelector("#category-filter");
 const searchInput = document.querySelector(".guarantee-search input");
 
+const statusFilters = [
+  ...document.querySelectorAll("[data-status-filter]")
+];
+
+let selectedStatus = "all";
+
 if (guaranteeList && categoryFilter && searchInput) {
   const guaranteeCards = [...guaranteeList.querySelectorAll(".guarantee-card")];
   const emptyMessage = document.createElement("p");
@@ -20,6 +26,15 @@ if (guaranteeList && categoryFilter && searchInput) {
   const categories = new Set();
   guaranteeCards.forEach((card) => {
     const productMetadata = card.querySelector(".guarantee-product p")?.textContent ?? "";
+
+      if (card.querySelector(".status--active")) {
+    card.dataset.status = "active";
+  } else if (card.querySelector(".status--soon")) {
+    card.dataset.status = "soon";
+  } else if (card.querySelector(".status--expired")) {
+    card.dataset.status = "expired";
+  }
+
     const metadataParts = productMetadata.split("·");
     const category = metadataParts.length > 1
       ? metadataParts[metadataParts.length - 1].trim()
@@ -38,20 +53,39 @@ if (guaranteeList && categoryFilter && searchInput) {
     });
 
   function filterGuarantees() {
-    const selectedCategory = normalize(categoryFilter.value);
-    const query = normalize(searchInput.value);
-    let visibleCount = 0;
+  const selectedCategory = normalize(categoryFilter.value);
+  const query = normalize(searchInput.value);
+  let visibleCount = 0;
+  const status = selectedStatus;
 
     guaranteeCards.forEach((card) => {
       const categoryMatches = !selectedCategory || normalize(card.dataset.category) === selectedCategory;
       const searchMatches = !query || normalize(card.textContent).includes(query);
-      const isVisible = categoryMatches && searchMatches;
+      const statusMatches =
+  status === "all" || card.dataset.status === status;
+
+const isVisible =
+  categoryMatches &&
+  searchMatches &&
+  statusMatches;
       card.hidden = !isVisible;
       if (isVisible) visibleCount += 1;
     });
 
     emptyMessage.hidden = visibleCount > 0;
   }
+
+  statusFilters.forEach((button) => {
+  button.addEventListener("click", () => {
+    selectedStatus = button.dataset.statusFilter ?? "all";
+
+    statusFilters.forEach((item) => {
+      item.classList.toggle("is-selected", item === button);
+    });
+
+    filterGuarantees();
+  });
+});
 
   categoryFilter.addEventListener("change", filterGuarantees);
   searchInput.addEventListener("input", filterGuarantees);

@@ -126,7 +126,20 @@ a {
   color: var(--guarantees-muted);
   font-size: 14px;
   white-space: nowrap;
+  border: 0;
+  font-family: inherit;
+  cursor: pointer;
 }
+
+.filter-link.is-selected {
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+
+.filter-link:focus-visible {
+  outline: 2px solid #e5398a;
+  outline-offset: 3px;
+}
+
 
 .filter-link .filter-count {
   min-width: 20px;

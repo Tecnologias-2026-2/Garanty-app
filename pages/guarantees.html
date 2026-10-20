@@ -18,15 +18,42 @@
   <body class="guarantees-page">
     <header class="guarantees-header">
       <a class="guarantees-brand" href="dashboard.html" aria-label="GarantyApp, inicio"><img src="../assets/garantyapp-logo.png" alt="GarantyApp"><span><strong>Mis garantías</strong><small>Controla tus productos</small></span></a>
-      <a class="add-guarantee" href="dashboard.html"><span aria-hidden="true">+</span> Añadir garantía</a>
+      <a class="add-guarantee" href="add-guarantee.html"><span aria-hidden="true">+</span> Añadir garantía</a>
     </header>
     <main class="guarantees-main">
       <nav class="guarantee-filters" aria-label="Filtrar garantías">
-        <a class="filter-link filter-link--all" href="guarantees.html">Todas <span class="filter-count">10</span></a>
-        <a class="filter-link" href="guarantees-expiring.html">Por vencer <span class="filter-count">3</span></a>
-        <a class="filter-link" href="guarantees-active.html">Activas <span class="filter-count">4</span></a>
-        <a class="filter-link" href="guarantees-expired.html">Vencidas <span class="filter-count">3</span></a>
-      </nav>
+  <button
+    class="filter-link filter-link--all is-selected"
+    type="button"
+    data-status-filter="all"
+  >
+    Todas <span class="filter-count">10</span>
+  </button>
+
+  <button
+    class="filter-link filter-link--soon"
+    type="button"
+    data-status-filter="soon"
+  >
+    Por vencer <span class="filter-count">3</span>
+  </button>
+
+  <button
+    class="filter-link filter-link--active"
+    type="button"
+    data-status-filter="active"
+  >
+    Activas <span class="filter-count">4</span>
+  </button>
+
+  <button
+    class="filter-link filter-link--expired"
+    type="button"
+    data-status-filter="expired"
+  >
+    Vencidas <span class="filter-count">3</span>
+  </button>
+</nav>
       <div class="guarantee-controls">
         <label class="guarantee-search">
           <span class="visually-hidden">Buscar garantía</span>
