@@ -308,11 +308,14 @@ button {
   color: var(--muted);
   font-size: 14px;
 }
+
 .upload-feedback {
   min-height: 20px;
   margin: 10px 0 0;
   font-size: 13px;
   line-height: 1.4;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .upload-feedback.is-success {
@@ -547,15 +550,18 @@ button {
   }
 
   .record-page--add .record-header-title {
-    font-size: 14px;
-  }
+  font-size: 13px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
 
   .record-page--add .cancel-link {
-    min-height: 36px;
-    padding: 5px 8px;
-    gap: 4px;
-    font-size: 12px;
-  }
+  min-height: 36px;
+  padding: 5px 7px;
+  gap: 3px;
+  font-size: 11px;
+  white-space: nowrap;
+}
 
   .cancel-link {
     min-height: 38px;
@@ -614,6 +620,50 @@ button {
     min-width: 112px;
     padding-inline: 14px;
   }
+
+  .add-header {
+  min-height: 64px;
+  height: auto;
+  padding: 8px 12px;
+  gap: 8px;
+}
+
+.add-header .brand-logo {
+  width: 92px;
+  flex-shrink: 0;
+}
+
+.add-header-title {
+  font-size: 14px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.cancel-button {
+  min-height: 38px;
+  padding: 6px 10px;
+  font-size: 11px;
+  line-height: 1.15;
+  flex-shrink: 0;
+}
+
+.add-main {
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 40px;
+}
+
+.form-card {
+  width: 100%;
+  padding: 22px 16px;
+}
+
+.next-button {
+  min-height: 46px;
+  padding: 10px 24px;
+}
+
 }
 
 @media (prefers-reduced-motion: reduce) {
