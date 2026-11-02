@@ -1,0 +1,220 @@
+.edit-main {
+  width: min(calc(100vw - 164px - 48px), 1040px);
+  margin: 0 calc(164px + max(24px, (100vw - 164px - 48px - 1040px) / 2)) 0 max(24px, (100vw - 164px - 48px - 1040px) / 2 + 24px);
+  padding: 20px 18px 40px;
+}
+
+.record-page--edit .dashboard-nav {
+  position: fixed;
+  z-index: 10;
+  top: 64px;
+  right: 0;
+  bottom: 0;
+  left: auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  width: 164px;
+  height: calc(100vh - 64px);
+  padding: 22px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-left: 1px solid rgba(184, 159, 204, 0.07);
+  background: rgba(26, 5, 40, 0.18);
+}
+
+.record-page--edit .nav-link {
+  min-height: 31px;
+  padding: 7px 9px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-radius: 8px;
+  color: var(--record-muted);
+  font-size: 14px;
+}
+
+.record-page--edit .nav-link > span {
+  width: 13px;
+  text-align: center;
+}
+
+.record-page--edit .nav-link--active {
+  background: rgba(229, 57, 138, 0.16);
+  color: var(--record-pink);
+}
+
+.record-page--edit .nav-link--logout {
+  margin-top: auto;
+  color: var(--record-red);
+}
+
+.record-page--edit .record-hero,
+.record-page--edit .record-panel {
+  margin-bottom: 10px;
+  padding: 15px 18px;
+  border-radius: 12px;
+}
+
+.record-page--edit .record-hero {
+  min-height: 82px;
+  gap: 12px;
+}
+
+.record-page--edit .record-product-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+.record-page--edit .record-hero h1 {
+  font-size: 18px;
+}
+
+.record-page--edit .record-eyebrow {
+  font-size: 14px;
+}
+
+.record-page--edit .record-hero-copy > p:last-child,
+.record-page--edit .record-panel-heading h2 {
+  font-size: 14px;
+}
+
+.record-page--edit .record-panel-heading {
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+.record-page--edit .record-section-icon {
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+}
+
+.record-form {
+  display: grid;
+  gap: 0;
+}
+
+.edit-hero {
+  min-height: 82px;
+}
+
+.edit-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 14px;
+}
+
+.record-field {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+  color: var(--record-muted);
+  font-size: 14px;
+}
+
+.record-field--wide {
+  grid-column: 1 / -1;
+}
+
+.record-field input,
+.record-field textarea {
+  width: 100%;
+  min-height: 36px;
+  padding: 7px 10px;
+  border: 1px solid rgba(184, 159, 204, 0.28);
+  border-radius: 8px;
+  background: rgba(26, 5, 40, 0.42);
+  color: var(--record-text);
+  font: inherit;
+  font-size: 14px;
+}
+
+.record-field textarea {
+  min-height: 68px;
+  resize: vertical;
+}
+
+.record-field input::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.record-feedback {
+  min-height: 18px;
+  margin: 0;
+  color: var(--record-red);
+  font-size: 14px;
+}
+
+.record-form .record-actions {
+  margin-top: 5px;
+}
+
+@media (max-width: 1000px) and (min-width: 681px) {
+  .edit-main {
+    width: min(calc(100vw - 140px - 48px), 860px);
+    margin: 0 calc(140px + max(24px, (100vw - 140px - 48px - 860px) / 2)) 0 max(24px, (100vw - 140px - 48px - 860px) / 2 + 24px);
+  }
+
+  .record-page--edit .dashboard-nav {
+    width: 140px;
+    padding-inline: 10px;
+  }
+}
+
+@media (max-width: 680px) {
+  .edit-main {
+    width: min(calc(100% - 32px), 620px);
+    margin-inline: auto;
+    padding-inline: 8px;
+  }
+
+  .record-page--edit .dashboard-nav {
+    width: 100%;
+    height: 62px;
+    padding: 5px 8px;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 4px;
+    border-top: 1px solid rgba(184, 159, 204, 0.12);
+    border-left: 0;
+    background: var(--record-header);
+  }
+
+  .record-page--edit .nav-link {
+    min-width: 0;
+    min-height: 48px;
+    padding: 5px 7px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+    font-size: 14px;
+  }
+
+  .record-page--edit .nav-link--logout {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .edit-main {
+    width: calc(100% - 20px);
+    margin-inline: auto;
+    padding: 16px 0 82px;
+  }
+
+  .edit-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .record-field--wide {
+    grid-column: auto;
+  }
+}

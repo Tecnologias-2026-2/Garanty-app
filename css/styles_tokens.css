@@ -1,0 +1,63 @@
+:root {
+  color-scheme: dark;
+  --background: #2b0a3d;
+  --header: #1a0528;
+  --card: #3a1254;
+  --text: #f0e8ff;
+  --muted: #b89fcc;
+  --pink: #e5398a;
+  --pink-light: #e5398a;
+  --error: #ff6371;
+  --font-body: "Poppins", sans-serif;
+  --font-display: "Poppins", sans-serif;
+  --brand-logo-width: 160px;
+
+  --settings-bg: #2b0a3d;
+  --settings-header: #1a0528;
+  --settings-card: #3a1254;
+  --settings-text: #f0e8ff;
+  --settings-muted: #b89fcc;
+  --settings-pink: #e5398a;
+  --settings-font: "Poppins", sans-serif;
+
+  --overview-bg: #2b0a3d;
+  --overview-header: #1a0528;
+  --overview-card: #3a1254;
+  --overview-text: #f0e8ff;
+  --overview-muted: #b89fcc;
+  --overview-pink: #e5398a;
+  --overview-green: #30c56a;
+  --overview-red: #ff6371;
+  --overview-amber: #f5a623;
+  --overview-font: "Poppins", sans-serif;
+
+  --guarantees-bg: #2b0a3d;
+  --guarantees-header: #1a0528;
+  --guarantees-card: #3a1254;
+  --guarantees-text: #f0e8ff;
+  --guarantees-muted: #b89fcc;
+  --guarantees-pink: #e5398a;
+  --guarantees-green: #30c56a;
+  --guarantees-amber: #f5a623;
+  --guarantees-red: #ff6371;
+
+  --color-background: #2b0a3d;
+  --color-header: #1a0528;
+  --color-footer: #3a1254;
+  --color-card: #3a1254;
+  --color-card-highlight: rgba(58, 18, 84, 0.6);
+  --color-plan: rgba(229, 57, 138, 0.3);
+  --color-pink: #e5398a;
+  --color-pink-border: #e5398a;
+  --color-lilac: #b89fcc;
+  --color-white: #f0e8ff;
+  --color-panel: #d0cfd1;
+}
+
+img[src$="garantyapp-logo.png"] {
+  width: var(--brand-logo-width);
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}

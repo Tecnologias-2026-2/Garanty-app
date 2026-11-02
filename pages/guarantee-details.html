@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2b0a3d">
+    <meta name="description" content="Consulta los detalles de una garantía en GarantyApp.">
+    <title>Detalles de garantía | GarantyApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles_tokens.css">
+    <link rel="stylesheet" href="../css/styles_guarantee_record.css">
+    <link rel="stylesheet" href="../css/styles_guarantee_details.css">
+    <script src="../js/guarantee-records.js" defer></script>
+    <script src="../js/guarantee-details.js" defer></script>
+  </head>
+  <body class="record-page record-page--details">
+    <header class="record-header">
+      <a class="record-brand" href="dashboard.html" aria-label="GarantyApp, inicio"><img src="../assets/garantyapp-logo.png" alt="GarantyApp"></a>
+      <span class="record-header-title">Detalles</span>
+      <span class="record-header-spacer" aria-hidden="true"></span>
+    </header>
+    <main class="record-main">
+      <p class="record-unavailable" id="guarantee-unavailable" role="alert" hidden>No encontramos esta garantía. <a href="guarantees.html">Volver a mis garantías</a>.</p>
+      <div id="guarantee-content">
+        <section class="record-hero" aria-labelledby="detail-product">
+          <span class="record-product-icon" aria-hidden="true">▣</span>
+          <div class="record-hero-copy">
+            <p class="record-eyebrow">Garantía registrada</p>
+            <h1 id="detail-product">Producto</h1>
+            <p id="detail-subtitle"></p>
+          </div>
+          <span class="detail-status" id="detail-status"></span>
+          <div class="record-countdown"><strong id="detail-days"></strong><span id="detail-countdown-label"></span></div>
+        </section>
+
+        <section class="record-panel" aria-labelledby="purchase-heading">
+          <div class="record-panel-heading"><span class="record-section-icon" aria-hidden="true">⌑</span><h2 id="purchase-heading">Detalles de compra</h2></div>
+          <dl class="record-data-grid">
+            <div><dt>Marca</dt><dd id="detail-brand"></dd></div>
+            <div><dt>Categoría</dt><dd id="detail-category"></dd></div>
+            <div><dt>Fecha de compra</dt><dd id="detail-purchase-date"></dd></div>
+            <div><dt>Precio de compra</dt><dd id="detail-price"></dd></div>
+            <div><dt>Tienda</dt><dd id="detail-store"></dd></div>
+            <div><dt>Número de serie</dt><dd id="detail-serial"></dd></div>
+          </dl>
+        </section>
+
+        <section class="record-panel record-warranty" aria-labelledby="warranty-heading">
+          <div class="record-panel-heading"><span class="record-section-icon" aria-hidden="true">◷</span><h2 id="warranty-heading">Información de la garantía</h2></div>
+          <dl class="record-data-grid">
+            <div><dt>Duración</dt><dd id="detail-duration"></dd></div>
+            <div><dt>Fecha de vencimiento</dt><dd id="detail-expiration-date"></dd></div>
+          </dl>
+        </section>
+
+        <section class="record-panel record-documents" aria-labelledby="documents-heading">
+          <div class="record-panel-heading"><span class="record-section-icon" aria-hidden="true">▤</span><h2 id="documents-heading">Documentos</h2></div>
+          <a class="record-document-link" id="detail-document-link" href="guarantee-documents.html">Añadir factura o comprobante <span aria-hidden="true">›</span></a>
+          <a class="record-text-link" id="manage-documents-link" href="guarantee-documents.html">Gestionar documentos</a>
+        </section>
+
+        <section class="record-panel record-notes" aria-labelledby="notes-heading">
+          <div class="record-panel-heading"><span class="record-section-icon" aria-hidden="true">☰</span><h2 id="notes-heading">Observaciones</h2></div>
+          <p id="detail-notes"></p>
+        </section>
+
+        <div class="record-actions">
+          <a class="record-button record-button--secondary" href="guarantees.html">Volver</a>
+          <a class="record-button record-button--primary" id="edit-guarantee-link" href="guarantee-edit.html">Editar garantía</a>
+        </div>
+      </div>
+    </main>
+    <nav class="dashboard-nav" aria-label="Navegación principal">
+      <a class="nav-link" href="dashboard.html"><span aria-hidden="true">⌂</span>Inicio</a>
+      <a class="nav-link nav-link--active" href="guarantees.html"><span aria-hidden="true">▤</span>Mis garantías</a>
+      <a class="nav-link" href="settings.html"><span aria-hidden="true">⚙</span>Configuración</a>
+      <a class="nav-link nav-link--logout" href="login.html"><span aria-hidden="true">↪</span>Cerrar sesión</a>
+    </nav>
+  </body>
+</html>
