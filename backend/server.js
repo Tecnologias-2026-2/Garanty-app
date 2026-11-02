@@ -43,7 +43,7 @@ app.use('/api/auth', authRoutes);
 const projectRoot = path.resolve(__dirname, '..');
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(projectRoot, 'pages', 'index.html'));
+    res.redirect('/pages/index.html');
 });
 
 app.use('/assets', express.static(path.join(projectRoot, 'assets')));
