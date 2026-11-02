@@ -2194,7 +2194,6 @@ a:focus-visible,
   *::after {
     transition-duration: 0.01ms !important;
   }
-<<<<<<< HEAD
 }
 .auth-message {
     min-height: 20px;
@@ -2206,6 +2205,4 @@ a:focus-visible,
 .auth-submit:disabled {
     opacity: 0.6;
     cursor: not-allowed;
-=======
->>>>>>> 5eab3050ac2192577c2ccdff49d632e1991760be
 }
