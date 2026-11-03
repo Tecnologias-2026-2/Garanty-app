@@ -78,4 +78,5 @@ Explicar brevemente qué contiene cada carpeta.
 
 🚀 8. Instalación y Ejecución
 
-Explicar cómo correr el proyecto.
+https://garantyapp-backend.onrender.com/pages/dashboard.html
+
