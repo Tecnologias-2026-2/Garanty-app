@@ -86,7 +86,7 @@ router.post('/register', async (req, res) => {
 
 // INICIO DE SESIÓN
 router.post('/login', async (req, res) => {
-    console.log('LOGIN: se recibió una solicitud');
+    
 
     try {
         const { email, password } = req.body;
@@ -103,7 +103,7 @@ router.post('/login', async (req, res) => {
             'SELECT id, name, email, password_hash FROM users WHERE email = $1',
             [normalizedEmail]
         );
-        console.log('USUARIO ENCONTRADO:', result.rows.length > 0);
+        
 
         if (result.rows.length === 0) {
             return res.status(401).json({
@@ -117,7 +117,7 @@ router.post('/login', async (req, res) => {
             password,
             user.password_hash
         );
-        console.log('PRUEBA BCRYPT:', validPassword);
+        
 
         if (!validPassword) {
             return res.status(401).json({
