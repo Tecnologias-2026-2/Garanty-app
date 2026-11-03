@@ -114,6 +114,7 @@ router.post('/login', async (req, res) => {
             password,
             user.password_hash
         );
+        console.log('PRUEBA BCRYPT:', validPassword);
 
         if (!validPassword) {
             return res.status(401).json({
