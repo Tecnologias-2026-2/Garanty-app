@@ -86,6 +86,8 @@ router.post('/register', async (req, res) => {
 
 // INICIO DE SESIÓN
 router.post('/login', async (req, res) => {
+    console.log('LOGIN: se recibió una solicitud');
+
     try {
         const { email, password } = req.body;
 
