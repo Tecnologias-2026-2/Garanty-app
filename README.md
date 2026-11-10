@@ -78,5 +78,5 @@ Explicar brevemente qué contiene cada carpeta.
 
 🚀 8. Instalación y Ejecución
 
-https://garantyapp-backend.onrender.com/pages/dashboard.html
+https://garantyapp-backend.onrender.com
 
