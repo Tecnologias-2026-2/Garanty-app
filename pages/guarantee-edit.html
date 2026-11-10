@@ -9,20 +9,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles_tokens.css">
-    <link rel="stylesheet" href="../css/styles_guarantee_record.css">
-    <link rel="stylesheet" href="../css/styles_guarantee_edit.css">
-    <script src="../js/guarantee-records.js" defer></script>
-    <script src="../js/guarantee-edit.js" defer></script>
+    <link rel="stylesheet" href="/css/styles_tokens.css">
+    <link rel="stylesheet" href="/css/styles_guarantee_record.css">
+    <link rel="stylesheet" href="/css/styles_guarantee_edit.css">
+    <script src="/js/api.js" defer></script>
+    <script src="/js/guarantee-edit.js" defer></script>
   </head>
   <body class="record-page record-page--edit">
     <header class="record-header">
-      <a class="record-brand" href="dashboard.html" aria-label="GarantyApp, inicio"><img src="../assets/garantyapp-logo.png" alt="GarantyApp"></a>
+      <a class="record-brand" href="/dashboard" aria-label="GarantyApp, inicio"><img src="/assets/garantyapp-logo.png" alt="GarantyApp"></a>
       <span class="record-header-title">Editar garantía</span>
       <span class="record-header-spacer" aria-hidden="true"></span>
     </header>
     <main class="record-main edit-main">
-      <p class="record-unavailable" id="edit-unavailable" role="alert" hidden>No encontramos esta garantía. <a href="guarantees.html">Volver a mis garantías</a>.</p>
+      <p class="record-unavailable" id="edit-unavailable" role="alert" hidden>No encontramos esta garantía. <a href="/guarantees">Volver a mis garantías</a>.</p>
       <form class="record-form" id="guarantee-edit-form">
         <section class="record-hero edit-hero" aria-labelledby="edit-title">
           <span class="record-product-icon" aria-hidden="true">▣</span>
@@ -43,7 +43,8 @@
             <label class="record-field">Fecha de compra<input name="purchased" type="date" required></label>
             <label class="record-field">Fecha de vencimiento<input name="expires" type="date" required></label>
             <label class="record-field">Precio de compra (COP)<input name="price" type="number" min="0" step="1" required></label>
-            <label class="record-field">Duración<input name="duration" type="text" maxlength="30" required></label>
+            <label class="record-field">Duración<input name="durationValue" type="number" min="1" step="1" required></label>
+            <label class="record-field">Unidad de duración<select name="durationUnit" required><option value="days">Días</option><option value="months">Meses</option><option value="years">Años</option></select></label>
             <label class="record-field record-field--wide">Tienda<input name="store" type="text" maxlength="80"></label>
           </div>
         </section>
@@ -53,16 +54,16 @@
         </section>
         <p class="record-feedback" id="edit-feedback" role="alert"></p>
         <div class="record-actions">
-          <a class="record-button record-button--secondary" id="edit-cancel-link" href="guarantees.html">Cancelar</a>
+          <a class="record-button record-button--secondary" id="edit-cancel-link" href="/guarantees">Cancelar</a>
           <button class="record-button record-button--primary" type="submit">Guardar cambios</button>
         </div>
       </form>
     </main>
     <nav class="dashboard-nav" aria-label="Navegación principal">
-      <a class="nav-link" href="dashboard.html"><span aria-hidden="true">⌂</span>Inicio</a>
-      <a class="nav-link nav-link--active" href="guarantees.html"><span aria-hidden="true">▤</span>Mis garantías</a>
-      <a class="nav-link" href="settings.html"><span aria-hidden="true">⚙</span>Configuración</a>
-      <a class="nav-link nav-link--logout" href="login.html"><span aria-hidden="true">↪</span>Cerrar sesión</a>
+      <a class="nav-link" href="/dashboard"><span aria-hidden="true">⌂</span>Inicio</a>
+      <a class="nav-link nav-link--active" href="/guarantees"><span aria-hidden="true">▤</span>Mis garantías</a>
+      <a class="nav-link" href="/settings"><span aria-hidden="true">⚙</span>Configuración</a>
+      <a class="nav-link nav-link--logout" href="/login"><span aria-hidden="true">↪</span>Cerrar sesión</a>
     </nav>
   </body>
 </html>

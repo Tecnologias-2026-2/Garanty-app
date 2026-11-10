@@ -1,40 +1,74 @@
-(() => {
-  const store = window.GuaranteeStore;
+(async () => {
+  const { request } = window.GarantyAPI;
   const id = new URLSearchParams(window.location.search).get("id");
-  const record = store.get(id);
   const form = document.querySelector("#guarantee-edit-form");
   const unavailable = document.querySelector("#edit-unavailable");
+  const feedback = document.querySelector("#edit-feedback");
+  const detailsUrl = `/guarantee-details?id=${encodeURIComponent(id)}`;
 
-  if (!record) {
+  const showUnavailable = () => {
     unavailable.hidden = false;
     form.hidden = true;
-    return;
+  };
+
+  if (!id) return showUnavailable();
+
+  let record;
+  try {
+    ({ guarantee: record } = await request(`/api/guarantees/${encodeURIComponent(id)}`));
+  } catch (error) {
+    console.error(error);
+    return showUnavailable();
   }
 
-  form.elements.namedItem("product").value = record.product;
-  form.elements.namedItem("brand").value = record.brand;
-  form.elements.namedItem("category").value = record.category;
-  form.elements.namedItem("serial").value = record.serial;
-  form.elements.namedItem("purchased").value = record.purchased;
-  form.elements.namedItem("expires").value = record.expires;
-  form.elements.namedItem("price").value = record.price;
-  form.elements.namedItem("store").value = record.store;
-  form.elements.namedItem("duration").value = record.duration;
-  form.elements.namedItem("notes").value = record.notes;
+  const set = (name, value) => { form.elements.namedItem(name).value = value ?? ""; };
+  set("product", record.product_name);
+  set("brand", record.brand);
+  set("category", record.category);
+  set("serial", record.serial_number);
+  set("purchased", record.purchase_date);
+  set("expires", record.expiration_date);
+  set("price", Number(record.price));
+  set("durationValue", record.duration_value);
+  set("durationUnit", record.duration_unit);
+  set("store", record.store);
+  set("notes", record.notes);
 
-  const detailsUrl = `guarantee-details.html?id=${encodeURIComponent(id)}`;
   document.querySelector("#edit-cancel-link").href = detailsUrl;
-  form.addEventListener("submit", (event) => {
+
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const changes = Object.fromEntries(new FormData(form));
-    changes.price = Number(changes.price);
-    const remainingDays = Math.ceil((new Date(`${changes.expires}T00:00:00`) - new Date()) / 86400000);
-    changes.status = remainingDays < 0 ? "Vencida" : remainingDays <= 30 ? "Por vencer" : "Activa";
-    changes.remainingDays = Math.max(0, remainingDays);
-    if (!store.save(id, changes)) {
-      document.querySelector("#edit-feedback").textContent = "No se pudieron guardar los cambios. Revisa el espacio disponible en el navegador e inténtalo de nuevo.";
+    const data = Object.fromEntries(new FormData(form));
+    const button = form.querySelector("button[type='submit']");
+
+    if (new Date(data.expires) <= new Date(data.purchased)) {
+      feedback.textContent = "La fecha de vencimiento debe ser posterior a la fecha de compra.";
       return;
     }
-    window.location.href = detailsUrl;
+
+    try {
+      button.disabled = true;
+      feedback.textContent = "Guardando...";
+      await request(`/api/guarantees/${encodeURIComponent(id)}`, {
+        method: "PUT",
+        body: {
+          productName: data.product,
+          brand: data.brand,
+          category: data.category,
+          serialNumber: data.serial,
+          purchaseDate: data.purchased,
+          expirationDate: data.expires,
+          price: Number(data.price),
+          durationValue: Number(data.durationValue),
+          durationUnit: data.durationUnit,
+          store: data.store,
+          notes: data.notes
+        }
+      });
+      window.location.href = detailsUrl;
+    } catch (error) {
+      feedback.textContent = error.message;
+      button.disabled = false;
+    }
   });
 })();

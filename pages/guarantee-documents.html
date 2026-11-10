@@ -9,21 +9,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles_tokens.css">
-    <link rel="stylesheet" href="../css/styles_guarantee_record.css">
-    <link rel="stylesheet" href="../css/styles_guarantee_documents.css">
-    <script src="../js/guarantee-records.js" defer></script>
-    <script src="../js/guarantee-documents.js" defer></script>
+    <link rel="stylesheet" href="/css/styles_tokens.css">
+    <link rel="stylesheet" href="/css/styles_guarantee_record.css">
+    <link rel="stylesheet" href="/css/styles_guarantee_documents.css">
+    <script src="/js/api.js" defer></script>
+    <script src="/js/guarantee-documents.js" defer></script>
   </head>
   <body class="record-page">
     <header class="record-header">
-      <a class="record-back" id="documents-back-link" href="guarantees.html" aria-label="Volver a los detalles"><span aria-hidden="true">←</span></a>
-      <a class="record-brand" href="dashboard.html" aria-label="GarantyApp, inicio"><img src="../assets/garantyapp-logo.png" alt="GarantyApp"></a>
+      <a class="record-back" id="documents-back-link" href="/guarantees" aria-label="Volver a los detalles"><span aria-hidden="true">←</span></a>
+      <a class="record-brand" href="/dashboard" aria-label="GarantyApp, inicio"><img src="/assets/garantyapp-logo.png" alt="GarantyApp"></a>
       <span class="record-header-title">Documentos</span>
       <span class="record-header-spacer" aria-hidden="true"></span>
     </header>
     <main class="record-main documents-main">
-      <p class="record-unavailable" id="document-unavailable" role="alert" hidden>No encontramos esta garantía. <a href="guarantees.html">Volver a mis garantías</a>.</p>
+      <p class="record-unavailable" id="document-unavailable" role="alert" hidden>No encontramos esta garantía. <a href="/guarantees">Volver a mis garantías</a>.</p>
       <div class="documents-content">
         <section class="record-hero edit-hero" aria-labelledby="documents-title">
           <span class="record-product-icon" aria-hidden="true">▤</span>
@@ -48,14 +48,14 @@
             <button class="record-button record-button--primary document-save" type="submit">Guardar documento</button>
           </form>
         </section>
-        <div class="record-actions"><a class="record-button record-button--secondary" id="documents-back-button" href="guarantees.html">Volver a los detalles</a></div>
+        <div class="record-actions"><a class="record-button record-button--secondary" id="documents-back-button" href="/guarantees">Volver a los detalles</a></div>
       </div>
     </main>
     <nav class="record-nav" aria-label="Navegación principal">
-      <a href="dashboard.html"><span aria-hidden="true">⌂</span>Inicio</a>
-      <a class="record-nav-active" href="guarantees.html"><span aria-hidden="true">▤</span>Mis garantías</a>
-      <a href="settings.html"><span aria-hidden="true">⚙</span>Configuración</a>
-      <a class="record-logout" href="login.html"><span aria-hidden="true">↪</span>Cerrar sesión</a>
+      <a href="/dashboard"><span aria-hidden="true">⌂</span>Inicio</a>
+      <a class="record-nav-active" href="/guarantees"><span aria-hidden="true">▤</span>Mis garantías</a>
+      <a href="/settings"><span aria-hidden="true">⚙</span>Configuración</a>
+      <a class="record-logout" href="/login"><span aria-hidden="true">↪</span>Cerrar sesión</a>
     </nav>
   </body>
 </html>

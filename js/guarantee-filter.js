@@ -1,8 +1,11 @@
-const guaranteeList = document.querySelector(".guarantee-list");
-const categoryFilter = document.querySelector("#category-filter");
-const searchInput = document.querySelector(".guarantee-search input");
+// Filtro por categoría y búsqueda. Se llama después de dibujar las tarjetas.
+window.initGuaranteeFilter = function initGuaranteeFilter() {
+  const guaranteeList = document.querySelector(".guarantee-list");
+  const categoryFilter = document.querySelector("#category-filter");
+  const searchInput = document.querySelector(".guarantee-search input");
 
-if (guaranteeList && categoryFilter && searchInput) {
+  if (!guaranteeList || !categoryFilter || !searchInput) return;
+
   const guaranteeCards = [...guaranteeList.querySelectorAll(".guarantee-card")];
   const emptyMessage = document.createElement("p");
   const normalize = (value) => value
@@ -19,17 +22,12 @@ if (guaranteeList && categoryFilter && searchInput) {
 
   const categories = new Set();
   guaranteeCards.forEach((card) => {
-    const productMetadata = card.querySelector(".guarantee-product p")?.textContent ?? "";
-    const metadataParts = productMetadata.split("·");
-    const category = metadataParts.length > 1
-      ? metadataParts[metadataParts.length - 1].trim()
-      : "";
-    card.dataset.category = category ?? "";
+    const category = card.dataset.category || "";
     if (category) categories.add(category);
   });
 
   [...categories]
-    .sort((first, second) => first.localeCompare(second, "es"))
+    .sort((a, b) => a.localeCompare(b, "es"))
     .forEach((category) => {
       const option = document.createElement("option");
       option.value = category;
@@ -43,7 +41,7 @@ if (guaranteeList && categoryFilter && searchInput) {
     let visibleCount = 0;
 
     guaranteeCards.forEach((card) => {
-      const categoryMatches = !selectedCategory || normalize(card.dataset.category) === selectedCategory;
+      const categoryMatches = !selectedCategory || normalize(card.dataset.category || "") === selectedCategory;
       const searchMatches = !query || normalize(card.textContent).includes(query);
       const isVisible = categoryMatches && searchMatches;
       card.hidden = !isVisible;
@@ -55,4 +53,4 @@ if (guaranteeList && categoryFilter && searchInput) {
 
   categoryFilter.addEventListener("change", filterGuarantees);
   searchInput.addEventListener("input", filterGuarantees);
-}
+};

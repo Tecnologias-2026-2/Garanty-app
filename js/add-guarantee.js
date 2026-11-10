@@ -248,7 +248,7 @@ nextButton.addEventListener("click", async () => {
 
     // Ir a la selección de categoría
     if (currentStep === 2) {
-        window.location.href = "guarantee-category.html";
+        window.location.href = "/guarantee-category";
         return;
     }
 
@@ -315,7 +315,7 @@ nextButton.addEventListener("click", async () => {
         saveFormState();
 
         // Mostrar confirmación
-        window.location.href = "guarantee-created.html";
+        window.location.href = "/guarantee-created";
 
     } catch (error) {
         console.error("Error al guardar la garantía:", error);
@@ -330,7 +330,7 @@ nextButton.addEventListener("click", async () => {
   backButton.addEventListener("click", () => {
     if (currentStep === 3) {
       saveFormState();
-      window.location.href = "guarantee-category.html";
+      window.location.href = "/guarantee-category";
       return;
     }
     if (currentStep > 1) {
@@ -367,6 +367,6 @@ nextButton.addEventListener("click", async () => {
   confirmCancelButton.addEventListener("click", () => {
     sessionStorage.removeItem(stateKey);
     sessionStorage.removeItem(`${stateKey}-category`);
-    window.location.href = "dashboard.html";
+    window.location.href = "/dashboard";
   });
 }

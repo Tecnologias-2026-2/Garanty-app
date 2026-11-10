@@ -9,14 +9,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles_guarantee_category.css">
-    <link rel="stylesheet" href="../css/styles_tokens.css">
-    <script src="../js/guarantee-category.js" defer></script>
+    <link rel="stylesheet" href="/css/styles_guarantee_category.css">
+    <link rel="stylesheet" href="/css/styles_tokens.css">
+    <script src="/js/api.js" defer></script>
+    <script src="/js/guarantee-category.js" defer></script>
   </head>
   <body>
     <header class="category-header">
-      <a href="dashboard.html" aria-label="GarantyApp, inicio">
-        <img src="../assets/garantyapp-logo.png" alt="GarantyApp">
+      <a href="/dashboard" aria-label="GarantyApp, inicio">
+        <img src="/assets/garantyapp-logo.png" alt="GarantyApp">
       </a>
       <button class="cancel-link" id="cancel-button" type="button">
         <span aria-hidden="true">×</span>
@@ -57,7 +58,7 @@
         <p class="category-feedback" id="category-feedback" role="status" hidden></p>
         <p class="category-hint">Elige la categoría que mejor describe tu producto.</p>
         <div class="category-actions">
-          <a class="back-button" href="add-guarantee.html?step=2">‹ Anterior</a>
+          <a class="back-button" href="/add-guarantee?step=2">‹ Anterior</a>
           <button class="next-button" type="submit">Siguiente <span aria-hidden="true">›</span></button>
         </div>
       </form>

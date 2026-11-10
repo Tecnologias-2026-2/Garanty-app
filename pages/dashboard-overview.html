@@ -9,21 +9,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles_dashboard_overview.css">
-    <link rel="stylesheet" href="../css/styles_tokens.css">
-    <script src="../js/guarantee-records.js" defer></script>
-    <script src="../js/guarantee-links.js" defer></script>
-    <script src="../js/dashboard-user.js" defer></script>
+    <link rel="stylesheet" href="/css/styles_dashboard_overview.css">
+    <link rel="stylesheet" href="/css/styles_tokens.css">
+    <script src="/js/api.js" defer></script>
+    <script src="/js/dashboard-user.js" defer></script>
   </head>
   <body class="overview-page">
     <header class="overview-header">
-      <a class="overview-brand" href="dashboard-overview.html" aria-label="GarantyApp, inicio"><img src="../assets/garantyapp-logo.png" alt="GarantyApp"></a>
+      <a class="overview-brand" href="/dashboard-overview" aria-label="GarantyApp, inicio"><img src="/assets/garantyapp-logo.png" alt="GarantyApp"></a>
       <label class="overview-search">
         <span class="visually-hidden">Buscar garantías</span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
         <input type="search" placeholder="Buscar garantía...">
       </label>
-      <a class="overview-profile" href="settings.html" aria-label="Perfil de María A."><span>MA</span></a>
+      <a class="overview-profile" href="/settings" aria-label="Perfil de María A."><span>MA</span></a>
     </header>
 
     <div class="overview-shell">
@@ -33,73 +32,33 @@
              Buen día, <span id="welcome-name">...</span>
              <span aria-hidden="true">👋</span>
           </h1>
-          <p>Tienes 2 garantías próximas a vencer.</p>
+          <p>Cargando tus garantías...</p>
         </section>
         <section class="overview-summary" aria-label="Resumen de garantías">
-          <a class="overview-summary-card overview-summary-card--active" href="guarantees-active.html">
-            <span><small>Garantías Activas</small><strong>4</strong><span>Ver listado <b aria-hidden="true">›</b></span></span>
+          <a class="overview-summary-card overview-summary-card--active" href="/guarantees-active">
+            <span><small>Garantías Activas</small><strong>0</strong><span>Ver listado <b aria-hidden="true">›</b></span></span>
             <span class="overview-summary-icon" aria-hidden="true">✓</span>
           </a>
-          <a class="overview-summary-card overview-summary-card--expired" href="guarantees-expired.html">
-            <span><small>Garantías vencidas</small><strong>3</strong><span>Ver listado <b aria-hidden="true">›</b></span></span>
+          <a class="overview-summary-card overview-summary-card--expired" href="/guarantees-expired">
+            <span><small>Garantías vencidas</small><strong>0</strong><span>Ver listado <b aria-hidden="true">›</b></span></span>
             <span class="overview-summary-icon" aria-hidden="true">!</span>
           </a>
         </section>
         <section class="overview-products" aria-labelledby="overview-products-title">
           <div class="overview-section-heading">
             <h2 id="overview-products-title">Garantías recientes</h2>
-            <a href="guarantees.html">Ver todas <span aria-hidden="true">›</span></a>
+            <a href="/guarantees">Ver todas <span aria-hidden="true">›</span></a>
           </div>
-          <div class="overview-product-grid">
-            <article class="overview-product-card">
-              <div class="overview-product-heading">
-                <span class="overview-device overview-device--laptop" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="12" rx="1.5"></rect><path d="M2 20h20l-2-4H4l-2 4Z"></path></svg></span>
-                <div><h3>MacBook Air M2</h3><p>Computadores</p></div>
-                <span class="overview-tag overview-tag--active">Activa</span>
-              </div>
-              <div class="overview-purchase"><p>Comprado<strong>15 ene 2024</strong></p><p>Vence<strong>15 ene 2025</strong></p></div>
-              <p class="overview-countdown">◷ &nbsp;17 días restantes</p>
-              <a href="guarantees.html">Detalles <span aria-hidden="true">›</span></a>
-            </article>
-            <article class="overview-product-card">
-              <div class="overview-product-heading">
-                <span class="overview-device overview-device--phone" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"></rect><path d="M11 18h2"></path></svg></span>
-                <div><h3>iPhone 13 Pro</h3><p>Smartphones</p></div>
-                <span class="overview-tag overview-tag--soon">Próximo a vencer</span>
-              </div>
-              <div class="overview-purchase"><p>Comprado<strong>3 mar 2024</strong></p><p>Vence<strong>3 mar 2025</strong></p></div>
-              <p class="overview-countdown">◷ &nbsp;18 días restantes</p>
-              <a href="guarantees.html">Detalles <span aria-hidden="true">›</span></a>
-            </article>
-            <article class="overview-product-card">
-              <div class="overview-product-heading">
-                <span class="overview-device overview-device--fridge" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"></rect><path d="M6 10h12M9 6v2M9 13v3"></path></svg></span>
-                <div><h3>Refrigerador LG</h3><p>Electrodomésticos</p></div>
-                <span class="overview-tag overview-tag--active">Activa</span>
-              </div>
-              <div class="overview-purchase"><p>Comprado<strong>10 dic 2023</strong></p><p>Vence<strong>10 dic 2024</strong></p></div>
-              <p class="overview-countdown">◷ &nbsp;7 días restantes</p>
-              <a href="guarantees.html">Detalles <span aria-hidden="true">›</span></a>
-            </article>
-            <article class="overview-product-card">
-              <div class="overview-product-heading">
-                <span class="overview-device overview-device--tv" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"></rect><path d="m8 22 4-4 4 4"></path></svg></span>
-                <div><h3>Smart TV Samsung</h3><p>Televisores</p></div>
-                <span class="overview-tag overview-tag--soon">Próximo a vencer</span>
-              </div>
-              <div class="overview-purchase"><p>Comprado<strong>10 dic 2023</strong></p><p>Vence<strong>10 dic 2024</strong></p></div>
-              <p class="overview-countdown">◷ &nbsp;7 días restantes</p>
-              <a href="guarantees.html">Detalles <span aria-hidden="true">›</span></a>
-            </article>
+          <div class="overview-product-grid"><p>Cargando garantías...</p>
           </div>
         </section>
-        <a class="overview-add" href="add-guarantee.html" aria-label="Agregar garantía">+</a>
+        <a class="overview-add" href="/add-guarantee" aria-label="Agregar garantía">+</a>
       </main>
       <nav class="overview-nav" aria-label="Navegación principal">
-        <a class="overview-nav-active" href="dashboard-overview.html"><span aria-hidden="true">⌂</span>Inicio</a>
-        <a href="guarantees.html"><span aria-hidden="true">▤</span>Mis garantías</a>
-        <a href="settings.html"><span aria-hidden="true">⚙</span>Configuración</a>
-        <a class="overview-logout" href="login.html"><span aria-hidden="true">↪</span>Cerrar sesión</a>
+        <a class="overview-nav-active" href="/dashboard-overview"><span aria-hidden="true">⌂</span>Inicio</a>
+        <a href="/guarantees"><span aria-hidden="true">▤</span>Mis garantías</a>
+        <a href="/settings"><span aria-hidden="true">⚙</span>Configuración</a>
+        <a class="overview-logout" href="/login"><span aria-hidden="true">↪</span>Cerrar sesión</a>
       </nav>
     </div>
   </body>

@@ -1,7 +1,6 @@
-(() => {
-  const store = window.GuaranteeStore;
+(async () => {
+  const { request } = window.GarantyAPI;
   const id = new URLSearchParams(window.location.search).get("id");
-  const record = store.get(id);
   const form = document.querySelector("#document-upload-form");
   const unavailable = document.querySelector("#document-unavailable");
   const feedback = document.querySelector("#document-feedback");
@@ -9,38 +8,47 @@
   const openLink = document.querySelector("#open-document-link");
   const removeButton = document.querySelector("#remove-document-button");
   const fileInput = document.querySelector("#guarantee-file");
+  const apiBase = `/api/guarantees/${encodeURIComponent(id)}`;
   let currentObjectUrl = "";
 
-  if (!record) {
+  const showUnavailable = () => {
     unavailable.hidden = false;
     form.hidden = true;
-    return;
+  };
+
+  if (!id) return showUnavailable();
+
+  let record;
+  try {
+    ({ guarantee: record } = await request(apiBase));
+  } catch (error) {
+    console.error(error);
+    return showUnavailable();
   }
 
-  document.querySelector("#document-product").textContent = record.product;
-  const detailsUrl = `guarantee-details.html?id=${encodeURIComponent(id)}`;
+  document.querySelector("#document-product").textContent = record.product_name;
+  const detailsUrl = `/guarantee-details?id=${encodeURIComponent(id)}`;
   document.querySelector("#documents-back-link").href = detailsUrl;
   document.querySelector("#documents-back-button").href = detailsUrl;
 
-  function renderDocument() {
-    const documentData = store.getDocument(id);
+  async function renderDocument() {
+    const { document: documentData } = await request(`${apiBase}/document`);
+
     savedDocument.hidden = !documentData;
     document.querySelector("#document-empty").hidden = Boolean(documentData);
     removeButton.hidden = !documentData;
     if (!documentData) return;
 
     if (currentObjectUrl) URL.revokeObjectURL(currentObjectUrl);
-    const [metadata, encodedData] = documentData.dataUrl.split(",");
-    const mimeType = metadata.match(/^data:(.*?);base64$/)?.[1] ?? documentData.type;
-    const binary = atob(encodedData);
-    const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
-    currentObjectUrl = URL.createObjectURL(new Blob([bytes], { type: mimeType }));
+    const bytes = Uint8Array.from(atob(documentData.dataBase64), (c) => c.charCodeAt(0));
+    currentObjectUrl = URL.createObjectURL(new Blob([bytes], { type: documentData.type }));
     openLink.href = currentObjectUrl;
     openLink.download = documentData.name;
     openLink.textContent = documentData.name;
   }
 
-  renderDocument();
+  await renderDocument();
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const file = fileInput.files[0];
@@ -58,18 +66,19 @@
     }
 
     const reader = new FileReader();
-    reader.addEventListener("load", () => {
-      if (typeof reader.result !== "string" || !store.saveDocument(id, {
-        name: file.name,
-        type: file.type,
-        dataUrl: reader.result
-      })) {
-        feedback.textContent = "No se pudo guardar el archivo. Revisa el espacio disponible en el navegador.";
-        return;
+    reader.addEventListener("load", async () => {
+      try {
+        const dataBase64 = String(reader.result).split(",")[1];
+        await request(`${apiBase}/document`, {
+          method: "PUT",
+          body: { name: file.name, type: file.type, dataBase64 }
+        });
+        feedback.textContent = "Documento guardado correctamente.";
+        form.reset();
+        await renderDocument();
+      } catch (error) {
+        feedback.textContent = error.message;
       }
-      feedback.textContent = "Documento guardado correctamente.";
-      form.reset();
-      renderDocument();
     });
     reader.addEventListener("error", () => {
       feedback.textContent = "No se pudo leer el archivo. Inténtalo de nuevo.";
@@ -77,13 +86,14 @@
     reader.readAsDataURL(file);
   });
 
-  removeButton.addEventListener("click", () => {
+  removeButton.addEventListener("click", async () => {
     if (!window.confirm("¿Quieres eliminar este documento de la garantía?")) return;
-    if (!store.removeDocument(id)) {
-      feedback.textContent = "No se pudo eliminar el documento. Inténtalo de nuevo.";
-      return;
+    try {
+      await request(`${apiBase}/document`, { method: "DELETE" });
+      feedback.textContent = "Documento eliminado.";
+      await renderDocument();
+    } catch (error) {
+      feedback.textContent = error.message;
     }
-    feedback.textContent = "Documento eliminado.";
-    renderDocument();
   });
 })();

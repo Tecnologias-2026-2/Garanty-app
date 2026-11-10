@@ -2,17 +2,6 @@ const categoryForm = document.querySelector("#category-form");
 
 if (categoryForm) {
   const stateKey = "garantyapp-new-guarantee";
-  const categoriesStorageKey = "garantyapp-guarantee-categories";
-  const initialCategories = [
-    "Electrónica",
-    "Electrodomésticos",
-    "Muebles",
-    "Computadores",
-    "Hogar",
-    "Ropa y accesorios",
-    "Deportes",
-    "Otros"
-  ];
   const categoryIcons = {
     "Electrónica": '<rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4"></path>',
     "Electrodomésticos": '<rect x="6" y="2" width="12" height="20" rx="2"></rect><path d="M6 10h12M9 6v1M9 13v1"></path>',
@@ -39,49 +28,27 @@ if (categoryForm) {
   const cancelDialog = document.querySelector("#cancel-dialog");
   const stayButton = document.querySelector("#stay-button");
   const confirmCancelButton = document.querySelector("#confirm-cancel-button");
-  let categories = initialCategories;
-  let categoryToDelete = "";
+  let categories = [];
+  let categoryToDelete = null;
 
   function showCategoryFeedback(message) {
     categoryFeedback.textContent = message;
     categoryFeedback.hidden = !message;
   }
 
-  function saveCategories() {
+  async function loadCategories() {
     try {
-      localStorage.setItem(categoriesStorageKey, JSON.stringify(categories));
-      return true;
-    } catch {
-      showCategoryFeedback("No se pudieron guardar los cambios. Revisa el almacenamiento de este navegador e inténtalo de nuevo.");
-      return false;
-    }
-  }
-
-  function loadCategories() {
-    const savedCategories = localStorage.getItem(categoriesStorageKey);
-    if (savedCategories === null) {
-      saveCategories();
-      return;
-    }
-
-    try {
-      const parsedCategories = JSON.parse(savedCategories);
-      if (!Array.isArray(parsedCategories) || parsedCategories.some((category) => typeof category !== "string")) {
-        throw new TypeError("El listado almacenado no tiene un formato válido.");
-      }
-      categories = [...new Set(parsedCategories.map((category) => category.trim()).filter(Boolean))];
-      if (categories.length === 0) categories = initialCategories;
-    } catch {
-      categories = initialCategories;
-      showCategoryFeedback("No se pudo leer la lista de categorías guardadas. Se restauró la lista inicial.");
-      saveCategories();
+      const { categories: rows } = await window.GarantyAPI.request("/api/categories");
+      categories = rows;
+    } catch (error) {
+      showCategoryFeedback(error.message);
     }
   }
 
   function renderCategories(selectedValue = sessionStorage.getItem(`${stateKey}-category`)) {
     categoryOptions.replaceChildren();
 
-    categories.forEach((category, index) => {
+    categories.forEach(({ id: categoryId, name: category }, index) => {
       const option = document.createElement("div");
       const radio = document.createElement("input");
       const selectLabel = document.createElement("label");
@@ -114,7 +81,7 @@ if (categoryForm) {
       deleteButton.setAttribute("aria-label", `Eliminar categoría ${category}`);
       deleteButton.title = `Eliminar ${category}`;
       deleteButton.textContent = "×";
-      deleteButton.addEventListener("click", () => openDeleteDialog(category));
+      deleteButton.addEventListener("click", () => openDeleteDialog(categoryId, category));
 
       option.append(radio, selectLabel, deleteButton);
       categoryOptions.append(option);
@@ -135,15 +102,14 @@ if (categoryForm) {
     categoryNameInput.focus();
   }
 
-  function openDeleteDialog(category) {
-    categoryToDelete = category;
+  function openDeleteDialog(categoryId, category) {
+    categoryToDelete = { id: categoryId, name: category };
     deleteCategoryDescription.textContent = `Se eliminará «${category}» de la lista de categorías. Esta acción no se puede deshacer.`;
     deleteCategoryDialog.showModal();
     confirmDeleteCategoryButton.focus();
   }
 
-  loadCategories();
-  renderCategories();
+  loadCategories().then(() => renderCategories());
 
   categoryForm.addEventListener("change", (event) => {
     if (event.target.name === "category") {
@@ -160,10 +126,10 @@ if (categoryForm) {
       return;
     }
     sessionStorage.setItem(`${stateKey}-category`, selectedCategory);
-    window.location.href = "add-guarantee.html?step=3";
+    window.location.href = "/add-guarantee?step=3";
   });
 
-  createCategoryForm.addEventListener("submit", (event) => {
+  createCategoryForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const newCategory = categoryNameInput.value.trim();
     if (!newCategory) {
@@ -173,23 +139,21 @@ if (categoryForm) {
       return;
     }
 
-    if (categories.some((category) => category.toLocaleLowerCase("es") === newCategory.toLocaleLowerCase("es"))) {
-      createCategoryFeedback.textContent = "Ya existe una categoría con ese nombre.";
+    try {
+      const { category } = await window.GarantyAPI.request("/api/categories", {
+        method: "POST",
+        body: { name: newCategory }
+      });
+      categories.push(category);
+      sessionStorage.setItem(`${stateKey}-category`, category.name);
+      createCategoryDialog.close();
+      renderCategories(category.name);
+      showCategoryFeedback(`Se creó la categoría «${category.name}» y quedó seleccionada.`);
+    } catch (error) {
+      createCategoryFeedback.textContent = error.message;
       createCategoryFeedback.hidden = false;
       categoryNameInput.focus();
-      return;
     }
-
-    categories.push(newCategory);
-    if (!saveCategories()) {
-      categories.pop();
-      return;
-    }
-
-    sessionStorage.setItem(`${stateKey}-category`, newCategory);
-    createCategoryDialog.close();
-    renderCategories(newCategory);
-    showCategoryFeedback(`Se creó la categoría «${newCategory}» y quedó seleccionada.`);
   });
 
   categoryNameInput.addEventListener("input", () => {
@@ -206,26 +170,21 @@ if (categoryForm) {
     deleteCategoryDialog.close();
   });
 
-  confirmDeleteCategoryButton.addEventListener("click", () => {
-    if (categories.length <= 1) {
+  confirmDeleteCategoryButton.addEventListener("click", async () => {
+    const deleted = categoryToDelete;
+    try {
+      await window.GarantyAPI.request(`/api/categories/${deleted.id}`, { method: "DELETE" });
+      categories = categories.filter((category) => category.id !== deleted.id);
+      if (sessionStorage.getItem(`${stateKey}-category`) === deleted.name) {
+        sessionStorage.removeItem(`${stateKey}-category`);
+      }
       deleteCategoryDialog.close();
-      showCategoryFeedback("Debes conservar al menos una categoría.");
-      return;
+      renderCategories();
+      showCategoryFeedback(`Se eliminó la categoría «${deleted.name}».`);
+    } catch (error) {
+      deleteCategoryDialog.close();
+      showCategoryFeedback(error.message);
     }
-
-    const deletedCategory = categoryToDelete;
-    categories = categories.filter((category) => category !== deletedCategory);
-    if (!saveCategories()) {
-      categories.push(deletedCategory);
-      return;
-    }
-
-    if (sessionStorage.getItem(`${stateKey}-category`) === deletedCategory) {
-      sessionStorage.removeItem(`${stateKey}-category`);
-    }
-    deleteCategoryDialog.close();
-    renderCategories();
-    showCategoryFeedback(`Se eliminó la categoría «${deletedCategory}».`);
   });
 
   cancelButton.addEventListener("click", () => {
@@ -240,6 +199,6 @@ if (categoryForm) {
   confirmCancelButton.addEventListener("click", () => {
     sessionStorage.removeItem(stateKey);
     sessionStorage.removeItem(`${stateKey}-category`);
-    window.location.href = "dashboard.html";
+    window.location.href = "/dashboard";
   });
 }

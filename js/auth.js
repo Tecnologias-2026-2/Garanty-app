@@ -51,7 +51,7 @@ const termsDialog = document.querySelector('#terms-dialog');
 if (termsDialog && typeof termsDialog.showModal === 'function') {
     const closeButton = termsDialog.querySelector('.terms-dialog-close');
 
-    document.querySelectorAll('.terms-option a[href="terms.html"]').forEach((link) => {
+    document.querySelectorAll('.terms-option a[href="/terms"]').forEach((link) => {
         link.addEventListener('click', (event) => {
             event.preventDefault();
             termsDialog.showModal();
@@ -121,7 +121,7 @@ if (registerForm) {
             showMessage(registerForm, '¡Cuenta creada correctamente!');
 
             setTimeout(() => {
-                window.location.href = 'dashboard.html';
+                window.location.href = '/dashboard';
             }, 1000);
 
         } catch (error) {
@@ -179,7 +179,7 @@ if (loginForm) {
             showMessage(loginForm, '¡Bienvenido de nuevo!');
 
             setTimeout(() => {
-                window.location.href = 'dashboard.html';
+                window.location.href = '/dashboard';
             }, 1000);
 
         } catch (error) {
