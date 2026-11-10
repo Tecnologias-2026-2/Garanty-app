@@ -137,5 +137,10 @@
       </form>
       <a class="consumer-previous legal-previous" href="register.html"><img src="../assets/icon-arrow-right.svg" alt=""><span>Anterior</span></a>
     </main>
+    <script>
+      if (new URLSearchParams(window.location.search).has('embed')) {
+        document.body.classList.add('legal-page--embedded');
+      }
+    </script>
   </body>
 </html>

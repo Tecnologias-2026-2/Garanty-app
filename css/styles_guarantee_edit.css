@@ -126,7 +126,7 @@
   padding: 7px 10px;
   border: 1px solid rgba(184, 159, 204, 0.28);
   border-radius: 8px;
-  background: rgba(26, 5, 40, 0.42);
+  background: var(--input-surface);
   color: var(--record-text);
   font: inherit;
   font-size: 14px;

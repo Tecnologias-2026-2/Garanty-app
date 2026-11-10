@@ -65,7 +65,7 @@ a {
   align-items: center;
   gap: 9px;
   border-radius: 999px;
-  background: rgba(58, 18, 84, 0.55);
+  background: var(--input-surface);
 }
 
 .dashboard-search svg,

@@ -52,6 +52,28 @@
   --color-lilac: #b89fcc;
   --color-white: #f0e8ff;
   --color-panel: #d0cfd1;
+  --input-surface: rgba(240, 232, 255, 0.08);
+  --input-autofill-surface: #3c1b4e;
+}
+
+input,
+textarea,
+select {
+  background-color: transparent;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--input-autofill-surface) inset !important;
+  -webkit-text-fill-color: var(--color-white) !important;
+  caret-color: var(--color-white);
+}
+
+input:autofill {
+  box-shadow: 0 0 0 1000px var(--input-autofill-surface) inset !important;
+  color: var(--color-white) !important;
+  caret-color: var(--color-white);
 }
 
 img[src$="garantyapp-logo.png"] {

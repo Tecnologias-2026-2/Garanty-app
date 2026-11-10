@@ -416,7 +416,7 @@ button {
   border: 1px solid rgba(184, 159, 204, 0.55);
   border-radius: 9px;
   outline: none;
-  background: rgba(43, 10, 61, 0.5);
+  background: var(--input-surface);
   color: var(--text);
   font-size: 14px;
 }

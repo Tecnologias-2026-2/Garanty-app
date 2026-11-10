@@ -1,7 +1,7 @@
 
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const { pool } = require('../database');
+const { pool } = require('../config/database');
 
 const router = express.Router();
 
@@ -86,8 +86,6 @@ router.post('/register', async (req, res) => {
 
 // INICIO DE SESIÓN
 router.post('/login', async (req, res) => {
-    
-
     try {
         const { email, password } = req.body;
 
@@ -100,10 +98,11 @@ router.post('/login', async (req, res) => {
         const normalizedEmail = email.trim().toLowerCase();
 
         const result = await pool.query(
-            'SELECT id, name, email, password_hash FROM users WHERE email = $1',
+            `SELECT id, name, email, password_hash
+             FROM users
+             WHERE email = $1`,
             [normalizedEmail]
         );
-        
 
         if (result.rows.length === 0) {
             return res.status(401).json({
@@ -117,7 +116,6 @@ router.post('/login', async (req, res) => {
             password,
             user.password_hash
         );
-        
 
         if (!validPassword) {
             return res.status(401).json({
@@ -181,7 +179,9 @@ router.get('/me', async (req, res) => {
             });
         }
 
-        res.json({ user: result.rows[0] });
+        res.json({
+            user: result.rows[0]
+        });
 
     } catch (error) {
         console.error('Error verificando sesión:', error);

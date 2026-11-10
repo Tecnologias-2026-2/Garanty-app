@@ -42,8 +42,10 @@
               </span>
               <span class="auth-input-wrap">
                 <img src="../assets/auth-lock.svg" alt="" aria-hidden="true">
-                <input type="password" name="password" placeholder="••••••••" autocomplete="current-password" required>
-                <img class="auth-input-trailing" src="../assets/auth-eye.svg" alt="" aria-hidden="true">
+                <input id="login-password" type="password" name="password" placeholder="••••••••" autocomplete="current-password" required>
+                <button class="auth-input-trailing auth-password-toggle" type="button" aria-label="Mostrar contraseña" aria-controls="login-password" aria-pressed="false">
+                  <img src="../assets/auth-eye.svg" alt="" aria-hidden="true">
+                </button>
               </span>
             </label>
           </div>
@@ -53,7 +55,7 @@
           </label>
           <div class="auth-actions">
             <button type="submit" class="auth-submit">
-                Crear cuenta
+                Iniciar sesión
             </button>
 
             <p class="auth-message" role="alert" aria-live="polite"></p>

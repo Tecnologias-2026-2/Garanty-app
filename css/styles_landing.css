@@ -175,7 +175,7 @@ a {
   gap: 13px;
   border: 1px solid #b89fcc;
   border-radius: 15px;
-  background: rgba(58, 18, 84, 0.6);
+  background: var(--color-card);
   color: rgba(184, 159, 204, 0.5);
 }
 
@@ -196,6 +196,35 @@ a {
   flex-basis: 16px;
 }
 
+.auth-password-toggle {
+  padding: 0;
+  display: grid;
+  flex: 0 0 16px;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.auth-password-toggle img {
+  width: 16px;
+  height: 16px;
+}
+
+.auth-password-toggle[aria-pressed="true"] {
+  position: relative;
+}
+
+.auth-password-toggle[aria-pressed="true"]::after {
+  width: 19px;
+  height: 1.5px;
+  position: absolute;
+  transform: rotate(-45deg);
+  border-radius: 2px;
+  background: var(--color-lilac);
+  content: "";
+}
+
 .auth-input-wrap input {
   width: 100%;
   min-width: 0;
@@ -208,6 +237,28 @@ a {
   font-family: var(--font-display);
   font-size: 14px;
   font-weight: 400;
+}
+
+.auth-input-wrap input,
+.auth-input-wrap input:-webkit-autofill,
+.auth-input-wrap input:-webkit-autofill:hover,
+.auth-input-wrap input:-webkit-autofill:focus,
+.auth-input-wrap input:autofill {
+  background: transparent !important;
+}
+
+.auth-input-wrap input:-webkit-autofill,
+.auth-input-wrap input:-webkit-autofill:hover,
+.auth-input-wrap input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--color-card) inset !important;
+  -webkit-text-fill-color: var(--color-white) !important;
+  caret-color: var(--color-white);
+}
+
+.auth-input-wrap input:autofill {
+  box-shadow: 0 0 0 1000px var(--color-card) inset !important;
+  color: var(--color-white) !important;
+  caret-color: var(--color-white);
 }
 
 .auth-input-wrap input::placeholder {
@@ -301,6 +352,7 @@ a {
 
 .auth-submit:focus-visible,
 .auth-google:focus-visible,
+.auth-password-toggle:focus-visible,
 .auth-input-wrap input:focus-visible,
 .auth-field-label a:focus-visible,
 .terms-option a:focus-visible,
@@ -910,6 +962,117 @@ a {
 
 .legal-previous img {
   transform: rotate(180deg);
+}
+
+.terms-dialog {
+  width: min(920px, calc(100vw - 32px));
+  height: min(86dvh, 760px);
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(184, 159, 204, 0.3);
+  border-radius: 20px;
+  background: var(--color-background);
+  color: var(--color-white);
+  box-shadow: 0 24px 80px rgba(13, 2, 20, 0.55);
+  font-family: var(--font-body);
+}
+
+.terms-dialog[open] {
+  display: flex;
+}
+
+.terms-dialog::backdrop {
+  background: rgba(13, 2, 20, 0.78);
+  backdrop-filter: blur(4px);
+}
+
+.terms-dialog-header {
+  min-height: 64px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid rgba(184, 159, 204, 0.16);
+}
+
+.terms-dialog-header h2 {
+  margin: 0;
+  color: var(--color-white);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.terms-dialog-close {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  border: 1px solid rgba(184, 159, 204, 0.25);
+  border-radius: 50%;
+  background: rgba(240, 232, 255, 0.08);
+  color: var(--color-white);
+  font-size: 24px;
+  line-height: 1;
+}
+
+.terms-dialog-close:hover {
+  background: rgba(229, 57, 138, 0.2);
+}
+
+.terms-dialog iframe {
+  width: 100%;
+  min-height: 0;
+  flex: 1 1 auto;
+  border: 0;
+  background: var(--color-background);
+}
+
+.legal-page--embedded .legal-header,
+.legal-page--embedded .legal-acceptance,
+.legal-page--embedded .legal-previous {
+  display: none;
+}
+
+.legal-page--embedded .legal-main {
+  padding: 28px clamp(20px, 5vw, 56px) 40px;
+}
+
+.legal-page--embedded .legal-main > h1 {
+  font-size: clamp(28px, 5vw, 42px);
+  text-align: left;
+}
+
+.legal-page--embedded .legal-document {
+  width: 100%;
+  margin-top: 24px;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.legal-page--embedded .legal-document p {
+  margin-bottom: 16px;
+}
+
+.legal-page--embedded .legal-document section {
+  margin-top: 30px;
+}
+
+.legal-page--embedded .legal-document h2,
+.legal-page--embedded .legal-document h3 {
+  margin-bottom: 14px;
+  font-size: 20px;
+}
+
+.legal-page--embedded .legal-document h3 {
+  margin-top: 20px;
+}
+
+.legal-page--embedded .legal-document ul {
+  margin-bottom: 16px;
+  padding-left: 24px;
 }
 
 @media (max-width: 1100px) {

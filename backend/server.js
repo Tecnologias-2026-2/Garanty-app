@@ -1,3 +1,4 @@
+
 require('dotenv').config();
 
 const express = require('express');
@@ -6,21 +7,27 @@ const PgSession = require('connect-pg-simple')(session);
 const path = require('path');
 const helmet = require('helmet');
 
-const { pool, initializeDatabase } = require('./database');
-
+const { pool, initializeDatabase } = require('./config/database');
 const authRoutes = require('./routes/auth');
+const guaranteeRoutes = require('./routes/guarantees');
 
 const app = express();
 
+// Configuración del servidor
 app.set('trust proxy', 1);
 
+// Seguridad
 app.use(helmet({
     contentSecurityPolicy: false
 }));
 
+// Permitir recibir datos JSON desde los formularios
 app.use(express.json());
+
+// Permitir recibir formularios tradicionales
 app.use(express.urlencoded({ extended: true }));
 
+// Configuración de sesiones
 app.use(session({
     store: new PgSession({
         pool: pool,
@@ -38,21 +45,29 @@ app.use(session({
     }
 }));
 
+// Rutas de la API
 app.use('/api/auth', authRoutes);
+app.use('/api/guarantees', guaranteeRoutes);
 
+// Directorio principal del proyecto
 const projectRoot = path.resolve(__dirname, '..');
 
-app.get('/', (req, res) => {
-    res.redirect('/pages/index.html');
-});
-
+// Servir archivos estáticos
 app.use('/assets', express.static(path.join(projectRoot, 'assets')));
 app.use('/css', express.static(path.join(projectRoot, 'css')));
 app.use('/js', express.static(path.join(projectRoot, 'js')));
 app.use('/pages', express.static(path.join(projectRoot, 'pages')));
+app.use(express.static(path.join(projectRoot, 'pages')));
 
+// Página principal
+app.get('/', (req, res) => {
+    res.sendFile(path.join(projectRoot, 'pages', 'index.html'));
+});
+
+// Puerto del servidor
 const PORT = process.env.PORT || 3000;
 
+// Iniciar servidor
 async function startServer() {
     try {
         await initializeDatabase();
@@ -60,6 +75,7 @@ async function startServer() {
         app.listen(PORT, () => {
             console.log(`Servidor funcionando en puerto ${PORT}`);
         });
+
     } catch (error) {
         console.error('Error al iniciar el servidor:', error);
         process.exit(1);

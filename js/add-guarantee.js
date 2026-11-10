@@ -240,25 +240,92 @@ if (form) {
 
   renderStep();
 
-  nextButton.addEventListener("click", () => {
+  
+nextButton.addEventListener("click", async () => {
     if (!validateCurrentStep()) return;
 
     saveFormState();
+
+    // Ir a la selección de categoría
     if (currentStep === 2) {
-      window.location.href = "guarantee-category.html";
-      return;
+        window.location.href = "guarantee-category.html";
+        return;
     }
 
+    // Avanzar entre los pasos del formulario
     if (currentStep < steps.length) {
-      currentStep += 1;
-      renderStep();
-      steps[currentStep - 1].querySelector("input, select, button")?.focus();
-      return;
+        currentStep += 1;
+        renderStep();
+        steps[currentStep - 1].querySelector("input, select, button")?.focus();
+        return;
     }
 
-    saveFormState();
-    window.location.href = "guarantee-created.html";
-  });
+    // GUARDAR LA GARANTÍA EN POSTGRESQL
+    nextButton.disabled = true;
+    nextButton.textContent = "Guardando...";
+
+    try {
+        const values = new FormData(form);
+
+        const selectedDuration = values.get("duration");
+
+        let finalDurationValue;
+        let finalDurationUnit;
+
+        if (selectedDuration === "other") {
+            finalDurationValue = Number(values.get("durationValue"));
+            finalDurationUnit = values.get("durationUnit");
+        } else {
+            finalDurationValue = Number(selectedDuration);
+            finalDurationUnit = "months";
+        }
+
+        const guaranteeData = {
+            productName: values.get("product"),
+            brand: values.get("brand"),
+            model: values.get("model"),
+            serialNumber: values.get("serial"),
+            price: Number(values.get("price")),
+            store: values.get("store"),
+            purchaseDate: values.get("purchaseDate"),
+            durationValue: finalDurationValue,
+            durationUnit: finalDurationUnit,
+            expirationDate: values.get("expirationDate"),
+            category: sessionStorage.getItem(`${stateKey}-category`)
+        };
+
+        const response = await fetch("/api/guarantees", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify(guaranteeData)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                result.message || "No se pudo guardar la garantía."
+            );
+        }
+
+        // Mantener los datos para la pantalla de confirmación
+        saveFormState();
+
+        // Mostrar confirmación
+        window.location.href = "guarantee-created.html";
+
+    } catch (error) {
+        console.error("Error al guardar la garantía:", error);
+
+        alert(error.message || "Ocurrió un error al guardar la garantía.");
+
+        nextButton.disabled = false;
+        nextButton.textContent = "Guardar garantía";
+    }
+});
 
   backButton.addEventListener("click", () => {
     if (currentStep === 3) {
