@@ -53,6 +53,17 @@ async function initializeDatabase() {
         );
     `);
 
+    // Si la tabla ya existía de antes, asegurar que tenga todas las columnas
+    await pool.query(`
+        ALTER TABLE public.guarantees
+            ADD COLUMN IF NOT EXISTS model VARCHAR(100),
+            ADD COLUMN IF NOT EXISTS serial_number VARCHAR(100),
+            ADD COLUMN IF NOT EXISTS category VARCHAR(80),
+            ADD COLUMN IF NOT EXISTS notes TEXT,
+            ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+            ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP;
+    `);
+
     await pool.query(`
         CREATE INDEX IF NOT EXISTS idx_guarantees_user ON public.guarantees(user_id);
     `);
