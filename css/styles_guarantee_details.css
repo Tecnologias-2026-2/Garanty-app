@@ -95,3 +95,62 @@
     margin-top: 0;
   }
 }
+
+.delete-dialog {
+  width: min(92vw, 400px);
+  padding: 0;
+  border: 1px solid rgba(184, 159, 204, 0.2);
+  border-radius: 16px;
+  background: var(--record-panel);
+  color: var(--record-text);
+}
+
+.delete-dialog::backdrop {
+  background: rgba(10, 2, 16, 0.72);
+}
+
+.delete-dialog-content {
+  padding: 24px;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.delete-dialog-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 99, 113, 0.16);
+  color: var(--record-red);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.delete-dialog h2,
+.delete-dialog p {
+  margin: 0;
+}
+
+.delete-dialog h2 {
+  font-size: 18px;
+}
+
+.delete-dialog p {
+  color: var(--record-muted);
+  font-size: 14px;
+}
+
+.delete-dialog .delete-dialog-error {
+  color: var(--record-red);
+}
+
+.delete-dialog-actions {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}

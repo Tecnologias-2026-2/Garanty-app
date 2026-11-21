@@ -69,10 +69,23 @@
 
         <div class="record-actions">
           <a class="record-button record-button--secondary" href="guarantees.html">Volver</a>
+          <button class="record-button record-button--danger" id="delete-guarantee-button" type="button">Eliminar garantía</button>
           <a class="record-button record-button--primary" id="edit-guarantee-link" href="guarantee-edit.html">Editar garantía</a>
         </div>
       </div>
     </main>
+    <dialog class="delete-dialog" id="delete-dialog" aria-labelledby="delete-dialog-title" aria-describedby="delete-dialog-description">
+      <div class="delete-dialog-content">
+        <span class="delete-dialog-icon" aria-hidden="true">!</span>
+        <h2 id="delete-dialog-title">¿Eliminar esta garantía?</h2>
+        <p id="delete-dialog-description">Se borrarán la garantía y su factura o comprobante. Esta acción no se puede deshacer.</p>
+        <p class="delete-dialog-error" id="delete-dialog-error" role="alert" hidden></p>
+        <div class="delete-dialog-actions">
+          <button class="record-button record-button--secondary" id="delete-cancel-button" type="button">Cancelar</button>
+          <button class="record-button record-button--danger" id="delete-confirm-button" type="button">Sí, eliminar</button>
+        </div>
+      </div>
+    </dialog>
     <nav class="dashboard-nav" aria-label="Navegación principal">
       <a class="nav-link" href="dashboard.html"><span aria-hidden="true">⌂</span>Inicio</a>
       <a class="nav-link nav-link--active" href="guarantees.html"><span aria-hidden="true">▤</span>Mis garantías</a>

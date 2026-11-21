@@ -316,6 +316,16 @@ body.record-page {
   background: rgba(240, 232, 255, 0.07);
 }
 
+.record-button--danger {
+  border-color: rgba(255, 99, 113, 0.5);
+  background: transparent;
+  color: var(--record-red);
+}
+
+.record-button--danger:hover {
+  background: rgba(255, 99, 113, 0.12);
+}
+
 .record-nav {
   width: 184px;
   padding: 14px 10px;

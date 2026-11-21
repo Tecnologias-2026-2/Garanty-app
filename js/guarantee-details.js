@@ -55,4 +55,31 @@
   documentLink.href = documentsUrl;
   document.querySelector("#edit-guarantee-link").href = `guarantee-edit.html?id=${encodeURIComponent(id)}`;
   document.querySelector("#manage-documents-link").href = documentsUrl;
+
+  // ---------- Eliminar garantía ----------
+  const deleteDialog = document.querySelector("#delete-dialog");
+  const deleteError = document.querySelector("#delete-dialog-error");
+  const confirmButton = document.querySelector("#delete-confirm-button");
+  const cancelButton = document.querySelector("#delete-cancel-button");
+
+  document.querySelector("#delete-guarantee-button").addEventListener("click", () => {
+    deleteError.hidden = true;
+    deleteDialog.showModal();
+  });
+  cancelButton.addEventListener("click", () => deleteDialog.close());
+
+  confirmButton.addEventListener("click", async () => {
+    try {
+      confirmButton.disabled = true;
+      confirmButton.textContent = "Eliminando...";
+      // API: DELETE /api/guarantees/:id -> borra la garantía (y su documento por ON DELETE CASCADE)
+      await request(`/api/guarantees/${encodeURIComponent(id)}`, { method: "DELETE" });
+      window.location.href = "guarantees.html";
+    } catch (error) {
+      deleteError.textContent = error.message;
+      deleteError.hidden = false;
+      confirmButton.disabled = false;
+      confirmButton.textContent = "Sí, eliminar";
+    }
+  });
 })();

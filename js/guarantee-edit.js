@@ -99,6 +99,10 @@
   set("store", record.store);
   set("notes", record.notes);
 
+  // Título: la etiqueta de arriba muestra qué producto se está editando
+  document.title = `Editar ${record.product_name} | GarantyApp`;
+  document.querySelector("#edit-eyebrow").textContent = record.product_name;
+
   document.querySelector("#edit-cancel-link").href = detailsUrl;
 
   form.addEventListener("submit", async (event) => {

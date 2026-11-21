@@ -128,6 +128,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       return overview
         ? `<article class="overview-product-card">
             <div class="overview-product-heading">
+              <span class="overview-device" aria-hidden="true">${window.GarantyIcons.categoryIcon(g.category)}</span>
               <div><h3>${escapeHtml(g.product_name)}</h3><p>${escapeHtml(g.category || "Sin categoría")}</p></div>
               <span class="overview-tag overview-tag--${css[g.status]}">${statusLabels[g.status]}</span>
             </div>
@@ -137,6 +138,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           </article>`
         : `<article class="product-card">
             <div class="product-heading">
+              <span class="product-icon" aria-hidden="true">${window.GarantyIcons.categoryIcon(g.category)}</span>
               <div><h3>${escapeHtml(g.product_name)}</h3><p>${escapeHtml(g.category || "Sin categoría")}</p></div>
               <span class="product-status product-status--${css[g.status]}">${statusLabels[g.status]}</span>
             </div>
