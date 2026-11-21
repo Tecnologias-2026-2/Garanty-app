@@ -12,11 +12,12 @@
     <link rel="stylesheet" href="/css/styles_settings.css">
     <link rel="stylesheet" href="/css/styles_tokens.css">
       <script src="/js/api.js" defer></script>
+    <script src="/js/user.js" defer></script>
   </head>
   <body class="settings-page">
     <header class="settings-header">
       <a class="settings-brand" href="/dashboard" aria-label="GarantyApp, inicio"><img src="/assets/garantyapp-logo.png" alt="GarantyApp"></a>
-      <div class="settings-user"><span>MA</span><span>María A.</span></div>
+      <div class="settings-user"><span data-user-initials>…</span><span data-user-name>Cargando…</span></div>
     </header>
     <div class="settings-shell">
       <main class="settings-main">
@@ -25,15 +26,15 @@
           <div class="profile-photo-row">
             <span class="profile-avatar" aria-hidden="true"></span>
             <span class="profile-prompt">Subir una foto para tu perfil</span>
-            <a href="/settings">Subir foto <span aria-hidden="true">›</span></a>
+            <a href="#" aria-disabled="true">Subir foto <span aria-hidden="true">›</span></a>
           </div>
           <div class="profile-info-row">
             <div><h2>Nombre</h2><p id="profile-name">...</p></div>
-            <a href="/change-name">Editar <span aria-hidden="true">›</span></a>
+            <a href="#" data-edit="name">Editar <span aria-hidden="true">›</span></a>
           </div>
           <div class="profile-info-row">
             <div><h2>Correo electrónico</h2><p id="profile-email">...</p></div>
-            <a href="/change-email">Editar <span aria-hidden="true">›</span></a>
+            <a href="#" data-edit="email">Editar <span aria-hidden="true">›</span></a>
           </div>
         </section>
       </main>

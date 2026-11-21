@@ -70,20 +70,4 @@
     try { await request("/api/auth/logout", { method: "POST" }); } catch { /* se redirige igual */ }
     window.location.href = "/login";
   });
-
-  // Perfil (página de configuración)
-  document.addEventListener("DOMContentLoaded", async () => {
-    const nameField = document.querySelector("#profile-name");
-    const emailField = document.querySelector("#profile-email");
-    if (!nameField && !emailField) return;
-    try {
-      const { user } = await request("/api/auth/me");
-      if (nameField) nameField.textContent = user.name;
-      if (emailField) emailField.textContent = user.email;
-      const avatar = document.querySelector(".profile-avatar");
-      if (avatar) avatar.textContent = user.name.split(/\s+/).map((p) => p[0]).slice(0, 2).join("").toUpperCase();
-    } catch (error) {
-      console.error(error);
-    }
-  });
 })();

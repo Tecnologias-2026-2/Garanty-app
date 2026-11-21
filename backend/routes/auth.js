@@ -192,6 +192,48 @@ router.get('/me', async (req, res) => {
     }
 });
 
+// ACTUALIZAR PERFIL (nombre y correo)
+router.put('/profile', async (req, res) => {
+    try {
+        if (!req.session.userId) {
+            return res.status(401).json({ message: 'No hay una sesión activa.' });
+        }
+
+        const name = (req.body.name || '').trim();
+        const email = (req.body.email || '').trim().toLowerCase();
+
+        if (!name || name.length > 100) {
+            return res.status(400).json({ message: 'El nombre no es válido.' });
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255) {
+            return res.status(400).json({ message: 'El correo no es válido.' });
+        }
+
+        const taken = await pool.query(
+            'SELECT id FROM users WHERE email = $1 AND id <> $2',
+            [email, req.session.userId]
+        );
+
+        if (taken.rows.length > 0) {
+            return res.status(409).json({ message: 'Este correo ya está registrado.' });
+        }
+
+        const result = await pool.query(
+            `UPDATE users SET name = $1, email = $2
+             WHERE id = $3
+             RETURNING id, name, email`,
+            [name, email, req.session.userId]
+        );
+
+        res.json({ message: 'Perfil actualizado.', user: result.rows[0] });
+
+    } catch (error) {
+        console.error('Error al actualizar el perfil:', error);
+        res.status(500).json({ message: 'Error al actualizar el perfil.' });
+    }
+});
+
 // CERRAR SESIÓN
 router.post('/logout', (req, res) => {
     req.session.destroy((error) => {

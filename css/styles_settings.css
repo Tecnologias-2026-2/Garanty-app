@@ -272,3 +272,12 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Edición de nombre y correo */
+.profile-info-row { flex-wrap: wrap; }
+.profile-edit { width: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.profile-edit input { flex: 1 1 180px; min-width: 0; padding: 8px 10px; border-radius: 8px; border: 1px solid rgba(184, 159, 204, 0.7); background: rgba(255, 255, 255, 0.08); color: inherit; font: inherit; font-size: 14px; }
+.profile-edit button { padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(184, 159, 204, 0.7); background: transparent; color: inherit; font: inherit; font-size: 13px; cursor: pointer; }
+.profile-edit .profile-save { background: rgba(255, 255, 255, 0.16); font-weight: 600; }
+.profile-error { width: 100%; color: #ffb3b3; font-size: 13px; }
+.profile-error:empty { display: none; }
