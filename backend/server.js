@@ -37,9 +37,7 @@ app.use(helmet({
 // Render: son dominios distintos, así que el navegador bloquea las llamadas
 // a menos que el backend lo autorice explícitamente con estas cabeceras.
 //
-// FRONTEND_URL (variable de entorno en Render) = origen(es) permitido(s),
-// separados por coma y SIN ruta ni "/" final. Ejemplo:
-//   FRONTEND_URL=https://miusuario.github.io
+
 const allowedOrigins = (process.env.FRONTEND_URL || 'http://localhost:5500,http://127.0.0.1:5500')
     .split(',')
     .map((origin) => origin.trim().replace(/\/$/, ''))
@@ -83,7 +81,7 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        // En producción el front (github.io) y el back (onrender.com) son sitios
+    
         // distintos: la cookie necesita SameSite=None y Secure (HTTPS) para viajar.
         secure: isProduction,
         sameSite: isProduction ? 'none' : 'lax',

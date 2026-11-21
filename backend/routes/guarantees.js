@@ -10,8 +10,6 @@
 //  GET    /api/guarantees/:id/document    -> { document: { name, type, dataBase64 } | null }
 //  PUT    /api/guarantees/:id/document    body: { name, type, dataBase64 } (PDF o imagen, máx. 1,5 MB)
 //  DELETE /api/guarantees/:id/document    -> { message }
-//
-// Este archivo solo define las rutas; la lógica está en controllers/.
 // Siempre se filtra por req.session.userId: cada usuario solo ve sus datos.
 // ======================================================================
 const express = require('express');

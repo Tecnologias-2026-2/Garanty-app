@@ -1,10 +1,7 @@
 // ======================================================================
 // DATABASE: conexión a PostgreSQL (Supabase)
 // ======================================================================
-// Se configura con variables de entorno (nunca se guardan claves en el repo):
-//   Opción 1: DATABASE_URL
-//   Opción 2: DB_HOST, DB_USER, DB_PASSWORD, DB_NAME y DB_PORT
-// Supabase exige SSL; en tu computador (localhost) no hace falta.
+
 const { Pool } = require('pg');
 
 const config = process.env.DATABASE_URL

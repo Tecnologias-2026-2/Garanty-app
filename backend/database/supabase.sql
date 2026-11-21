@@ -1,10 +1,3 @@
--- ======================================================================
--- GARANTYAPP - BASE DE DATOS PARA SUPABASE (PostgreSQL)
--- ======================================================================
--- Cómo usarlo: Supabase -> SQL Editor -> New query -> pegar TODO -> Run.
--- Es seguro ejecutarlo más de una vez (usa IF NOT EXISTS).
--- Equivale a lo que hace backend/config/database.js al iniciar el servidor.
--- ======================================================================
 
 -- 1) USUARIOS
 CREATE TABLE IF NOT EXISTS public.users (
