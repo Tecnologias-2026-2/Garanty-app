@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   let user;
 
   try {
+    // API: GET /api/auth/me -> datos del usuario con la sesión activa
     ({ user } = await request("/api/auth/me"));
   } catch (error) {
     console.error("Error al cargar el usuario:", error);
@@ -78,6 +79,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         try {
           const body = { name: user.name, email: user.email, [field]: form.elements.value.value };
+          // API: PUT /api/auth/profile -> actualiza nombre y correo ({ name, email })
           ({ user } = await request("/api/auth/profile", { method: "PUT", body }));
           paintUser();
           close();
@@ -102,6 +104,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const [summary, { guarantees }] = await Promise.all([
+      // API: GET /api/guarantees/summary y GET /api/guarantees (en paralelo)
       request("/api/guarantees/summary"),
       request("/api/guarantees")
     ]);
@@ -121,7 +124,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     grid.innerHTML = recent.length ? recent.map((g) => {
       const remaining = g.status === "expired" ? "Garantía vencida" : `${g.remaining_days} días restantes`;
-      const link = `/guarantee-details?id=${g.id}`;
+      const link = `guarantee-details.html?id=${g.id}`;
       return overview
         ? `<article class="overview-product-card">
             <div class="overview-product-heading">

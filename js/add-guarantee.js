@@ -248,7 +248,7 @@ nextButton.addEventListener("click", async () => {
 
     // Ir a la selección de categoría
     if (currentStep === 2) {
-        window.location.href = "/guarantee-category";
+        window.location.href = "guarantee-category.html";
         return;
     }
 
@@ -294,28 +294,20 @@ nextButton.addEventListener("click", async () => {
             category: sessionStorage.getItem(`${stateKey}-category`)
         };
 
-        const response = await fetch("/api/guarantees", {
+        // LLAMADA AL API -> POST /api/guarantees
+        // Envía los datos del formulario (guaranteeData) como JSON. El backend
+        // identifica al usuario por la cookie de sesión y guarda la garantía en
+        // PostgreSQL. Si falla, request() lanza un Error con el mensaje del backend.
+        await window.GarantyAPI.request("/api/guarantees", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            credentials: "include",
-            body: JSON.stringify(guaranteeData)
+            body: guaranteeData
         });
-
-        const result = await response.json();
-
-        if (!response.ok) {
-            throw new Error(
-                result.message || "No se pudo guardar la garantía."
-            );
-        }
 
         // Mantener los datos para la pantalla de confirmación
         saveFormState();
 
         // Mostrar confirmación
-        window.location.href = "/guarantee-created";
+        window.location.href = "guarantee-created.html";
 
     } catch (error) {
         console.error("Error al guardar la garantía:", error);
@@ -330,7 +322,7 @@ nextButton.addEventListener("click", async () => {
   backButton.addEventListener("click", () => {
     if (currentStep === 3) {
       saveFormState();
-      window.location.href = "/guarantee-category";
+      window.location.href = "guarantee-category.html";
       return;
     }
     if (currentStep > 1) {
@@ -367,6 +359,6 @@ nextButton.addEventListener("click", async () => {
   confirmCancelButton.addEventListener("click", () => {
     sessionStorage.removeItem(stateKey);
     sessionStorage.removeItem(`${stateKey}-category`);
-    window.location.href = "/dashboard";
+    window.location.href = "dashboard.html";
   });
 }

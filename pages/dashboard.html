@@ -9,24 +9,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles_dashboard.css">
-    <link rel="stylesheet" href="/css/styles_tokens.css">
-    <script src="/js/api.js" defer></script>
-    <script src="/js/user.js" defer></script>
+    <link rel="stylesheet" href="../css/styles_dashboard.css">
+    <link rel="stylesheet" href="../css/styles_tokens.css">
+    <script src="../js/config.js"></script>
+    <script src="../js/api.js" defer></script>
+    <script src="../js/user.js" defer></script>
   </head>
   <body class="dashboard-page">
     <header class="dashboard-header">
-      <a class="dashboard-brand" href="/dashboard" aria-label="GarantyApp, inicio"><img src="/assets/garantyapp-logo.png" alt="GarantyApp"></a>
+      <a class="dashboard-brand" href="dashboard.html" aria-label="GarantyApp, inicio"><img src="../assets/garantyapp-logo.png" alt="GarantyApp"></a>
       <label class="dashboard-search">
         <span class="visually-hidden">Buscar garantías</span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
         <input type="search" placeholder="Buscar garantía...">
       </label>
       <div class="dashboard-user">
-        <a class="notification-button" href="/settings" aria-label="Notificaciones">
+        <a class="notification-button" href="settings.html" aria-label="Notificaciones">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path><path d="M10 21h4"></path></svg>
         </a>
-        <a class="user-link" href="/settings" data-user-label="Configuración de" aria-label="Configuración">
+        <a class="user-link" href="settings.html" data-user-label="Configuración de" aria-label="Configuración">
           <span class="user-avatar" data-user-initials>…</span><span data-user-name>Cargando…</span>
           <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"></path></svg>
         </a>
@@ -44,13 +45,13 @@
         </section>
 
         <section class="summary-grid" aria-label="Resumen de garantías">
-          <a class="summary-card summary-card--active" href="/guarantees-active">
+          <a class="summary-card summary-card--active" href="guarantees-active.html">
             <span><span class="summary-label">Garantías Activas</span><strong>0</strong><span class="summary-link">Ver listado <span aria-hidden="true">›</span></span></span>
             <span class="summary-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="m8 12 2.5 2.5L16 9"></path><circle cx="12" cy="12" r="9"></circle></svg>
             </span>
           </a>
-          <a class="summary-card summary-card--expired" href="/guarantees-expired">
+          <a class="summary-card summary-card--expired" href="guarantees-expired.html">
             <span><span class="summary-label">Garantías vencidas</span><strong>0</strong><span class="summary-link">Ver listado <span aria-hidden="true">›</span></span></span>
             <span class="summary-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M12 8v5"></path><path d="M12 16h.01"></path><path d="m10.3 3.8-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3.2l-8-14a2 2 0 0 0-3.4 0Z"></path></svg>
@@ -61,19 +62,19 @@
         <section class="recent-section" aria-labelledby="recent-title">
           <div class="section-heading">
             <h2 id="recent-title">Garantías recientes</h2>
-            <a href="/guarantees">Ver todas <span aria-hidden="true">›</span></a>
+            <a href="guarantees.html">Ver todas <span aria-hidden="true">›</span></a>
           </div>
           <div class="product-grid"><p>Cargando garantías...</p>
           </div>
         </section>
-        <a class="add-product" href="/add-guarantee" aria-label="Añadir garantía">Añadir garantía <span aria-hidden="true">+</span></a>
+        <a class="add-product" href="add-guarantee.html" aria-label="Añadir garantía">Añadir garantía <span aria-hidden="true">+</span></a>
       </main>
 
       <nav class="dashboard-nav" aria-label="Navegación principal">
-        <a class="nav-link nav-link--active" href="/dashboard"><span aria-hidden="true">⌂</span>Inicio</a>
-        <a class="nav-link" href="/guarantees"><span aria-hidden="true">▤</span>Mis garantías</a>
-        <a class="nav-link" href="/settings"><span aria-hidden="true">⚙</span>Configuración</a>
-        <a class="nav-link nav-link--logout" href="/login"><span aria-hidden="true">↪</span>Cerrar sesión</a>
+        <a class="nav-link nav-link--active" href="dashboard.html"><span aria-hidden="true">⌂</span>Inicio</a>
+        <a class="nav-link" href="guarantees.html"><span aria-hidden="true">▤</span>Mis garantías</a>
+        <a class="nav-link" href="settings.html"><span aria-hidden="true">⚙</span>Configuración</a>
+        <a class="nav-link nav-link--logout" href="login.html"><span aria-hidden="true">↪</span>Cerrar sesión</a>
       </nav>
     </div>
   </body>

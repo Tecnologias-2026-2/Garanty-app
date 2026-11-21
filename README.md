@@ -74,9 +74,94 @@ Tablas principales
 - El historial de garantías usa `pages/guarantees.html` para la vista general y `pages/guarantees-active.html`, `pages/guarantees-expiring.html` y `pages/guarantees-expired.html` para sus filtros. Las cuatro vistas comparten los estilos de `css/styles_guarantees.css` y permiten filtrar por categoría y búsqueda mediante `js/guarantee-filter.js`.
 
 
+**Backend (`backend/`) — arquitectura MVC**
+
+- **`backend/server.js`**: arranca Express, configura CORS, sesiones y registra las rutas.
+- **`backend/routes/`**: define los endpoints (`auth.js`, `guarantees.js`, `categories.js`). Solo asocia cada ruta con su controlador.
+- **`backend/controllers/`**: recibe la solicitud, valida los datos, llama al modelo y responde en JSON (`authController.js`, `guaranteeController.js`, `documentController.js`, `categoryController.js`).
+- **`backend/models/`**: acceso a los datos; aquí están las consultas SQL (`userModel.js`, `guaranteeModel.js`, `documentModel.js`, `categoryModel.js`).
+- **`backend/database/`**: conexión a Supabase PostgreSQL (`connection.js`), creación de tablas al iniciar (`init.js`) y el script `supabase.sql`.
+- **`backend/middlewares/`**: `requireLogin.js`, comprueba que haya sesión iniciada antes de las rutas privadas.
+
+Flujo de una petición: `routes → controllers → models → database`.
+
 Explicar brevemente qué contiene cada carpeta.
 
 🚀 8. Instalación y Ejecución
 
-https://garantyapp-backend.onrender.com
+**Arquitectura:** el frontend (HTML/CSS/JS) se publica en **GitHub Pages** y el backend (Node + Express + PostgreSQL) en **Render**. El front llama al backend por HTTPS.
 
+| Parte | Dónde | URL |
+|---|---|---|
+| Frontend | GitHub Pages | `https://TU-USUARIO.github.io/NOMBRE-DEL-REPO/` |
+| Backend (API) | Render | https://garantyapp-backend.onrender.com |
+
+### 8.1 Cómo se hacen las llamadas al API
+
+1. `js/config.js` guarda la URL del backend (`API_URL`). Es el único lugar donde se cambia.
+2. `js/api.js` define `GarantyAPI.request(ruta, { method, body })`, la función que usan **todas** las pantallas. Arma la URL (`API_URL + ruta`), llama a `fetch` con `credentials: "include"` (para enviar la cookie de sesión), manda el `body` como JSON y lanza un `Error` con el mensaje del backend si la respuesta no es exitosa. Si el backend responde 401, redirige a `login.html`.
+3. Cada archivo de `js/` tiene comentarios `API:` sobre cada llamada, indicando método, ruta y qué hace.
+
+```js
+// Ejemplo: crear una categoría
+const { category } = await GarantyAPI.request("/api/categories", {
+  method: "POST",
+  body: { name: "Hogar" }
+});
+```
+
+| Método y ruta | Descripción |
+|---|---|
+| `POST /api/auth/register` | Crear cuenta e iniciar sesión |
+| `POST /api/auth/login` | Iniciar sesión |
+| `GET /api/auth/me` | Usuario de la sesión actual (401 si no hay) |
+| `PUT /api/auth/profile` | Actualizar nombre y correo |
+| `POST /api/auth/logout` | Cerrar sesión |
+| `GET /api/guarantees?status=` | Listar garantías (`active`, `expiring`, `expired`) |
+| `POST /api/guarantees` | Crear garantía |
+| `GET /api/guarantees/summary` | Contadores del dashboard |
+| `GET / PUT / DELETE /api/guarantees/:id` | Ver, editar o eliminar una garantía |
+| `GET / PUT / DELETE /api/guarantees/:id/document` | Factura o comprobante (PDF/imagen) |
+| `GET / POST /api/categories` | Listar o crear categorías |
+| `DELETE /api/categories/:id` | Eliminar categoría |
+
+### 8.2 Backend en Render
+
+1. Crear la base de datos en **Supabase** (ver 8.2.1) y copiar su `DATABASE_URL`.
+2. Crear un **Web Service** conectado a este repositorio con:
+   - **Root Directory:** `backend`
+   - **Build Command:** `npm install`
+   - **Start Command:** `npm start`
+3. En **Environment** agregar las variables (ver `backend/.env.example`):
+   - `DATABASE_URL` = cadena **Session pooler** de Supabase
+   - `SESSION_SECRET` = un texto largo y secreto
+   - `NODE_ENV` = `production`
+   - `FRONTEND_URL` = `https://TU-USUARIO.github.io` (solo el dominio, sin ruta ni `/` final)
+4. Probar abriendo la URL del servicio: debe responder `{"message":"GarantyApp API funcionando."}`. Las tablas se crean solas al iniciar.
+
+> En el plan gratuito de Render el servicio se duerme tras unos minutos sin uso; la primera llamada puede tardar ~50 segundos.
+
+### 8.2.1 Base de datos en Supabase
+
+1. En [supabase.com](https://supabase.com) crear un proyecto nuevo (guardar la contraseña de la base de datos).
+2. **SQL Editor → New query**, pegar el contenido de `backend/database/supabase.sql` y pulsar **Run**. Crea las tablas `users`, `categories`, `guarantees`, `guarantee_documents` y `user_sessions`, y activa RLS.
+3. Pulsar **Connect** (arriba) → **Session pooler** → copiar la cadena y reemplazar `[YOUR-PASSWORD]` por la contraseña. Esa cadena es la `DATABASE_URL` de Render.
+4. Usar el *Session pooler* y no *Direct connection*: la conexión directa usa IPv6 y Render no la alcanza.
+
+### 8.3 Frontend en GitHub Pages
+
+1. Subir el proyecto al repositorio (rama `main`).
+2. En GitHub: **Settings → Pages → Build and deployment → Deploy from a branch → `main` / `(root)` → Save**.
+3. Abrir `https://TU-USUARIO.github.io/NOMBRE-DEL-REPO/` (el `index.html` de la raíz redirige a `pages/index.html`).
+4. Si la URL del backend cambia, editar `API_URL` en `js/config.js`.
+
+### 8.4 Ejecutar en local
+
+```bash
+cd backend
+cp .env.example .env      # completar DATABASE_URL y SESSION_SECRET
+npm install
+npm start                 # API en http://localhost:3000
+```
+
+Abrir `pages/index.html` con **Live Server** de VS Code (puerto 5500). `config.js` detecta `localhost` y usa el backend local automáticamente.

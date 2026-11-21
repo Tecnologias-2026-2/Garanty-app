@@ -4,7 +4,7 @@
   const form = document.querySelector("#guarantee-edit-form");
   const unavailable = document.querySelector("#edit-unavailable");
   const feedback = document.querySelector("#edit-feedback");
-  const detailsUrl = `/guarantee-details?id=${encodeURIComponent(id)}`;
+  const detailsUrl = `guarantee-details.html?id=${encodeURIComponent(id)}`;
 
   const showUnavailable = () => {
     unavailable.hidden = false;
@@ -17,6 +17,7 @@
   let categories = [];
   try {
     [{ guarantee: record }, { categories }] = await Promise.all([
+      // API: GET /api/guarantees/:id (datos a editar) y GET /api/categories (opciones del select)
       request(`/api/guarantees/${encodeURIComponent(id)}`),
       request("/api/categories")
     ]);
@@ -113,6 +114,7 @@
     try {
       button.disabled = true;
       feedback.textContent = "Guardando...";
+      // API: PUT /api/guarantees/:id con los campos editados -> actualiza la garantía
       await request(`/api/guarantees/${encodeURIComponent(id)}`, {
         method: "PUT",
         body: {

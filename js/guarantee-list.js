@@ -26,12 +26,15 @@
       </div>
       <div class="guarantee-footer">
         <p class="guarantee-remaining remaining--${css}">${remaining}</p>
-        <a class="guarantee-details" href="/guarantee-details?id=${g.id}">Detalles <span aria-hidden="true">›</span></a>
+        <a class="guarantee-details" href="guarantee-details.html?id=${g.id}">Detalles <span aria-hidden="true">›</span></a>
       </div>
     </article>`;
   }
 
   try {
+    // LLAMADAS AL API:
+    //   GET /api/guarantees?status=active|expiring|expired -> garantías filtradas por estado
+    //   GET /api/guarantees/summary                        -> contadores de los filtros
     const [{ guarantees }, summary] = await Promise.all([
       request(`/api/guarantees${status ? `?status=${status}` : ""}`),
       request("/api/guarantees/summary")
@@ -50,7 +53,7 @@
 
     list.innerHTML = guarantees.length
       ? guarantees.map(cardHtml).join("")
-      : '<p class="guarantee-empty" role="status">Aún no tienes garantías en esta sección. <a href="/add-guarantee">Añade la primera</a>.</p>';
+      : '<p class="guarantee-empty" role="status">Aún no tienes garantías en esta sección. <a href="add-guarantee.html">Añade la primera</a>.</p>';
   } catch (error) {
     list.innerHTML = `<p class="guarantee-empty" role="alert">${escapeHtml(error.message)}</p>`;
     return;

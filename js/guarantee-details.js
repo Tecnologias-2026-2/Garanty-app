@@ -14,7 +14,9 @@
   let record;
   let documentData = null;
   try {
+    // API: GET /api/guarantees/:id -> datos de la garantía
     ({ guarantee: record } = await request(`/api/guarantees/${encodeURIComponent(id)}`));
+    // API: GET /api/guarantees/:id/document -> factura/comprobante adjunto (o null)
     ({ document: documentData } = await request(`/api/guarantees/${encodeURIComponent(id)}/document`));
   } catch (error) {
     console.error(error);
@@ -47,10 +49,10 @@
   document.querySelector("#detail-serial").textContent = record.serial_number || "No registrado";
   document.querySelector("#detail-notes").textContent = record.notes || "No hay observaciones para esta garantía.";
 
-  const documentsUrl = `/guarantee-documents?id=${encodeURIComponent(id)}`;
+  const documentsUrl = `guarantee-documents.html?id=${encodeURIComponent(id)}`;
   const documentLink = document.querySelector("#detail-document-link");
   documentLink.textContent = documentData?.name ?? "Añadir factura o comprobante";
   documentLink.href = documentsUrl;
-  document.querySelector("#edit-guarantee-link").href = `/guarantee-edit?id=${encodeURIComponent(id)}`;
+  document.querySelector("#edit-guarantee-link").href = `guarantee-edit.html?id=${encodeURIComponent(id)}`;
   document.querySelector("#manage-documents-link").href = documentsUrl;
 })();

@@ -38,6 +38,7 @@ if (categoryForm) {
 
   async function loadCategories() {
     try {
+      // API: GET /api/categories -> categorías del usuario (si no tiene, el backend crea las iniciales)
       const { categories: rows } = await window.GarantyAPI.request("/api/categories");
       categories = rows;
     } catch (error) {
@@ -126,7 +127,7 @@ if (categoryForm) {
       return;
     }
     sessionStorage.setItem(`${stateKey}-category`, selectedCategory);
-    window.location.href = "/add-guarantee?step=3";
+    window.location.href = "add-guarantee.html?step=3";
   });
 
   createCategoryForm.addEventListener("submit", async (event) => {
@@ -140,6 +141,7 @@ if (categoryForm) {
     }
 
     try {
+      // API: POST /api/categories con { name } -> crea una categoría nueva
       const { category } = await window.GarantyAPI.request("/api/categories", {
         method: "POST",
         body: { name: newCategory }
@@ -173,6 +175,7 @@ if (categoryForm) {
   confirmDeleteCategoryButton.addEventListener("click", async () => {
     const deleted = categoryToDelete;
     try {
+      // API: DELETE /api/categories/:id -> elimina la categoría indicada
       await window.GarantyAPI.request(`/api/categories/${deleted.id}`, { method: "DELETE" });
       categories = categories.filter((category) => category.id !== deleted.id);
       if (sessionStorage.getItem(`${stateKey}-category`) === deleted.name) {
@@ -199,6 +202,6 @@ if (categoryForm) {
   confirmCancelButton.addEventListener("click", () => {
     sessionStorage.removeItem(stateKey);
     sessionStorage.removeItem(`${stateKey}-category`);
-    window.location.href = "/dashboard";
+    window.location.href = "dashboard.html";
   });
 }
