@@ -353,7 +353,6 @@ a {
 .auth-submit:focus-visible,
 .auth-google:focus-visible,
 .auth-password-toggle:focus-visible,
-.auth-input-wrap input:focus-visible,
 .auth-field-label a:focus-visible,
 .terms-option a:focus-visible,
 .recover-back:focus-visible,
@@ -1416,8 +1415,7 @@ a {
 }
 
 .button:focus-visible,
-a:focus-visible,
-.pricing-selector label:focus-visible {
+a:focus-visible {
   outline: 3px solid #f0e8ff;
   outline-offset: 3px;
 }
@@ -1599,6 +1597,7 @@ a:focus-visible,
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 24px;
 }
 
@@ -1722,90 +1721,6 @@ a:focus-visible,
   font-weight: 300;
 }
 
-.pricing-section {
-  padding: 140px 24px 88px;
-  background: var(--color-footer);
-}
-
-.pricing-heading {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 27px;
-  text-align: center;
-}
-
-.pricing-heading p,
-.pricing-heading h2 {
-  margin: 0;
-}
-
-.pricing-eyebrow {
-  color: #f0e8ff;
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1.3;
-}
-
-.pricing-heading h2 {
-  color: var(--color-pink);
-  font-size: 40px;
-  font-weight: 800;
-  line-height: 1.2;
-}
-
-.pricing-description {
-  color: var(--color-lilac);
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.pricing-content {
-  margin-top: 64px;
-}
-
-.pricing-selector {
-  max-width: 1193px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.pricing-selector > label {
-  min-width: 79px;
-  min-height: 49px;
-  padding: 8px 12px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid transparent;
-  border-radius: 11px;
-  color: var(--color-white);
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 20px;
-  white-space: nowrap;
-}
-
-.pricing-selector > label:first-of-type {
-  margin-left: 27px;
-}
-
-.pricing-selector > label:last-of-type {
-  margin-right: 27px;
-}
-
-.pricing-selector > input:checked + label {
-  border-color: var(--color-pink);
-  background: rgba(229, 57, 138, 0.3);
-  color: #f0e8ff;
-}
-
 .visually-hidden {
   width: 1px;
   height: 1px;
@@ -1814,98 +1729,6 @@ a:focus-visible,
   clip: rect(0, 0, 0, 0);
   clip-path: inset(50%);
   white-space: nowrap;
-}
-
-.pricing-selector > input:focus-visible + label {
-  outline: 3px solid #f0e8ff;
-  outline-offset: 3px;
-}
-
-.pricing-grid {
-  width: 100%;
-  min-height: 520px;
-  margin-top: 44px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  gap: 35px;
-}
-
-.plan-card {
-  flex: 1 1 calc(33.333% - 35px);
-  min-width: 0;
-  min-height: 490px;
-  position: relative;
-  padding: 22px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
-  gap: 14px;
-  border: 1px solid var(--color-white);
-  border-radius: 30px;
-  background: var(--color-plan);
-  color: #f0e8ff;
-}
-
-.plan-card h3,
-.plan-card p {
-  margin: 0;
-}
-
-.plan-card h3,
-.plan-price {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 20px;
-}
-
-.plan-description,
-.plan-features {
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-.plan-features {
-  margin: 0;
-  padding-left: 21px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.price-yearly {
-  display: none;
-}
-
-#period-yearly:checked ~ .pricing-grid .price-monthly {
-  display: none;
-}
-
-#period-yearly:checked ~ .pricing-grid .price-yearly {
-  display: inline;
-}
-
-.button--plan {
-  min-height: 48px;
-  align-self: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border-color: rgba(58, 18, 84, 0.3);
-  background: rgba(58, 18, 84, 0.3);
-  color: var(--color-white);
-  font-size: 14px;
-  line-height: 20px;
-  white-space: nowrap;
-}
-
-.button--plan:hover {
-  background: rgba(58, 18, 84, 0.62);
-}
-
-.button--plan img {
-  width: 16px;
-  height: 16px;
 }
 
 .site-footer {
@@ -2070,14 +1893,6 @@ a:focus-visible,
 
   .testimonial-grid {
     gap: 18px;
-  }
-
-  .pricing-grid {
-    gap: 18px;
-  }
-
-  .plan-card {
-    padding-inline: 16px;
   }
 
   .footer-main {
@@ -2250,75 +2065,6 @@ a:focus-visible,
 
   .testimonial-job {
     font-size: 16px;
-  }
-
-  .pricing-section {
-    padding: 64px 20px 48px;
-  }
-
-  .pricing-heading {
-    gap: 18px;
-  }
-
-  .pricing-eyebrow {
-    font-size: 20px;
-  }
-
-  .pricing-heading h2 {
-    font-size: 30px;
-  }
-
-  .pricing-description {
-    font-size: 16px;
-  }
-
-  .pricing-content {
-    margin-top: 30px;
-  }
-
-  .pricing-selector {
-    max-width: 100%;
-    gap: 0;
-  }
-
-  .pricing-selector > label {
-    min-width: 74px;
-    min-height: 42px;
-    padding: 6px 9px;
-    font-size: 16px;
-  }
-
-  .pricing-selector > label:first-of-type {
-    margin-left: 14px;
-  }
-
-  .pricing-selector > label:last-of-type {
-    margin-right: 14px;
-  }
-
-  .pricing-grid {
-    min-height: 0;
-    margin-top: 24px;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .plan-card,
-  .plan-card--featured {
-    flex: 1 1 auto;
-    min-height: 490px;
-    padding: 20px 18px;
-    gap: 12px;
-    border-radius: 24px;
-  }
-
-  .plan-card h3,
-  .plan-price {
-    font-size: 19px;
-  }
-
-  .plan-features {
-    gap: 7px;
   }
 
   .footer-main {

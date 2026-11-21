@@ -51,7 +51,7 @@ const termsDialog = document.querySelector('#terms-dialog');
 if (termsDialog && typeof termsDialog.showModal === 'function') {
     const closeButton = termsDialog.querySelector('.terms-dialog-close');
 
-    document.querySelectorAll('.terms-option a[href="/terms"]').forEach((link) => {
+    document.querySelectorAll('.terms-option a[href="terms.html"]').forEach((link) => {
         link.addEventListener('click', (event) => {
             event.preventDefault();
             termsDialog.showModal();
@@ -100,28 +100,20 @@ if (registerForm) {
 
             showMessage(registerForm, 'Creando tu cuenta...');
 
-            // Enviar JSON a la API
-            const response = await fetch('/api/auth/register', {
+            // LLAMADA AL API -> POST /api/auth/register
+            // Envía { name, email, password, confirmPassword } como JSON.
+            // El backend crea el usuario, inicia la sesión (cookie) y responde 201.
+            // Si hay un error (correo repetido, contraseñas distintas...) request()
+            // lanza un Error con el mensaje del backend y lo muestra el catch.
+            await window.GarantyAPI.request('/api/auth/register', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'same-origin',
-                body: JSON.stringify(userData)
+                body: userData
             });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(
-                    data.message || 'No se pudo crear la cuenta.'
-                );
-            }
 
             showMessage(registerForm, '¡Cuenta creada correctamente!');
 
             setTimeout(() => {
-                window.location.href = '/dashboard';
+                window.location.href = 'dashboard.html';
             }, 1000);
 
         } catch (error) {
@@ -158,28 +150,20 @@ if (loginForm) {
 
             showMessage(loginForm, 'Verificando tus datos...');
 
-            // Enviar JSON a la API
-            const response = await fetch('/api/auth/login', {
+            // LLAMADA AL API -> POST /api/auth/login
+            // Envía { email, password } como JSON.
+            // Si son correctos, el backend guarda la sesión en una cookie y responde
+            // con los datos del usuario. Si no, responde 401 y request() lanza un Error
+            // ("Correo o contraseña incorrectos.") que muestra el catch.
+            await window.GarantyAPI.request('/api/auth/login', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'same-origin',
-                body: JSON.stringify(userData)
+                body: userData
             });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(
-                    data.message || 'No se pudo iniciar sesión.'
-                );
-            }
 
             showMessage(loginForm, '¡Bienvenido de nuevo!');
 
             setTimeout(() => {
-                window.location.href = '/dashboard';
+                window.location.href = 'dashboard.html';
             }, 1000);
 
         } catch (error) {

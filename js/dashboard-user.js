@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         grid: ".product-grid", intro: ".welcome-block p" };
 
   try {
+    // LLAMADAS AL API (las 3 se hacen a la vez con Promise.all):
+    //   GET /api/auth/me                -> nombre del usuario
+    //   GET /api/guarantees/summary     -> contadores (activas, por vencer, vencidas)
+    //   GET /api/guarantees             -> lista de garantías
     const [{ user }, summary, { guarantees }] = await Promise.all([
       request("/api/auth/me"),
       request("/api/guarantees/summary"),
@@ -35,7 +39,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const grid = document.querySelector(sel.grid);
     grid.innerHTML = recent.length ? recent.map((g) => {
       const remaining = g.status === "expired" ? "Garantía vencida" : `${g.remaining_days} días restantes`;
-      const link = `/guarantee-details?id=${g.id}`;
+      const link = `guarantee-details.html?id=${g.id}`;
       return overview
         ? `<article class="overview-product-card">
             <div class="overview-product-heading">

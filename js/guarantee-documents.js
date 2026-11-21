@@ -20,6 +20,7 @@
 
   let record;
   try {
+    // API: GET /api/guarantees/:id -> datos de la garantía (apiBase = "/api/guarantees/:id")
     ({ guarantee: record } = await request(apiBase));
   } catch (error) {
     console.error(error);
@@ -27,11 +28,12 @@
   }
 
   document.querySelector("#document-product").textContent = record.product_name;
-  const detailsUrl = `/guarantee-details?id=${encodeURIComponent(id)}`;
+  const detailsUrl = `guarantee-details.html?id=${encodeURIComponent(id)}`;
   document.querySelector("#documents-back-link").href = detailsUrl;
   document.querySelector("#documents-back-button").href = detailsUrl;
 
   async function renderDocument() {
+    // API: GET /api/guarantees/:id/document -> archivo guardado (en base64) o null
     const { document: documentData } = await request(`${apiBase}/document`);
 
     savedDocument.hidden = !documentData;
@@ -69,6 +71,7 @@
     reader.addEventListener("load", async () => {
       try {
         const dataBase64 = String(reader.result).split(",")[1];
+        // API: PUT /api/guarantees/:id/document con { name, type, dataBase64 } -> sube o reemplaza el archivo
         await request(`${apiBase}/document`, {
           method: "PUT",
           body: { name: file.name, type: file.type, dataBase64 }
@@ -89,6 +92,7 @@
   removeButton.addEventListener("click", async () => {
     if (!window.confirm("¿Quieres eliminar este documento de la garantía?")) return;
     try {
+      // API: DELETE /api/guarantees/:id/document -> elimina el archivo
       await request(`${apiBase}/document`, { method: "DELETE" });
       feedback.textContent = "Documento eliminado.";
       await renderDocument();
