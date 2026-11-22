@@ -103,7 +103,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
   const grid = document.querySelector(selectors.grid);
   if (!grid) return;
-  const statusFilter = document.body.dataset.status || "all";
+  const requestedStatus = new URLSearchParams(window.location.search).get("status");
+  const validStatuses = new Set(["all", "active", "expiring", "expired"]);
+  const statusFilter = validStatuses.has(requestedStatus)
+    ? requestedStatus
+    : document.body.dataset.status || "all";
+  document.body.dataset.status = statusFilter;
 
   try {
     const [summary, { guarantees }] = await Promise.all([
