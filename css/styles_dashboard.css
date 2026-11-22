@@ -234,18 +234,17 @@ a {
 }
 
 .summary-grid {
-  width: fit-content;
+  width: min(100%, 805px);
   max-width: 100%;
   margin: 78px auto 80px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   justify-content: center;
   gap: 10px;
 }
 
 .summary-card {
-  width: 261.5px;
-  min-width: 250px;
+  min-width: 0;
   min-height: 108px;
   padding: 9px 30px;
   display: flex;
@@ -264,21 +263,33 @@ a {
 }
 
 .summary-card--active {
-  border-color: rgba(48, 197, 106, 0.2);
+  border-color: rgba(217, 168, 255, 0.14);
   background: rgba(48, 197, 106, 0.2);
   color: var(--dashboard-green);
 }
 
 .summary-card--expiring {
-  border-color: var(--dashboard-amber);
+  border-color: rgba(217, 168, 255, 0.14);
   background: rgba(255, 155, 61, 0.15);
   color: var(--dashboard-amber);
 }
 
 .summary-card--expired {
-  border-color: var(--dashboard-red);
+  border-color: rgba(217, 168, 255, 0.14);
   background: rgba(255, 87, 87, 0.12);
   color: var(--dashboard-red);
+}
+
+.dashboard-page[data-status="active"] .summary-card--active {
+  border-color: var(--dashboard-green);
+}
+
+.dashboard-page[data-status="expiring"] .summary-card--expiring {
+  border-color: var(--dashboard-amber);
+}
+
+.dashboard-page[data-status="expired"] .summary-card--expired {
+  border-color: var(--dashboard-red);
 }
 
 .summary-label {
@@ -286,7 +297,6 @@ a {
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
-  white-space: nowrap;
 }
 
 .summary-card strong {
@@ -329,6 +339,14 @@ a {
   font-size: 18px;
   font-weight: 600;
   line-height: 28px;
+}
+
+.recent-title-link {
+  border-radius: 4px;
+}
+
+.recent-title-link:hover {
+  color: var(--dashboard-lilac);
 }
 
 .product-grid {
@@ -584,6 +602,17 @@ input:focus-visible {
 
   .dashboard-main {
     padding-inline: 32px;
+  }
+
+  .summary-grid {
+    width: 100%;
+    max-width: 500px;
+    margin-block: 42px 48px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .summary-card {
+    width: 100%;
   }
 
   .product-grid {

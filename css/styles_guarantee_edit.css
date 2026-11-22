@@ -1,6 +1,6 @@
 .edit-main {
   width: min(calc(100vw - 164px - 48px), 1040px);
-  margin: 0 calc(164px + max(24px, (100vw - 164px - 48px - 1040px) / 2)) 0 max(24px, (100vw - 164px - 48px - 1040px) / 2 + 24px);
+  margin: 0 max(24px, (100vw - 164px - 48px - 1040px) / 2 + 24px) 0 calc(164px + max(24px, (100vw - 164px - 48px - 1040px) / 2 + 24px));
   padding: 20px 18px 40px;
 }
 
@@ -8,9 +8,9 @@
   position: fixed;
   z-index: 10;
   top: 64px;
-  right: 0;
+  right: auto;
   bottom: 0;
-  left: auto;
+  left: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
   width: 164px;
@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  border-left: 1px solid rgba(184, 159, 204, 0.07);
+  border-right: 1px solid rgba(184, 159, 204, 0.07);
   background: rgba(26, 5, 40, 0.18);
 }
 
@@ -155,7 +155,7 @@
 @media (max-width: 1000px) and (min-width: 681px) {
   .edit-main {
     width: min(calc(100vw - 140px - 48px), 860px);
-    margin: 0 calc(140px + max(24px, (100vw - 140px - 48px - 860px) / 2)) 0 max(24px, (100vw - 140px - 48px - 860px) / 2 + 24px);
+    margin: 0 max(24px, (100vw - 140px - 48px - 860px) / 2 + 24px) 0 calc(140px + max(24px, (100vw - 140px - 48px - 860px) / 2 + 24px));
   }
 
   .record-page--edit .dashboard-nav {
@@ -184,7 +184,7 @@
     justify-content: space-around;
     gap: 4px;
     border-top: 1px solid rgba(184, 159, 204, 0.12);
-    border-left: 0;
+    border-right: 0;
     background: var(--record-header);
   }
 

@@ -3,7 +3,7 @@
 // Reemplaza a dashboard-user.js y al usuario fijo de settings
 // ======================================
 document.addEventListener("DOMContentLoaded", async () => {
-  const { request, escapeHtml, formatDate, statusLabels } = window.GarantyAPI;
+  const { request, escapeHtml } = window.GarantyAPI;
   let user;
 
   try {
@@ -94,35 +94,31 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // ---------- 3. Datos del dashboard (solo si la página los tiene) ----------
-  const overview = document.body.classList.contains("overview-page");
-  const sel = overview
-    ? { active: ".overview-summary-card--active strong", expired: ".overview-summary-card--expired strong",
-        grid: ".overview-product-grid", intro: ".overview-welcome p" }
-    : { active: ".summary-card--active strong", expiring: ".summary-card--expiring strong",
-        expired: ".summary-card--expired strong",
-        grid: ".product-grid", intro: ".welcome-block p" };
-
-  const grid = document.querySelector(sel.grid);
+  const selectors = {
+    active: ".summary-card--active strong",
+    expiring: ".summary-card--expiring strong",
+    expired: ".summary-card--expired strong",
+    grid: ".product-grid",
+    intro: ".welcome-block p"
+  };
+  const grid = document.querySelector(selectors.grid);
   if (!grid) return;
   const statusFilter = document.body.dataset.status || "all";
 
   try {
     const [summary, { guarantees }] = await Promise.all([
-      // API: GET /api/guarantees/summary y GET /api/guarantees (en paralelo)
       request("/api/guarantees/summary"),
-      request(!overview && statusFilter !== "all"
+      request(statusFilter !== "all"
         ? `/api/guarantees?status=${encodeURIComponent(statusFilter)}`
         : "/api/guarantees")
     ]);
 
-    document.querySelector(sel.active).textContent = overview
-      ? summary.active + summary.expiring
-      : summary.active;
-    document.querySelector(sel.expired).textContent = summary.expired;
-    if (!overview) document.querySelector(sel.expiring).textContent = summary.expiring;
+    document.querySelector(selectors.active).textContent = summary.active;
+    document.querySelector(selectors.expiring).textContent = summary.expiring;
+    document.querySelector(selectors.expired).textContent = summary.expired;
 
     const soon = summary.expiring;
-    document.querySelector(sel.intro).textContent = soon === 0
+    document.querySelector(selectors.intro).textContent = soon === 0
       ? "No tienes garantías próximas a vencer."
       : `Tienes ${soon} ${soon === 1 ? "garantía próxima" : "garantías próximas"} a vencer.`;
 
@@ -135,23 +131,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const sortedGuarantees = [...guarantees]
       .filter((guarantee) => statusFilter === "all" || guarantee.status === statusFilter)
       .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-    const recent = overview ? sortedGuarantees.slice(0, 4) : sortedGuarantees;
+    const recent = sortedGuarantees;
 
     grid.innerHTML = recent.length ? recent.map((g) => {
-      const remaining = g.status === "expired" ? "Garantía vencida" : `${g.remaining_days} días restantes`;
       const link = `guarantee-details.html?id=${g.id}`;
-      return overview
-        ? `<article class="overview-product-card">
-            <div class="overview-product-heading">
-              <span class="overview-device" aria-hidden="true">${window.GarantyIcons.categoryIcon(g.category)}</span>
-              <div><h3>${escapeHtml(g.product_name)}</h3><p>${escapeHtml(g.category || "Sin categoría")}</p></div>
-              <span class="overview-tag overview-tag--${css[g.status]}">${statusLabels[g.status]}</span>
-            </div>
-            <div class="overview-purchase"><p>Comprado<strong>${formatDate(g.purchase_date, true)}</strong></p><p>Vence<strong>${formatDate(g.expiration_date, true)}</strong></p></div>
-            <p class="overview-countdown">◷ &nbsp;${remaining}</p>
-            <a href="${link}">Detalles <span aria-hidden="true">›</span></a>
-          </article>`
-        : `<article class="product-card">
+      return `<article class="product-card">
             <h3 class="product-heading">${escapeHtml(g.product_name)}</h3>
             <div class="product-data">
               <div class="product-identity">
@@ -171,32 +155,30 @@ document.addEventListener("DOMContentLoaded", async () => {
       ? '<p class="product-empty" role="status">Aún no has registrado garantías. <a href="add-guarantee.html">Añade la primera</a>.</p>'
       : '<p class="product-empty" role="status">Aún no tienes garantías en esta sección.</p>';
 
-    if (!overview) {
-      const emptySearch = document.createElement("p");
-      emptySearch.className = "product-empty";
-      emptySearch.setAttribute("role", "status");
-      emptySearch.textContent = "No hay garantías que coincidan con la búsqueda.";
-      emptySearch.hidden = true;
-      grid.after(emptySearch);
+    const emptySearch = document.createElement("p");
+    emptySearch.className = "product-empty";
+    emptySearch.setAttribute("role", "status");
+    emptySearch.textContent = "No hay garantías que coincidan con la búsqueda.";
+    emptySearch.hidden = true;
+    grid.after(emptySearch);
 
-      const search = document.querySelector(".dashboard-search input");
-      const cards = [...grid.querySelectorAll(".product-card")];
-      if (search && cards.length) {
-        const normalize = (value) => value
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .toLocaleLowerCase("es")
-          .trim();
-        search.addEventListener("input", () => {
-          const query = normalize(search.value);
-          let visibleCount = 0;
-          cards.forEach((card) => {
-            card.hidden = query !== "" && !normalize(card.textContent).includes(query);
-            if (!card.hidden) visibleCount += 1;
-          });
-          emptySearch.hidden = visibleCount > 0;
+    const search = document.querySelector(".dashboard-search input");
+    const cards = [...grid.querySelectorAll(".product-card")];
+    if (search && cards.length) {
+      const normalize = (value) => value
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLocaleLowerCase("es")
+        .trim();
+      search.addEventListener("input", () => {
+        const query = normalize(search.value);
+        let visibleCount = 0;
+        cards.forEach((card) => {
+          card.hidden = query !== "" && !normalize(card.textContent).includes(query);
+          if (!card.hidden) visibleCount += 1;
         });
-      }
+        emptySearch.hidden = visibleCount > 0;
+      });
     }
   } catch (error) {
     console.error("Error al cargar el dashboard:", error);
