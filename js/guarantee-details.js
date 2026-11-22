@@ -29,6 +29,8 @@
   const category = record.category || "Sin categoría";
 
   document.title = `${record.product_name} | GarantyApp`;
+  document.querySelector(".record-product-icon").innerHTML =
+    window.GarantyIcons.dashboardCategoryIcon(record.category);
   document.querySelector("#detail-product").textContent = record.product_name;
   document.querySelector("#detail-subtitle").textContent = `${record.brand} · ${category}`;
   document.querySelector("#detail-status").textContent = statusLabels[record.status];
