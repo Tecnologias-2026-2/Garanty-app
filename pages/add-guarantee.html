@@ -139,9 +139,10 @@
           <label class="upload-field">
             <input name="document" type="file" accept=".pdf,.png,.jpg,.jpeg">
             <span class="upload-icon" aria-hidden="true">↑</span>
-            <strong>Selecciona un archivo</strong>
-            <span>PDF, PNG o JPG</span>
+            <strong id="upload-label">Selecciona un archivo</strong>
+            <span>PDF, PNG o JPG · máximo 1,5 MB</span>
           </label>
+          <p class="field-error" id="document-error" role="alert" hidden></p>
           <p class="form-hint">Este paso es opcional. Puedes añadir el documento más tarde.</p>
         </section>
 
