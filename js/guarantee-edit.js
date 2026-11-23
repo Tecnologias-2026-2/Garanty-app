@@ -85,6 +85,12 @@
 
   categorySelect.replaceChildren(...names.map((name) => new Option(name, name)));
   categorySelect.value = record.category || names[0] || "";
+  const productIcon = document.querySelector(".record-product-icon");
+  const updateProductIcon = () => {
+    productIcon.innerHTML = window.GarantyIcons.dashboardCategoryIcon(categorySelect.value);
+  };
+  categorySelect.addEventListener("change", updateProductIcon);
+  updateProductIcon();
 
   // ---------- Rellenar el formulario ----------
   const set = (name, value) => { form.elements.namedItem(name).value = value ?? ""; };

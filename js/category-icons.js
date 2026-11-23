@@ -17,5 +17,27 @@
   const categoryIcon = (category) =>
     `<svg viewBox="0 0 24 24" aria-hidden="true">${paths[category] || fallback}</svg>`;
 
-  window.GarantyIcons = { categoryIcon };
+  const dashboardAssets = {
+    audio: "tv",
+    computadores: "tv",
+    electronica: "tv",
+    electrodomesticos: "electrodomestic",
+    herramientas: "tools",
+    smartphones: "phone",
+    telefonia: "phone",
+    televisores: "tv",
+    vehiculos: "car"
+  };
+  const dashboardCategoryIcon = (category) => {
+    const key = String(category || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLocaleLowerCase("es");
+    const asset = dashboardAssets[key];
+    return asset
+      ? `<img src="../assets/figma-icon-${asset}.svg" alt="" aria-hidden="true">`
+      : categoryIcon(category);
+  };
+
+  window.GarantyIcons = { categoryIcon, dashboardCategoryIcon };
 })();

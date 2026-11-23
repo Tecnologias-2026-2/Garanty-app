@@ -134,6 +134,21 @@ body.record-page {
   font-size: 20px;
 }
 
+.record-product-icon img,
+.record-product-icon svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+.record-product-icon svg {
+  fill: none;
+  stroke: var(--record-pink);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
 .record-hero-copy {
   min-width: 0;
   flex: 1 1 auto;
