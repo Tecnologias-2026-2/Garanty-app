@@ -97,6 +97,12 @@ a {
   line-height: 1;
 }
 
+.guarantees-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
 .guarantees-main {
   width: min(100% - 48px, 790px);
   min-height: calc(100vh - 60px);
