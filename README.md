@@ -1,67 +1,94 @@
-Para Completar por grupo
-
-🌐 GarantyApp
+# 🌐 GarantyApp
 
 GarantyApp es una aplicación móvil / web en español diseñada para centralizar el registro, seguimiento y notificación de garantías de productos personales, eliminando la dependencia de papeles físicos y evitando que el usuario pierda sus derechos por olvido.
 
-👥 Integrantes
-Prueba
+# 👥 Integrantes
+
 Verónica Cerquera – 1202756
 Samanta Manosalva – 1202769
 Isabel Obando - 1202730
 
 
-🎯 1. Objetivo General
+## 🎯 1. Objetivo General
 
 Desarrollar una aplicación móvil / Web que permita a los usuarios registrar, organizar y hacer seguimiento de las garantías de sus productos, mediante un registro digital centralizado y recordatorios automáticos sobre sus fechas de vencimiento. Con esta aplicación se busca solucionar el problema de la pérdida de garantías por olvido o falta de información sobre sus fechas de vigencia, evitando así posibles pérdidas económicas y facilitando el acceso a información sobre los derechos del consumidor en Colombia relacionados con las garantías.
 
 
-🌍 2. Contexto de Uso
+## 🌍 2. Contexto de Uso
 
 El sistema será utilizado por consumidores hispanohablantes entre 18 y 60 años que realizan compras de productos con garantía, como electrodomésticos, celulares, computadores, muebles y herramientas. Los usuarios podrán registrar digitalmente sus productos y la información relacionada con sus garantías, organizar y consultar fácilmente sus datos, y recibir recordatorios antes de las fechas de vencimiento, con el fin de mantener un seguimiento adecuado y evitar la pérdida de sus derechos de garantía por olvido, extravío de comprobantes o desconocimiento de las fechas de vigencia.
 
 
-📋 3. Requerimientos del Sistema
-3.1 Requerimientos Funcionales
+## 📋 3. Requerimientos del Sistema
 
-Escriban lo que el sistema debe hacer.
+## 3.1 Requerimientos Funcionales
 
-Ejemplo:
-RF01: El sistema debe permitir registrar usuarios.
+Los requerimientos funcionales describen las acciones y funcionalidades que ofrece GarantyApp al usuario.
 
-3.2 Requerimientos No Funcionales
+- **RF01:** El sistema debe permitir al usuario crear una cuenta mediante nombre, correo electrónico y contraseña.
+- **RF02:** El sistema debe permitir al usuario iniciar sesión con sus credenciales.
+- **RF03:** El sistema debe permitir registrar productos con garantía, ingresando su nombre, fecha de compra, duración de la garantía, categoría y lugar de compra.
+- **RF04:** El sistema debe permitir guardar comprobantes para asociarlos a los productos registrados.
+- **RF05:** El sistema debe calcular automáticamente la fecha de vencimiento de la garantía a partir de la fecha de compra y su duración.
+- **RF06:** El sistema debe permitir visualizar el historial de productos y garantías registradas.
+- **RF07:** El sistema debe permitir buscar productos registrados por su nombre.
+- **RF08:** El sistema debe permitir filtrar las garantías por categoría y estado, como garantías activas o próximas a vencer.
+- **RF09:** El sistema debe mostrar los días restantes antes del vencimiento de cada garantía.
+- **RF10:** El sistema debe generar notificaciones locales para informar al usuario sobre las garantías próximas a vencer.
+- **RF11:** El sistema debe proporcionar una sección con información sobre los derechos del consumidor en Colombia relacionados con las garantías.
 
-Escriban cómo debe comportarse el sistema.
+### 3.2 Requerimientos No Funcionales
 
-Ejemplo:
-RNF01: La página debe ser responsive.
+Los requerimientos no funcionales describen las características y condiciones de funcionamiento de GarantyApp.
 
-🧠 4. Diagramas UML
+- **RNF01:** La aplicación debe contar con una interfaz completamente en español.
+- **RNF02:** La aplicación debe tener una interfaz sencilla, intuitiva y fácil de utilizar.
+- **RNF03:** El sistema debe funcionar como una aplicación móvil.
+- **RNF04:** La aplicación debe ser compatible con dispositivos Android 8.0 o superior, según los requisitos mínimos establecidos.
+- **RNF05:** La aplicación debe permitir el almacenamiento local de los datos y las imágenes de las garantías en el dispositivo.
+- **RNF06:** La aplicación debe poder funcionar sin conexión a internet una vez instalada.
+- **RNF07:** La aplicación debe solicitar los permisos necesarios para acceder a la cámara, galería y notificaciones del dispositivo.
+- **RNF08:** La información registrada debe presentarse de manera organizada para facilitar su consulta y seguimiento.
 
-4.1 Diagrama de Casos de Uso
+
+## 🧠 4. Diagramas UML
+
+### 4.1 Diagrama de Casos de Uso
 ![Diagrama de casos de uso](assets/casos%20de%20uso.png)
 
 El diagrama representa los casos de uso del sistema GarantyApp, mostrando las principales funcionalidades que ofrece la aplicación y la interacción entre sus actores y el sistema. El usuario de sitio puede crear una cuenta, iniciar sesión, recuperar su contraseña, registrar productos con garantía, consultar el historial de garantías, filtrar por categoría y consultar los derechos del consumidor. Además, el sistema se encarga de recibir y gestionar las notificaciones sobre las fechas de vencimiento de las garantías. En general, el diagrama permite identificar cómo los usuarios interactúan con GarantyApp y cómo se organizan sus funcionalidades en tres áreas principales: autenticación, garantías e información.
 
-4.2 Diagrama de Secuencia
+### 4.2 Diagrama de Secuencia
 
+Inicio de Sesion.
+![Diagrama inicio de sesion](assets/inicio.png)
 
+Registro.
+![Diagrama inicio de sesion](assets/registro.png)
 
-Explicar qué proceso representa.
+Historial
+![Diagrama inicio de sesion](assets/Historial.png)
 
-🎨 5. URL del Prototipo
+Crear garantia
+![Diagrama inicio de sesion](assets/Crear1.png)
+![Diagrama inicio de sesion](assets/Crear2.png)
+
+Editar garantia
+![Diagrama inicio de sesion](assets/Editar.png)
+
+## 🎨 5. URL del Prototipo
 
 Enlace público de Figma:
 
 https://www.figma.com/design/WlO61BO3snQnISWMoZemX7/GarantyApp-Atomic-desing?node-id=39-881&t=hinoLJ3cLaNjImts-1
 
 
-🗄️ 6. Diseño de Base de Datos
+## 🗄️ 6. Diseño de Base de Datos
 
 Agregar imagen del modelo.
 Tablas principales
 
-🧩 7. Documentación del Sistema de estructura de Carpetas
+## 🧩 7. Documentación del Sistema de estructura de Carpetas
 
 - **`css/`**: Carpeta que contiene los archivos CSS encargados de definir los estilos y la apariencia visual de las distintas páginas del proyecto.
 - **`css/styles_tokens.css`**: Define los tokens comunes de color. Cada hoja CSS de página aplica directamente Poppins, texto base de 14 px, encabezados de 64 px y la misma paleta; las opacidades de estados y superficies se conservan.
@@ -88,9 +115,8 @@ Tablas principales
 
 Flujo de una petición: `routes → controllers → models → database`.
 
-Explicar brevemente qué contiene cada carpeta.
 
-🚀 8. Instalación y Ejecución
+## 🚀 8. Instalación y Ejecución
 
 **Arquitectura:** el frontend (HTML/CSS/JS) se publica en **GitHub Pages** y el backend (Node + Express + PostgreSQL) en **Render**. El front llama al backend por HTTPS.
 
