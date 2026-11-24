@@ -13,7 +13,49 @@ function showMessage(form, message, isError = false) {
     }
 
     messageElement.textContent = message;
-    messageElement.style.color = isError ? '#d93025' : '#218838';
+    if (message) {
+        messageElement.dataset.state = isError ? 'error' : 'success';
+    } else {
+        delete messageElement.dataset.state;
+    }
+}
+
+function validateAuthForm(form) {
+    const invalidField = Array.from(form.elements).find(
+        (field) => field.willValidate && !field.validity.valid
+    );
+
+    if (!invalidField) {
+        return true;
+    }
+
+    invalidField.setAttribute('aria-invalid', 'true');
+
+    let message = 'Revisa este campo antes de continuar.';
+    if (invalidField.validity.valueMissing) {
+        message = invalidField.type === 'checkbox'
+            ? 'Debes aceptar esta opción para continuar.'
+            : 'Completa este campo para continuar.';
+    } else if (invalidField.validity.typeMismatch && invalidField.type === 'email') {
+        message = 'Ingresa un correo electrónico válido.';
+    }
+
+    showMessage(form, message, true);
+    invalidField.focus();
+    return false;
+}
+
+function enableAuthValidationFeedback(form) {
+    form.addEventListener('input', () => {
+        form.querySelectorAll('[aria-invalid="true"]').forEach((field) => {
+            field.removeAttribute('aria-invalid');
+        });
+
+        const messageElement = form.querySelector('.auth-message');
+        if (messageElement?.dataset.state === 'error') {
+            showMessage(form, '');
+        }
+    });
 }
 
 // ======================================
@@ -92,8 +134,13 @@ if (termsDialog && typeof termsDialog.showModal === 'function') {
 const registerForm = document.querySelector('#register-form');
 
 if (registerForm) {
+    enableAuthValidationFeedback(registerForm);
     registerForm.addEventListener('submit', async (event) => {
         event.preventDefault();
+
+        if (!validateAuthForm(registerForm)) {
+            return;
+        }
 
         const formData = new FormData(registerForm);
 
@@ -144,8 +191,13 @@ if (registerForm) {
 const loginForm = document.querySelector('#login-form');
 
 if (loginForm) {
+    enableAuthValidationFeedback(loginForm);
     loginForm.addEventListener('submit', async (event) => {
         event.preventDefault();
+
+        if (!validateAuthForm(loginForm)) {
+            return;
+        }
 
         const formData = new FormData(loginForm);
 

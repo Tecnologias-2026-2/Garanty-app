@@ -18,7 +18,7 @@
         <a class="auth-brand" href="index.html" aria-label="GarantyApp, inicio">
           <img src="../assets/garantyapp-logo.png" alt="GarantyApp">
         </a>
-        <form class="auth-card register-card" id="register-form">
+        <form class="auth-card register-card" id="register-form" novalidate>
           <header class="auth-card-heading">
             <h1 id="register-title">Crea tu cuenta</h1>
             <p>Regístrate para comenzar a gestionar tus garantías.</p>
@@ -38,22 +38,42 @@
                 <input type="email" name="email" placeholder="tu@gmail.com" autocomplete="email" required>
               </span>
             </label>
-            <label class="auth-field">
-              <span>Contraseña</span>
-              <span class="auth-input-wrap">
-                <img src="../assets/auth-lock.svg" alt="" aria-hidden="true">
-                <input type="password" name="password" placeholder="••••••••" autocomplete="new-password" required>
-                <img class="auth-input-trailing" src="../assets/auth-eye.svg" alt="" aria-hidden="true">
-              </span>
-            </label>
-            <label class="auth-field">
-              <span>Confirmar contraseña</span>
-              <span class="auth-input-wrap">
-                <img src="../assets/auth-lock.svg" alt="" aria-hidden="true">
-                <input type="password" name="confirm-password" placeholder="••••••••" autocomplete="new-password" required>
-                <img class="auth-input-trailing" src="../assets/auth-eye.svg" alt="" aria-hidden="true">
-              </span>
-            </label>
+            <input
+  id="register-password"
+  type="password"
+  name="password"
+  placeholder="••••••••"
+  autocomplete="new-password"
+  required
+>
+
+<button
+  type="button"
+  class="auth-input-trailing auth-password-toggle"
+  aria-label="Mostrar contraseña"
+  aria-controls="register-password"
+  aria-pressed="false"
+>
+  <img src="../assets/auth-eye.svg" alt="" aria-hidden="true">
+</button>
+            <input
+  id="register-confirm-password"
+  type="password"
+  name="confirm-password"
+  placeholder="••••••••"
+  autocomplete="new-password"
+  required
+>
+
+<button
+  type="button"
+  class="auth-input-trailing auth-password-toggle"
+  aria-label="Mostrar contraseña"
+  aria-controls="register-confirm-password"
+  aria-pressed="false"
+>
+  <img src="../assets/auth-eye.svg" alt="" aria-hidden="true">
+</button>
           </div>
           <label class="terms-option">
             <input type="checkbox" name="terms" required>
