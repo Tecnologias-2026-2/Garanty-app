@@ -38,11 +38,14 @@ RNF01: La página debe ser responsive.
 
 🧠 4. Diagramas UML
 
-Diagrama de Casos de Uso
+4.1 Diagrama de Casos de Uso
+![Casos de uso](assets/casos de uso.png)
 
-Explicar brevemente qué muestra el diagrama.
+El diagrama representa los casos de uso del sistema GarantyApp, mostrando las principales funcionalidades que ofrece la aplicación y la interacción entre sus actores y el sistema. El usuario de sitio puede crear una cuenta, iniciar sesión, recuperar su contraseña, registrar productos con garantía, consultar el historial de garantías, filtrar por categoría y consultar los derechos del consumidor. Además, el sistema se encarga de recibir y gestionar las notificaciones sobre las fechas de vencimiento de las garantías. En general, el diagrama permite identificar cómo los usuarios interactúan con GarantyApp y cómo se organizan sus funcionalidades en tres áreas principales: autenticación, garantías e información.
 
-Diagrama de Secuencia
+4.2 Diagrama de Secuencia
+
+
 
 Explicar qué proceso representa.
 
