@@ -3,7 +3,7 @@
 // ======================================================================
 // No lo llama el usuario desde la página: lo llama un workflow de GitHub
 // Actions una vez al día (.github/workflows/notifications.yml), enviando una
-// clave secreta en la cabecera "x-cron-secret".
+// clave secreta en la cabecera 
 const crypto = require('crypto');
 const Notification = require('../models/notificationModel');
 const { isConfigured, buildExpirationEmail, sendMail } = require('../services/mailService');

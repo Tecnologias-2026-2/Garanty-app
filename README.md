@@ -101,7 +101,7 @@ Tablas principales
 - **`js/guarantee-records.js`** y **`js/guarantee-links.js`**: datos de ejemplo del historial y conexión de los botones «Detalles» al registro correspondiente.
 - **`css/styles_guarantee_record.css`**: estilos compartidos de las páginas de detalles, edición y documentos; cada vista tiene además su hoja CSS específica.
 - **`js/`**: Scripts de interacción de las páginas que necesitan comportamiento dinámico.
-- El historial de garantías usa `pages/guarantees.html` para la vista general y `pages/guarantees-active.html`, `pages/guarantees-expiring.html` y `pages/guarantees-expired.html` para sus filtros. Las cuatro vistas comparten los estilos de `css/styles_guarantees.css` y permiten filtrar por categoría y búsqueda mediante `js/guarantee-filter.js`.
+- El dashboard (`pages/dashboard.html`) es la entrada al historial de garantías. Sus tarjetas y los filtros antiguos abren el dashboard con `?status=active`, `?status=expiring` o `?status=expired`; sin parámetro, muestra todas las garantías.
 
 
 **Backend (`backend/`) — arquitectura MVC**
@@ -146,8 +146,6 @@ const { category } = await GarantyAPI.request("/api/categories", {
 | `GET /api/auth/me` | Usuario de la sesión actual (401 si no hay) |
 | `PUT /api/auth/profile` | Actualizar nombre y correo |
 | `POST /api/auth/logout` | Cerrar sesión |
-| `POST /api/auth/forgot-password` | Pedir el enlace para recuperar la contraseña (por correo) |
-| `POST /api/auth/reset-password` | Guardar la contraseña nueva con el token del enlace |
 | `GET /api/guarantees?status=` | Listar garantías (`active`, `expiring`, `expired`) |
 | `POST /api/guarantees` | Crear garantía |
 | `GET /api/guarantees/summary` | Contadores del dashboard |
@@ -208,11 +206,3 @@ Cada día un workflow de **GitHub Actions** (`.github/workflows/notifications.ym
 **Secrets en GitHub** (Settings → Secrets and variables → Actions): `CRON_SECRET` (el mismo de Render) y `API_URL` (URL del backend, sin `/` al final).
 
 **Probar:** `POST /api/notifications/run?dryRun=true` con la cabecera `x-cron-secret` lista lo pendiente sin enviar nada. El workflow también se puede ejecutar a mano desde la pestaña *Actions → Run workflow*.
-
-### 8.6 Recuperar contraseña
-
-1. En `login.html` el enlace "¿Olvidaste tu contraseña?" lleva a `recover-password.html`, donde el usuario escribe su correo.
-2. El backend (`passwordResetController.js`) genera un token aleatorio, guarda su hash en la tabla `password_resets` (vence en 1 hora) y envía un correo con Brevo.
-3. El enlace del correo abre `reset-password.html?token=...`, donde el usuario escribe la contraseña nueva. El token sirve una sola vez, y al cambiar la contraseña se cierran las sesiones abiertas.
-
-Requiere en Render las variables `BREVO_API_KEY`, `MAIL_FROM` y `APP_URL` (dirección de la raíz del sitio, terminada en `/`, p. ej. `https://usuario.github.io/Garanty-app/`).

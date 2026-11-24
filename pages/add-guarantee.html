@@ -23,7 +23,7 @@
       </a>
       <span class="record-header-title">Añadir garantía</span>
       <button class="cancel-link" id="cancel-button" type="button">
-        <span aria-hidden="true">×</span>5
+        <span aria-hidden="true">×</span>
         Cancelar registro
       </button>
     </header>
@@ -137,11 +137,12 @@
           <h2 id="documents-step-title">Documentos de respaldo</h2>
           <p class="step-description">Adjunta la factura o el certificado para encontrarlo fácilmente cuando lo necesites.</p>
           <label class="upload-field">
-            <input name="document" type="file" accept=".pdf,.png,.jpg,.jpeg">
+            <input name="document" type="file" accept=".pdf">
             <span class="upload-icon" aria-hidden="true">↑</span>
-            <strong>Selecciona un archivo</strong>
-            <span>PDF, PNG o JPG</span>
+            <strong id="upload-label">Selecciona un archivo</strong>
+            <span>PDF · máximo 1,5 MB</span>
           </label>
+          <p class="field-error" id="document-error" role="alert" hidden></p>
           <p class="form-hint">Este paso es opcional. Puedes añadir el documento más tarde.</p>
         </section>
 

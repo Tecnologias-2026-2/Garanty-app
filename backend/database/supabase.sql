@@ -75,15 +75,6 @@ CREATE TABLE IF NOT EXISTS public.notifications_sent (
     UNIQUE (guarantee_id, days_before)
 );
 
--- 7) RECUPERACIÓN DE CONTRASEÑA (se guarda solo el HASH del token, nunca el token)
-CREATE TABLE IF NOT EXISTS public.password_resets (
-    id         BIGSERIAL PRIMARY KEY,
-    user_id    BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
-    token_hash VARCHAR(64) UNIQUE NOT NULL,
-    expires_at TIMESTAMPTZ NOT NULL,
-    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-);
-
 -- ======================================================================
 -- SEGURIDAD (importante en Supabase)
 -- ======================================================================
@@ -98,4 +89,3 @@ ALTER TABLE public.guarantees          ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.guarantee_documents ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.user_sessions       ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.notifications_sent  ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.password_resets     ENABLE ROW LEVEL SECURITY;

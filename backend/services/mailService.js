@@ -1,14 +1,9 @@
 // ======================================================================
 // SERVICIO: envío de correos con la API HTTP de Brevo
 // ======================================================================
-// ¿Por qué no SMTP/Nodemailer? Render (plan gratis) bloquea los puertos SMTP
-// (25, 465 y 587). La API de Brevo usa HTTPS (puerto 443), que sí está permitido.
+//La API de Brevo usa HTTPS (puerto 443)
 //
-// Variables de entorno necesarias (en Render):
-//   BREVO_API_KEY   clave de la API de Brevo
-//   MAIL_FROM       correo remitente, VERIFICADO en Brevo
-//   MAIL_FROM_NAME  (opcional) nombre que ve el usuario, por defecto "GarantyApp"
-//   APP_URL         (opcional) link a la página, para el botón del correo
+
 const BREVO_URL = 'https://api.brevo.com/v3/smtp/email';
 
 function isConfigured() {
@@ -59,32 +54,6 @@ function buildExpirationEmail({ userName, productName, brand, expirationDate, re
     return { subject, html };
 }
 
-// Arma el link del correo de recuperación. APP_URL debe ser la dirección de la
-// raíz del sitio, p. ej. https://usuario.github.io/Garanty-app/
-function buildResetUrl(token) {
-    const base = process.env.APP_URL;
-    if (!base) return null;
-    const root = base.endsWith('/') ? base : `${base}/`;
-    return `${root}pages/reset-password.html?token=${token}`;
-}
-
-// Arma el asunto y el HTML del correo para restablecer la contraseña
-function buildPasswordResetEmail({ userName, resetUrl }) {
-    const subject = 'Restablece tu contraseña de GarantyApp';
-
-    const html = `
-        <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;color:#1f2937;">
-            <h2 style="color:#1d4ed8;">GarantyApp</h2>
-            <p>Hola ${escapeHtml(userName)},</p>
-            <p>Recibimos una solicitud para restablecer tu contraseña. Pulsa el botón para elegir una nueva:</p>
-            <p><a href="${escapeHtml(resetUrl)}" style="display:inline-block;padding:10px 18px;background:#1d4ed8;color:#ffffff;text-decoration:none;border-radius:6px;">Restablecer contraseña</a></p>
-            <p>El enlace funciona una sola vez y vence en <strong>1 hora</strong>.</p>
-            <p style="font-size:12px;color:#6b7280;">Si no fuiste tú, ignora este correo: tu contraseña no cambiará.</p>
-        </div>`;
-
-    return { subject, html };
-}
-
 // Envía un correo. Lanza un Error si Brevo lo rechaza.
 async function sendMail({ to, toName, subject, html }) {
     const response = await fetch(BREVO_URL, {
@@ -113,4 +82,4 @@ async function sendMail({ to, toName, subject, html }) {
     }
 }
 
-module.exports = { isConfigured, buildExpirationEmail, buildResetUrl, buildPasswordResetEmail, sendMail };
+module.exports = { isConfigured, buildExpirationEmail, sendMail };

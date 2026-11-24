@@ -5,7 +5,6 @@
   if (!list) return;
 
   const status = document.body.dataset.status || "";
-  const icon = '<svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"></rect><path d="M9 7h6m-6 4h6m-6 4h6"></path></svg>';
   const cssByStatus = { active: "active", expiring: "soon", expired: "expired" };
 
   function cardHtml(g) {
@@ -16,7 +15,7 @@
 
     return `<article class="guarantee-card" data-category="${escapeHtml(g.category || "")}">
       <div class="guarantee-identity">
-        <span class="guarantee-icon" aria-hidden="true">${icon}</span>
+        <span class="guarantee-icon" aria-hidden="true">${window.GarantyIcons.categoryIcon(g.category)}</span>
         <div class="guarantee-product"><h2>${escapeHtml(g.product_name)}</h2><p>${escapeHtml(g.brand)} · ${escapeHtml(g.category || "Sin categoría")}</p></div>
       </div>
       <div class="guarantee-status-row"><span class="status status--${css}">${statusLabels[g.status]}</span></div>
