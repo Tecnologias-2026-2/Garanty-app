@@ -122,7 +122,7 @@
       event.preventDefault();
       // API: POST /api/auth/logout -> el backend destruye la sesión y borra la cookie
       try { await request("/api/auth/logout", { method: "POST" }); } catch { /* se redirige igual */ }
-      window.location.href = "index.html";
+      window.location.href = "login.html";
     });
   }
 })();

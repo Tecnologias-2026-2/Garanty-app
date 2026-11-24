@@ -20,12 +20,6 @@ async function findByEmailWithPassword(email) {
     return result.rows[0];
 }
 
-// Usuario por correo, sin la contraseña (para recuperación de contraseña)
-async function findByEmail(email) {
-    const result = await pool.query('SELECT id, name, email FROM users WHERE email = $1', [email]);
-    return result.rows[0];
-}
-
 async function findById(id) {
     const result = await pool.query('SELECT id, name, email FROM users WHERE id = $1', [id]);
     return result.rows[0];
@@ -60,4 +54,4 @@ async function updateProfile(id, { name, email }) {
     return result.rows[0];
 }
 
-module.exports = { findByEmail, findIdByEmail, findByEmailWithPassword, findById, create, emailTakenByOther, updateProfile };
+module.exports = { findIdByEmail, findByEmailWithPassword, findById, create, emailTakenByOther, updateProfile };

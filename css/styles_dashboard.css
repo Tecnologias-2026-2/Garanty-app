@@ -107,6 +107,28 @@ a {
   margin-left: auto;
   display: flex;
   align-items: center;
+  gap: 18px;
+}
+
+.notification-button {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  color: var(--dashboard-lilac);
+}
+
+.notification-dot {
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  border: 1px solid var(--dashboard-bg);
+  border-radius: 50%;
+  background: var(--dashboard-pink);
 }
 
 .dashboard-user-menu {

@@ -5,7 +5,6 @@
 //  POST   /api/categories       body: { name } -> 201 { category } | 409 repetida
 //  DELETE /api/categories/:id   -> { message } (siempre debe quedar al menos una)
 //
-// Este archivo solo define las rutas; la lógica está en controllers/categoryController.js
 // ======================================================================
 const express = require('express');
 const categories = require('../controllers/categoryController');

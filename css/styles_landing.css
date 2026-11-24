@@ -1517,20 +1517,18 @@ a:focus-visible {
 }
 
 .feature-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-auto-rows: 1fr;
-  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 36px;
   padding: 8px;
 }
 
 .feature-card {
-  min-width: 0;
+  flex: 1 1 calc(33.333% - 36px);
+  min-width: min(100%, 240px);
   width: 100%;
   max-width: 400px;
-  justify-self: center;
   min-height: 156px;
   padding: 14px;
   display: flex;
@@ -1596,17 +1594,19 @@ a:focus-visible {
 }
 
 .steps-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-auto-rows: 1fr;
-  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   gap: 24px;
 }
 
 .step-card {
-  min-width: 0;
+  flex: 1 1 calc(33.333% - 24px);
+  min-width: min(100%, 220px);
+  max-width: 450px;
   min-height: 200px;
-  padding: 14px 16px 22px;
+  padding: 14px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1664,9 +1664,10 @@ a:focus-visible {
   min-width: min(100%, 240px);
   min-height: 244px;
   padding: 20px;
-  display: grid;
-  grid-template-rows: minmax(4.5em, 1fr) 30px 1px auto auto;
-  align-items: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
   gap: 8px;
   border: 1px solid #f0e8ff;
   border-radius: 15px;
@@ -1675,7 +1676,6 @@ a:focus-visible {
 
 .testimonial-quote {
   width: 100%;
-  align-self: stretch;
   margin: 0;
   color: var(--color-lilac);
   font-family: var(--font-display);
@@ -1687,7 +1687,6 @@ a:focus-visible {
 
 .testimonial-rating {
   display: flex;
-  justify-self: end;
   align-items: center;
   gap: 5px;
 }
@@ -1720,185 +1719,6 @@ a:focus-visible {
 .testimonial-job {
   font-size: 16px;
   font-weight: 300;
-}
-
-.opinion-action {
-  margin-top: 36px;
-  text-align: center;
-}
-
-.button--opinion {
-  min-height: 46px;
-  padding: 10px 22px;
-  border: 1px solid transparent;
-  border-radius: 16px;
-  background: var(--color-pink);
-  color: #f0e8ff;
-  cursor: pointer;
-  font: inherit;
-  font-weight: 600;
-}
-
-.button--opinion:hover {
-  background: #e5398a;
-}
-
-.button--opinion:focus-visible,
-.opinion-dialog button:focus-visible,
-.opinion-dialog input:focus-visible,
-.opinion-dialog textarea:focus-visible {
-  outline: 3px solid #f0e8ff;
-  outline-offset: 3px;
-}
-
-.opinion-dialog {
-  width: min(480px, calc(100vw - 32px));
-  max-height: min(90dvh, 720px);
-  padding: 0;
-  overflow: auto;
-  border: 1px solid rgba(184, 159, 204, 0.3);
-  border-radius: 20px;
-  background: var(--color-background);
-  color: var(--color-white);
-  box-shadow: 0 24px 80px rgba(13, 2, 20, 0.55);
-  font-family: var(--font-body);
-}
-
-.opinion-dialog::backdrop {
-  background: rgba(13, 2, 20, 0.72);
-  backdrop-filter: blur(4px);
-}
-
-.opinion-dialog-header {
-  padding: 18px 22px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  border-bottom: 1px solid rgba(184, 159, 204, 0.14);
-}
-
-.opinion-dialog-header h2 {
-  margin: 0;
-  color: var(--color-pink);
-  font-size: 22px;
-}
-
-.opinion-dialog-close {
-  width: 36px;
-  height: 36px;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  color: var(--color-white);
-  cursor: pointer;
-  font-size: 26px;
-}
-
-.opinion-form {
-  padding: 22px;
-  display: grid;
-  gap: 16px;
-}
-
-.opinion-form > label {
-  display: grid;
-  gap: 7px;
-  color: var(--color-lilac);
-  font-size: 14px;
-}
-
-.opinion-form input:not([type="hidden"]),
-.opinion-form textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid rgba(184, 159, 204, 0.35);
-  border-radius: 10px;
-  background: rgba(240, 232, 255, 0.05);
-  color: var(--color-white);
-  font: inherit;
-}
-
-.opinion-form textarea {
-  resize: vertical;
-}
-
-.opinion-rating {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-.opinion-rating legend {
-  margin-bottom: 8px;
-  color: var(--color-lilac);
-  font-size: 14px;
-}
-
-.opinion-rating-options {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.opinion-rating-option {
-  min-width: 36px;
-  min-height: 36px;
-  padding: 2px 6px;
-  border: 1px solid rgba(229, 57, 138, 0.35);
-  border-radius: 8px;
-  background: transparent;
-  color: var(--color-lilac);
-  cursor: pointer;
-  font-size: 24px;
-  line-height: 1;
-}
-
-.opinion-rating-option[aria-pressed="true"] {
-  background: rgba(229, 57, 138, 0.14);
-  color: var(--color-pink);
-}
-
-.opinion-rating-zero {
-  font-size: 14px;
-}
-
-.opinion-rating-label,
-.opinion-feedback {
-  min-height: 20px;
-  margin: 6px 0 0;
-  color: var(--color-lilac);
-  font-size: 13px;
-}
-
-.opinion-feedback:empty {
-  display: none;
-}
-
-.opinion-form-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
-.opinion-form-actions button {
-  min-height: 42px;
-  padding: 8px 16px;
-  border-radius: 12px;
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.opinion-form-actions .button--opinion {
-  min-height: 42px;
-  padding: 8px 16px;
-}
-
-.opinion-cancel {
-  border: 1px solid rgba(184, 159, 204, 0.3);
-  background: transparent;
-  color: var(--color-lilac);
 }
 
 .visually-hidden {
@@ -2164,21 +1984,20 @@ a:focus-visible {
   }
 
   .feature-grid,
+  .steps-grid,
   .testimonial-grid {
     flex-direction: column;
   }
 
-  .steps-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   .feature-grid {
-    grid-template-columns: minmax(0, 1fr);
     gap: 14px;
     padding: 0;
   }
 
   .feature-card {
+    flex: 1 1 auto;
+    max-width: none;
+    min-height: 0;
     padding: 14px;
   }
 
@@ -2202,7 +2021,11 @@ a:focus-visible {
   }
 
   .step-card {
-    padding: 14px 14px 22px;
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    padding: 14px;
   }
 
   .step-card h3 {
@@ -2282,30 +2105,13 @@ a:focus-visible {
   }
 }
 .auth-message {
-  min-height: 20px;
-  margin: 0;
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.auth-message:empty {
-  display: none;
-}
-
-.auth-message[data-state="error"] {
-  padding: 11px 14px;
-  border: 1px solid var(--color-pink);
-  border-radius: 12px;
-  background: rgba(229, 57, 138, 0.14);
-  box-shadow: 0 8px 24px rgba(26, 5, 40, 0.22);
-  color: var(--color-white);
-}
-
-.auth-message[data-state="success"] {
-  color: #30c56a;
+    min-height: 20px;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 .auth-submit:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+    opacity: 0.6;
+    cursor: not-allowed;
 }

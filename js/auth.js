@@ -13,49 +13,7 @@ function showMessage(form, message, isError = false) {
     }
 
     messageElement.textContent = message;
-    if (message) {
-        messageElement.dataset.state = isError ? 'error' : 'success';
-    } else {
-        delete messageElement.dataset.state;
-    }
-}
-
-function validateAuthForm(form) {
-    const invalidField = Array.from(form.elements).find(
-        (field) => field.willValidate && !field.validity.valid
-    );
-
-    if (!invalidField) {
-        return true;
-    }
-
-    invalidField.setAttribute('aria-invalid', 'true');
-
-    let message = 'Revisa este campo antes de continuar.';
-    if (invalidField.validity.valueMissing) {
-        message = invalidField.type === 'checkbox'
-            ? 'Debes aceptar esta opción para continuar.'
-            : 'Completa este campo para continuar.';
-    } else if (invalidField.validity.typeMismatch && invalidField.type === 'email') {
-        message = 'Ingresa un correo electrónico válido.';
-    }
-
-    showMessage(form, message, true);
-    invalidField.focus();
-    return false;
-}
-
-function enableAuthValidationFeedback(form) {
-    form.addEventListener('input', () => {
-        form.querySelectorAll('[aria-invalid="true"]').forEach((field) => {
-            field.removeAttribute('aria-invalid');
-        });
-
-        const messageElement = form.querySelector('.auth-message');
-        if (messageElement?.dataset.state === 'error') {
-            showMessage(form, '');
-        }
-    });
+    messageElement.style.color = isError ? '#d93025' : '#218838';
 }
 
 // ======================================
@@ -92,22 +50,10 @@ const termsDialog = document.querySelector('#terms-dialog');
 
 if (termsDialog && typeof termsDialog.showModal === 'function') {
     const closeButton = termsDialog.querySelector('.terms-dialog-close');
-    const dialogTitle = termsDialog.querySelector('#terms-dialog-title');
-    const documentFrame = termsDialog.querySelector('iframe');
 
-    document.querySelectorAll('.terms-option a').forEach((link) => {
+    document.querySelectorAll('.terms-option a[href="terms.html"]').forEach((link) => {
         link.addEventListener('click', (event) => {
             event.preventDefault();
-            const isPrivacyPolicy = link.getAttribute('href') === 'privacy.html';
-            const title = isPrivacyPolicy ? 'Política de privacidad' : 'Términos y condiciones';
-
-            if (dialogTitle) dialogTitle.textContent = title;
-            if (documentFrame) {
-                documentFrame.src = `${isPrivacyPolicy ? 'privacy.html' : 'terms.html'}?embed=1`;
-                documentFrame.title = title;
-            }
-            if (closeButton) closeButton.setAttribute('aria-label', `Cerrar ${title.toLowerCase()}`);
-
             termsDialog.showModal();
 
             if (closeButton) {
@@ -134,13 +80,8 @@ if (termsDialog && typeof termsDialog.showModal === 'function') {
 const registerForm = document.querySelector('#register-form');
 
 if (registerForm) {
-    enableAuthValidationFeedback(registerForm);
     registerForm.addEventListener('submit', async (event) => {
         event.preventDefault();
-
-        if (!validateAuthForm(registerForm)) {
-            return;
-        }
 
         const formData = new FormData(registerForm);
 
@@ -191,13 +132,8 @@ if (registerForm) {
 const loginForm = document.querySelector('#login-form');
 
 if (loginForm) {
-    enableAuthValidationFeedback(loginForm);
     loginForm.addEventListener('submit', async (event) => {
         event.preventDefault();
-
-        if (!validateAuthForm(loginForm)) {
-            return;
-        }
 
         const formData = new FormData(loginForm);
 

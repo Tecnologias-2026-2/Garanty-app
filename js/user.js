@@ -3,7 +3,7 @@
 // Reemplaza a dashboard-user.js y al usuario fijo de settings
 // ======================================
 document.addEventListener("DOMContentLoaded", async () => {
-  const { request, escapeHtml, formatDate, statusLabels } = window.GarantyAPI;
+  const { request, escapeHtml } = window.GarantyAPI;
   let user;
 
   try {
@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Error al cargar el usuario:", error);
     const welcome = document.getElementById("welcome-name");
     if (welcome && welcome.textContent === "...") welcome.textContent = "Usuario";
+    const intro = document.querySelector(".welcome-block p");
+    if (intro) intro.textContent = "No se pudo cargar tu perfil.";
     return;
   }
 
@@ -92,60 +94,108 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // ---------- 3. Datos del dashboard (solo si la página los tiene) ----------
-  const overview = document.body.classList.contains("overview-page");
-  const sel = overview
-    ? { active: ".overview-summary-card--active strong", expired: ".overview-summary-card--expired strong",
-        grid: ".overview-product-grid", intro: ".overview-welcome p" }
-    : { active: ".summary-card--active strong", expired: ".summary-card--expired strong",
-        grid: ".product-grid", intro: ".welcome-block p" };
-
-  const grid = document.querySelector(sel.grid);
+  const selectors = {
+    active: ".summary-card--active strong",
+    expiring: ".summary-card--expiring strong",
+    expired: ".summary-card--expired strong",
+    grid: ".product-grid",
+    intro: ".welcome-block p"
+  };
+  const grid = document.querySelector(selectors.grid);
   if (!grid) return;
+  const requestedStatus = new URLSearchParams(window.location.search).get("status");
+  const validStatuses = new Set(["all", "active", "expiring", "expired"]);
+  const statusFilter = validStatuses.has(requestedStatus)
+    ? requestedStatus
+    : document.body.dataset.status || "all";
+  document.body.dataset.status = statusFilter;
 
   try {
     const [summary, { guarantees }] = await Promise.all([
-      // API: GET /api/guarantees/summary y GET /api/guarantees (en paralelo)
       request("/api/guarantees/summary"),
-      request("/api/guarantees")
+      request(statusFilter !== "all"
+        ? `/api/guarantees?status=${encodeURIComponent(statusFilter)}`
+        : "/api/guarantees")
     ]);
 
-    document.querySelector(sel.active).textContent = summary.active + summary.expiring;
-    document.querySelector(sel.expired).textContent = summary.expired;
+    document.querySelector(selectors.active).textContent = summary.active;
+    document.querySelector(selectors.expiring).textContent = summary.expiring;
+    document.querySelector(selectors.expired).textContent = summary.expired;
 
     const soon = summary.expiring;
-    document.querySelector(sel.intro).textContent = soon === 0
+    document.querySelector(selectors.intro).textContent = soon === 0
       ? "No tienes garantías próximas a vencer."
       : `Tienes ${soon} ${soon === 1 ? "garantía próxima" : "garantías próximas"} a vencer.`;
 
     const css = { active: "active", expiring: "soon", expired: "expired" };
-    const recent = [...guarantees]
-      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-      .slice(0, 4);
+    const statusLabelsForDashboard = {
+      active: "Activa",
+      expiring: "Próximo a vencer",
+      expired: "Vencida"
+    };
+    const sortedGuarantees = [...guarantees]
+      .filter((guarantee) => statusFilter === "all" || guarantee.status === statusFilter)
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    const recent = sortedGuarantees;
 
     grid.innerHTML = recent.length ? recent.map((g) => {
-      const remaining = g.status === "expired" ? "Garantía vencida" : `${g.remaining_days} días restantes`;
       const link = `guarantee-details.html?id=${g.id}`;
-      return overview
-        ? `<article class="overview-product-card">
-            <div class="overview-product-heading">
-              <div><h3>${escapeHtml(g.product_name)}</h3><p>${escapeHtml(g.category || "Sin categoría")}</p></div>
-              <span class="overview-tag overview-tag--${css[g.status]}">${statusLabels[g.status]}</span>
+      return `<article class="product-card">
+            <h3 class="product-heading">${escapeHtml(g.product_name)}</h3>
+            <div class="product-data">
+              <div class="product-identity">
+                <span class="product-icon" aria-hidden="true">${window.GarantyIcons.dashboardCategoryIcon(g.category)}</span>
+                <div class="product-meta">
+                  <span class="product-status product-status--${css[g.status]}"><span aria-hidden="true"></span>${statusLabelsForDashboard[g.status]}</span>
+                  <p>${[g.brand, g.model, g.category].filter(Boolean).map(escapeHtml).join(" · ") || "Sin categoría"}</p>
+                </div>
+              </div>
+              <p class="product-date"><span>Comprado</span><strong>${formatDashboardDate(g.purchase_date)}</strong></p>
+              <p class="product-date"><span>Vence</span><strong>${formatDashboardDate(g.expiration_date)}</strong></p>
+              <p class="product-countdown product-countdown--${css[g.status]}"><strong>${g.status === "expired" ? "" : Math.max(0, Number(g.remaining_days) || 0)}</strong><span>${g.status === "expired" ? "Vencido" : "días restantes"}</span></p>
+              <a class="product-details" href="${link}">Detalles <img src="../assets/figma-chevron-right.svg" alt="" aria-hidden="true"></a>
             </div>
-            <div class="overview-purchase"><p>Comprado<strong>${formatDate(g.purchase_date, true)}</strong></p><p>Vence<strong>${formatDate(g.expiration_date, true)}</strong></p></div>
-            <p class="overview-countdown">◷ &nbsp;${remaining}</p>
-            <a href="${link}">Detalles <span aria-hidden="true">›</span></a>
-          </article>`
-        : `<article class="product-card">
-            <div class="product-heading">
-              <div><h3>${escapeHtml(g.product_name)}</h3><p>${escapeHtml(g.category || "Sin categoría")}</p></div>
-              <span class="product-status product-status--${css[g.status]}">${statusLabels[g.status]}</span>
-            </div>
-            <div class="product-dates"><p>Comprado<strong>${formatDate(g.purchase_date, true)}</strong></p><p>Vence<strong>${formatDate(g.expiration_date, true)}</strong></p></div>
-            <p class="product-remaining"><span aria-hidden="true">◷</span> ${remaining}</p>
-            <a class="product-details" href="${link}">Detalles <span aria-hidden="true">›</span></a>
           </article>`;
-    }).join("") : '<p>Aún no has registrado garantías. ¡Añade la primera!</p>';
+    }).join("") : statusFilter === "all"
+      ? '<p class="product-empty" role="status">Aún no has registrado garantías. <a href="add-guarantee.html">Añade la primera</a>.</p>'
+      : '<p class="product-empty" role="status">Aún no tienes garantías en esta sección.</p>';
+
+    const emptySearch = document.createElement("p");
+    emptySearch.className = "product-empty";
+    emptySearch.setAttribute("role", "status");
+    emptySearch.textContent = "No hay garantías que coincidan con la búsqueda.";
+    emptySearch.hidden = true;
+    grid.after(emptySearch);
+
+    const search = document.querySelector(".dashboard-search input");
+    const cards = [...grid.querySelectorAll(".product-card")];
+    if (search && cards.length) {
+      const normalize = (value) => value
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLocaleLowerCase("es")
+        .trim();
+      search.addEventListener("input", () => {
+        const query = normalize(search.value);
+        let visibleCount = 0;
+        cards.forEach((card) => {
+          card.hidden = query !== "" && !normalize(card.textContent).includes(query);
+          if (!card.hidden) visibleCount += 1;
+        });
+        emptySearch.hidden = visibleCount > 0;
+      });
+    }
   } catch (error) {
     console.error("Error al cargar el dashboard:", error);
+    grid.innerHTML = `<p class="product-empty" role="alert">${escapeHtml(error.message)}</p>`;
   }
 });
+
+function formatDashboardDate(value) {
+  if (!value) return "—";
+  return new Intl.DateTimeFormat("es-CO", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "2-digit"
+  }).format(new Date(`${value}T00:00:00`));
+}

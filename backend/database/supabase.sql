@@ -1,10 +1,3 @@
--- ======================================================================
--- GARANTYAPP - BASE DE DATOS PARA SUPABASE (PostgreSQL)
--- ======================================================================
--- Cómo usarlo: Supabase -> SQL Editor -> New query -> pegar TODO -> Run.
--- Es seguro ejecutarlo más de una vez (usa IF NOT EXISTS).
--- Equivale a lo que hace backend/config/database.js al iniciar el servidor.
--- ======================================================================
 
 -- 1) USUARIOS
 CREATE TABLE IF NOT EXISTS public.users (
@@ -66,24 +59,6 @@ CREATE TABLE IF NOT EXISTS public.user_sessions (
 
 CREATE INDEX IF NOT EXISTS idx_user_sessions_expire ON public.user_sessions(expire);
 
--- 6) AVISOS ENVIADOS (evita mandar el mismo correo de vencimiento dos veces)
-CREATE TABLE IF NOT EXISTS public.notifications_sent (
-    id           BIGSERIAL PRIMARY KEY,
-    guarantee_id BIGINT NOT NULL REFERENCES public.guarantees(id) ON DELETE CASCADE,
-    days_before  INTEGER NOT NULL,          -- aviso: 30, 7 o 1 día(s) antes
-    sent_at      TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE (guarantee_id, days_before)
-);
-
--- 7) RECUPERACIÓN DE CONTRASEÑA (se guarda solo el HASH del token, nunca el token)
-CREATE TABLE IF NOT EXISTS public.password_resets (
-    id         BIGSERIAL PRIMARY KEY,
-    user_id    BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
-    token_hash VARCHAR(64) UNIQUE NOT NULL,
-    expires_at TIMESTAMPTZ NOT NULL,
-    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-);
-
 -- ======================================================================
 -- SEGURIDAD (importante en Supabase)
 -- ======================================================================
@@ -97,5 +72,3 @@ ALTER TABLE public.categories          ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.guarantees          ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.guarantee_documents ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.user_sessions       ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.notifications_sent  ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.password_resets     ENABLE ROW LEVEL SECURITY;
