@@ -1,0 +1,22 @@
+# Avisos de vencimiento: una vez al día llama al backend para que envíe los correos.
+# GitHub Actions usa hora UTC: 13:00 UTC = 8:00 a. m. en Colombia.
+name: Avisos de vencimiento
+
+on:
+  schedule:
+    - cron: "0 13 * * *"
+  workflow_dispatch:   # permite ejecutarlo a mano desde la pestaña Actions
+
+jobs:
+  enviar-avisos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Llamar al backend
+        run: |
+          # El backend en Render (plan gratis) puede tardar ~50 s en despertar,
+          # por eso hay tiempo máximo largo y reintentos.
+          curl --fail-with-body --silent --show-error \
+            --max-time 180 --retry 3 --retry-delay 20 --retry-all-errors \
+            -X POST \
+            -H "x-cron-secret: ${{ secrets.CRON_SECRET }}" \
+            "${{ secrets.API_URL }}/api/notifications/run"

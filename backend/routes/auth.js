@@ -8,6 +8,8 @@
 //  GET  /api/auth/me        -> 200 { user } | 401 sin sesión
 //  PUT  /api/auth/profile   body: { name, email } -> 200 { message, user }
 //  POST /api/auth/logout    -> 200 { message } (destruye la sesión)
+//
+// Este archivo solo define las rutas; la lógica está en controllers/authController.js
 // ======================================================================
 const express = require('express');
 const auth = require('../controllers/authController');

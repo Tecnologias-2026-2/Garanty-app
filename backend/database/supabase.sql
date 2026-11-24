@@ -1,3 +1,10 @@
+-- ======================================================================
+-- GARANTYAPP - BASE DE DATOS PARA SUPABASE (PostgreSQL)
+-- ======================================================================
+-- Cómo usarlo: Supabase -> SQL Editor -> New query -> pegar TODO -> Run.
+-- Es seguro ejecutarlo más de una vez (usa IF NOT EXISTS).
+-- Equivale a lo que hace backend/config/database.js al iniciar el servidor.
+-- ======================================================================
 
 -- 1) USUARIOS
 CREATE TABLE IF NOT EXISTS public.users (
@@ -59,6 +66,15 @@ CREATE TABLE IF NOT EXISTS public.user_sessions (
 
 CREATE INDEX IF NOT EXISTS idx_user_sessions_expire ON public.user_sessions(expire);
 
+-- 6) AVISOS ENVIADOS (evita mandar el mismo correo de vencimiento dos veces)
+CREATE TABLE IF NOT EXISTS public.notifications_sent (
+    id           BIGSERIAL PRIMARY KEY,
+    guarantee_id BIGINT NOT NULL REFERENCES public.guarantees(id) ON DELETE CASCADE,
+    days_before  INTEGER NOT NULL,          -- aviso: 30, 7 o 1 día(s) antes
+    sent_at      TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (guarantee_id, days_before)
+);
+
 -- ======================================================================
 -- SEGURIDAD (importante en Supabase)
 -- ======================================================================
@@ -72,3 +88,4 @@ ALTER TABLE public.categories          ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.guarantees          ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.guarantee_documents ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.user_sessions       ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.notifications_sent  ENABLE ROW LEVEL SECURITY;

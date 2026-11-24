@@ -165,3 +165,15 @@ npm start                 # API en http://localhost:3000
 ```
 
 Abrir `pages/index.html` con **Live Server** de VS Code (puerto 5500). `config.js` detecta `localhost` y usa el backend local automáticamente.
+
+### 8.5 Avisos de vencimiento por correo
+
+Cada día un workflow de **GitHub Actions** (`.github/workflows/notifications.yml`) llama a `POST /api/notifications/run` en el backend. El backend busca las garantías que vencen en 30 días o menos y envía un correo con la **API HTTP de Brevo** a los 30, 7 y 1 día antes del vencimiento. La tabla `notifications_sent` guarda lo ya enviado para no repetir correos.
+
+> Se usa la API de Brevo (HTTPS) y no SMTP porque Render bloquea los puertos SMTP en el plan gratuito.
+
+**Variables en Render:** `BREVO_API_KEY`, `MAIL_FROM` (correo verificado en Brevo), `CRON_SECRET` (texto secreto inventado por ti) y, opcional, `MAIL_FROM_NAME` y `APP_URL`.
+
+**Secrets en GitHub** (Settings → Secrets and variables → Actions): `CRON_SECRET` (el mismo de Render) y `API_URL` (URL del backend, sin `/` al final).
+
+**Probar:** `POST /api/notifications/run?dryRun=true` con la cabecera `x-cron-secret` lista lo pendiente sin enviar nada. El workflow también se puede ejecutar a mano desde la pestaña *Actions → Run workflow*.
