@@ -50,10 +50,22 @@ const termsDialog = document.querySelector('#terms-dialog');
 
 if (termsDialog && typeof termsDialog.showModal === 'function') {
     const closeButton = termsDialog.querySelector('.terms-dialog-close');
+    const dialogTitle = termsDialog.querySelector('#terms-dialog-title');
+    const documentFrame = termsDialog.querySelector('iframe');
 
-    document.querySelectorAll('.terms-option a[href="terms.html"]').forEach((link) => {
+    document.querySelectorAll('.terms-option a').forEach((link) => {
         link.addEventListener('click', (event) => {
             event.preventDefault();
+            const isPrivacyPolicy = link.getAttribute('href') === 'privacy.html';
+            const title = isPrivacyPolicy ? 'Política de privacidad' : 'Términos y condiciones';
+
+            if (dialogTitle) dialogTitle.textContent = title;
+            if (documentFrame) {
+                documentFrame.src = `${isPrivacyPolicy ? 'privacy.html' : 'terms.html'}?embed=1`;
+                documentFrame.title = title;
+            }
+            if (closeButton) closeButton.setAttribute('aria-label', `Cerrar ${title.toLowerCase()}`);
+
             termsDialog.showModal();
 
             if (closeButton) {

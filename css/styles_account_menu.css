@@ -1,0 +1,77 @@
+.account-menu {
+  position: relative;
+  justify-self: end;
+  z-index: 11;
+}
+
+.account-menu-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #f0e8ff;
+  cursor: pointer;
+  list-style: none;
+}
+
+.account-menu-trigger::-webkit-details-marker {
+  display: none;
+}
+
+.account-avatar {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e5398a, #7029a4);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.account-name {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-menu-panel {
+  min-width: 170px;
+  padding: 6px;
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  border: 1px solid rgba(217, 168, 255, 0.15);
+  border-radius: 12px;
+  background: #351049;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+.account-menu[open] .account-menu-panel {
+  display: flex;
+}
+
+.account-menu-panel a {
+  padding: 8px 10px;
+  border-radius: 7px;
+  color: #f0e8ff;
+  text-decoration: none;
+}
+
+.account-menu-panel a:hover,
+.account-menu-panel a:focus-visible {
+  background: rgba(229, 57, 138, 0.16);
+}
+
+.account-menu-panel a:last-child {
+  color: #ff5757;
+}
+
+.account-menu-trigger:focus-visible {
+  outline: 2px solid #f0e8ff;
+  outline-offset: 3px;
+}

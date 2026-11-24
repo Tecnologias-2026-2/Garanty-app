@@ -1,3 +1,11 @@
+.record-header--documents {
+  grid-template-columns: 34px 120px minmax(0, 1fr) auto;
+}
+
+.record-header--documents .record-header-title {
+  justify-self: center;
+}
+
 .documents-main {
   max-width: 1040px;
 }
@@ -68,6 +76,21 @@
 
 .document-empty {
   margin: 0 0 15px;
+}
+
+@media (max-width: 560px) {
+  .record-header--documents {
+    grid-template-columns: 28px 80px minmax(0, 1fr) auto;
+  }
+
+  .record-header--documents .record-brand,
+  .record-header--documents .record-brand img {
+    width: 80px;
+  }
+
+  .record-header--documents .account-name {
+    display: none;
+  }
 }
 
 .document-dropzone {

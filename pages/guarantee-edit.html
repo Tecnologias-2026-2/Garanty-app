@@ -12,8 +12,10 @@
     <link rel="stylesheet" href="../css/styles_tokens.css">
     <link rel="stylesheet" href="../css/styles_guarantee_record.css">
     <link rel="stylesheet" href="../css/styles_guarantee_edit.css">
+    <link rel="stylesheet" href="../css/styles_account_menu.css">
     <script src="../js/config.js"></script>
     <script src="../js/api.js" defer></script>
+    <script src="../js/user.js" defer></script>
     <script src="../js/category-icons.js" defer></script>
     <script src="../js/guarantee-edit.js" defer></script>
   </head>
@@ -21,7 +23,17 @@
     <header class="record-header">
       <a class="record-brand" href="dashboard.html" aria-label="GarantyApp, inicio"><img src="../assets/garantyapp-logo.png" alt="GarantyApp"></a>
       <span class="record-header-title">Editar garantía</span>
-      <span class="record-header-spacer" aria-hidden="true"></span>
+      <details class="account-menu">
+        <summary class="account-menu-trigger" data-user-label="Perfil de" aria-label="Perfil">
+          <span class="account-avatar" data-user-initials>…</span><span class="account-name" data-user-name>Cargando…</span>
+          <img src="../assets/figma-chevron-down.svg" alt="" aria-hidden="true">
+        </summary>
+        <div class="account-menu-panel">
+          <a href="dashboard.html">Inicio</a>
+          <a href="settings.html">Configuración</a>
+          <a href="login.html">Cerrar sesión</a>
+        </div>
+      </details>
     </header>
     <main class="record-main edit-main">
       <p class="record-unavailable" id="edit-unavailable" role="alert" hidden>No encontramos esta garantía. <a href="dashboard.html">Volver al inicio</a>.</p>

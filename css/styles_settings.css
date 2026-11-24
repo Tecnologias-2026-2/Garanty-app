@@ -58,15 +58,9 @@ a {
   font-size: 14px;
 }
 
-.settings-user > span:first-child {
-  width: 27px;
-  height: 27px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #e5398a, #e5398a);
-  font-size: 14px;
-  font-weight: 600;
+.settings-user .account-menu-trigger > img {
+  width: 12px;
+  height: 12px;
 }
 
 .settings-shell {
