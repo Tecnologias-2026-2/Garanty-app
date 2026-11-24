@@ -90,9 +90,20 @@ async function initializeDatabase() {
         CREATE INDEX IF NOT EXISTS idx_user_sessions_expire ON public.user_sessions(expire);
     `);
 
+    // Avisos de vencimiento ya enviados (evita correos repetidos)
+    await pool.query(`
+        CREATE TABLE IF NOT EXISTS public.notifications_sent (
+            id           BIGSERIAL PRIMARY KEY,
+            guarantee_id BIGINT NOT NULL REFERENCES public.guarantees(id) ON DELETE CASCADE,
+            days_before  INTEGER NOT NULL,
+            sent_at      TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+            UNIQUE (guarantee_id, days_before)
+        );
+    `);
+
     // Supabase: activar RLS (sin políticas) para que la API pública no exponga los datos.
     // El backend se conecta con el rol "postgres", que no se ve afectado.
-    for (const table of ['users', 'categories', 'guarantees', 'guarantee_documents', 'user_sessions']) {
+    for (const table of ['users', 'categories', 'guarantees', 'guarantee_documents', 'user_sessions', 'notifications_sent']) {
         await pool.query(`ALTER TABLE public.${table} ENABLE ROW LEVEL SECURITY;`);
     }
 
