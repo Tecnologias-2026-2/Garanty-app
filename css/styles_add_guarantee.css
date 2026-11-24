@@ -253,15 +253,6 @@ button {
   font-size: 14px;
 }
 
-.form-field select {
-  color-scheme: dark;
-}
-
-.form-field select option {
-  background: var(--background);
-  color: var(--text);
-}
-
 .form-field input::placeholder {
   color: rgba(184, 159, 204, 0.68);
 }

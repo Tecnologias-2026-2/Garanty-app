@@ -85,12 +85,6 @@
 
   categorySelect.replaceChildren(...names.map((name) => new Option(name, name)));
   categorySelect.value = record.category || names[0] || "";
-  const productIcon = document.querySelector(".record-product-icon");
-  const updateProductIcon = () => {
-    productIcon.innerHTML = window.GarantyIcons.dashboardCategoryIcon(categorySelect.value);
-  };
-  categorySelect.addEventListener("change", updateProductIcon);
-  updateProductIcon();
 
   // ---------- Rellenar el formulario ----------
   const set = (name, value) => { form.elements.namedItem(name).value = value ?? ""; };
@@ -104,10 +98,6 @@
   set("durationUnit", record.duration_unit);
   set("store", record.store);
   set("notes", record.notes);
-
-  // Título: la etiqueta de arriba muestra qué producto se está editando
-  document.title = `Editar ${record.product_name} | GarantyApp`;
-  document.querySelector("#edit-eyebrow").textContent = record.product_name;
 
   document.querySelector("#edit-cancel-link").href = detailsUrl;
 

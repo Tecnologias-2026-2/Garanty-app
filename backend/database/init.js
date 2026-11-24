@@ -101,9 +101,20 @@ async function initializeDatabase() {
         );
     `);
 
+    // Tokens de recuperación de contraseña (se guarda el hash, no el token)
+    await pool.query(`
+        CREATE TABLE IF NOT EXISTS public.password_resets (
+            id         BIGSERIAL PRIMARY KEY,
+            user_id    BIGINT NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+            token_hash VARCHAR(64) UNIQUE NOT NULL,
+            expires_at TIMESTAMPTZ NOT NULL,
+            created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+        );
+    `);
+
     // Supabase: activar RLS (sin políticas) para que la API pública no exponga los datos.
     // El backend se conecta con el rol "postgres", que no se ve afectado.
-    for (const table of ['users', 'categories', 'guarantees', 'guarantee_documents', 'user_sessions', 'notifications_sent']) {
+    for (const table of ['users', 'categories', 'guarantees', 'guarantee_documents', 'user_sessions', 'notifications_sent', 'password_resets']) {
         await pool.query(`ALTER TABLE public.${table} ENABLE ROW LEVEL SECURITY;`);
     }
 

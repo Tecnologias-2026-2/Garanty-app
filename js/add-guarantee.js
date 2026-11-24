@@ -18,53 +18,6 @@ if (form) {
   const durationUnit = form.elements.namedItem("durationUnit");
   const expirationDate = form.elements.namedItem("expirationDate");
   const today = new Date();
-
-  // ---------- Documento (factura o comprobante) ----------
-  const documentInput = form.elements.namedItem("document");
-  const uploadLabel = document.querySelector("#upload-label");
-  const documentError = document.querySelector("#document-error");
-  const MAX_DOCUMENT_SIZE = 1500000; // 1,5 MB, igual que en el backend
-
-  // Algunos equipos no informan el tipo del archivo: se deduce por la extensión
-  function documentType(file) {
-    if (file.type) return file.type;
-    const extension = file.name.split(".").pop().toLowerCase();
-    return { pdf: "application/pdf", png: "image/png", jpg: "image/jpeg", jpeg: "image/jpeg" }[extension] || "";
-  }
-
-  // Devuelve el texto del problema, o "" si el archivo está bien
-  function documentProblem(file) {
-    const type = documentType(file);
-    if (type !== "application/pdf" && !type.startsWith("image/")) return "El archivo debe ser un PDF o una imagen (PNG o JPG).";
-    if (file.size > MAX_DOCUMENT_SIZE) return "El archivo supera el límite de 1,5 MB. Elige uno más pequeño.";
-    return "";
-  }
-
-  function readAsBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.addEventListener("load", () => resolve(String(reader.result).split(",")[1]));
-      reader.addEventListener("error", () => reject(new Error("No se pudo leer el archivo.")));
-      reader.readAsDataURL(file);
-    });
-  }
-
-  // Al elegir un archivo: se valida y se muestra su nombre en el cuadro
-  documentInput.addEventListener("change", () => {
-    const file = documentInput.files[0];
-    documentError.hidden = true;
-    uploadLabel.textContent = "Selecciona un archivo";
-    if (!file) return;
-
-    const problem = documentProblem(file);
-    if (problem) {
-      documentInput.value = "";
-      documentError.textContent = problem;
-      documentError.hidden = false;
-      return;
-    }
-    uploadLabel.textContent = file.name;
-  });
   const requestedStep = Number(new URLSearchParams(window.location.search).get("step"));
   let currentStep = [2, 3].includes(requestedStep) ? requestedStep : 1;
 
@@ -307,16 +260,6 @@ nextButton.addEventListener("click", async () => {
         return;
     }
 
-    // Si hay archivo y no es válido, se avisa antes de crear la garantía
-    const documentFile = documentInput.files[0];
-    if (documentFile) {
-        const problem = documentProblem(documentFile);
-        if (problem) {
-            alert(problem);
-            return;
-        }
-    }
-
     // GUARDAR LA GARANTÍA EN POSTGRESQL
     nextButton.disabled = true;
     nextButton.textContent = "Guardando...";
@@ -355,29 +298,10 @@ nextButton.addEventListener("click", async () => {
         // Envía los datos del formulario (guaranteeData) como JSON. El backend
         // identifica al usuario por la cookie de sesión y guarda la garantía en
         // PostgreSQL. Si falla, request() lanza un Error con el mensaje del backend.
-        const { guarantee } = await window.GarantyAPI.request("/api/guarantees", {
+        await window.GarantyAPI.request("/api/guarantees", {
             method: "POST",
             body: guaranteeData
         });
-
-        // LLAMADA AL API -> PUT /api/guarantees/:id/document
-        // Con el id de la garantía recién creada se sube la factura o comprobante (en base64).
-        if (documentFile) {
-            try {
-                await window.GarantyAPI.request(`/api/guarantees/${guarantee.id}/document`, {
-                    method: "PUT",
-                    body: {
-                        name: documentFile.name,
-                        type: documentType(documentFile),
-                        dataBase64: await readAsBase64(documentFile)
-                    }
-                });
-            } catch (documentFailure) {
-                // La garantía ya quedó guardada; el documento se puede añadir después
-                console.error("Error al subir el documento:", documentFailure);
-                alert(`La garantía se guardó, pero no se pudo subir el documento: ${documentFailure.message}\nPuedes añadirlo desde los detalles de la garantía.`);
-            }
-        }
 
         // Mantener los datos para la pantalla de confirmación
         saveFormState();

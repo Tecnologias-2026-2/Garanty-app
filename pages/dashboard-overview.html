@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#2b0a3d">
+    <meta name="description" content="Revisa el resumen de productos registrados y sus garantías en GarantyApp.">
+    <title>Resumen de garantías | GarantyApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles_dashboard_overview.css">
+    <link rel="stylesheet" href="../css/styles_tokens.css">
+    <script src="../js/config.js"></script>
+    <script src="../js/api.js" defer></script>
+    <script src="../js/user.js" defer></script>
+  </head>
+  <body class="overview-page">
+    <header class="overview-header">
+      <a class="overview-brand" href="dashboard-overview.html" aria-label="GarantyApp, inicio"><img src="../assets/garantyapp-logo.png" alt="GarantyApp"></a>
+      <label class="overview-search">
+        <span class="visually-hidden">Buscar garantías</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+        <input type="search" placeholder="Buscar garantía...">
+      </label>
+      <a class="overview-profile" href="settings.html" data-user-label="Perfil de" aria-label="Perfil"><span data-user-initials>…</span></a>
+    </header>
+
+    <div class="overview-shell">
+      <main class="overview-main">
+        <section class="overview-welcome">
+          <h1>
+             Buen día, <span id="welcome-name">...</span>
+             <span aria-hidden="true">👋</span>
+          </h1>
+          <p>Cargando tus garantías...</p>
+        </section>
+        <section class="overview-summary" aria-label="Resumen de garantías">
+          <a class="overview-summary-card overview-summary-card--active" href="guarantees-active.html">
+            <span><small>Garantías Activas</small><strong>0</strong><span>Ver listado <b aria-hidden="true">›</b></span></span>
+            <span class="overview-summary-icon" aria-hidden="true">✓</span>
+          </a>
+          <a class="overview-summary-card overview-summary-card--expired" href="guarantees-expired.html">
+            <span><small>Garantías vencidas</small><strong>0</strong><span>Ver listado <b aria-hidden="true">›</b></span></span>
+            <span class="overview-summary-icon" aria-hidden="true">!</span>
+          </a>
+        </section>
+        <section class="overview-products" aria-labelledby="overview-products-title">
+          <div class="overview-section-heading">
+            <h2 id="overview-products-title">Garantías recientes</h2>
+            <a href="guarantees.html">Ver todas <span aria-hidden="true">›</span></a>
+          </div>
+          <div class="overview-product-grid"><p>Cargando garantías...</p>
+          </div>
+        </section>
+        <a class="overview-add" href="add-guarantee.html" aria-label="Agregar garantía">+</a>
+      </main>
+      <nav class="overview-nav" aria-label="Navegación principal">
+        <a class="overview-nav-active" href="dashboard-overview.html"><span aria-hidden="true">⌂</span>Inicio</a>
+        <a href="guarantees.html"><span aria-hidden="true">▤</span>Mis garantías</a>
+        <a href="settings.html"><span aria-hidden="true">⚙</span>Configuración</a>
+        <a class="overview-logout" href="login.html"><span aria-hidden="true">↪</span>Cerrar sesión</a>
+      </nav>
+    </div>
+  </body>
+</html>

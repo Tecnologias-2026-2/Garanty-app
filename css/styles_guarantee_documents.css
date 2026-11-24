@@ -115,11 +115,6 @@
   font-size: 12px;
 }
 
-.document-dropzone input::file-selector-button {
-  background: #fff;
-  color: #000;
-}
-
 .document-save {
   margin-top: 10px;
   margin-left: auto;

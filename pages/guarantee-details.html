@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="../css/styles_guarantee_details.css">
     <script src="../js/config.js"></script>
     <script src="../js/api.js" defer></script>
-    <script src="../js/category-icons.js" defer></script>
     <script src="../js/guarantee-details.js" defer></script>
   </head>
   <body class="record-page record-page--details">
@@ -24,7 +23,7 @@
       <span class="record-header-spacer" aria-hidden="true"></span>
     </header>
     <main class="record-main">
-      <p class="record-unavailable" id="guarantee-unavailable" role="alert" hidden>No encontramos esta garantía. <a href="dashboard.html">Volver al inicio</a>.</p>
+      <p class="record-unavailable" id="guarantee-unavailable" role="alert" hidden>No encontramos esta garantía. <a href="guarantees.html">Volver a mis garantías</a>.</p>
       <div id="guarantee-content">
         <section class="record-hero" aria-labelledby="detail-product">
           <span class="record-product-icon" aria-hidden="true">▣</span>
@@ -38,7 +37,7 @@
         </section>
 
         <section class="record-panel" aria-labelledby="purchase-heading">
-          <div class="record-panel-heading"><h2 id="purchase-heading">Detalles de compra</h2></div>
+          <div class="record-panel-heading"><span class="record-section-icon" aria-hidden="true">⌑</span><h2 id="purchase-heading">Detalles de compra</h2></div>
           <dl class="record-data-grid">
             <div><dt>Marca</dt><dd id="detail-brand"></dd></div>
             <div><dt>Categoría</dt><dd id="detail-category"></dd></div>
@@ -69,27 +68,14 @@
         </section>
 
         <div class="record-actions">
-          <a class="record-button record-button--secondary" href="dashboard.html">Volver</a>
-          <button class="record-button record-button--danger" id="delete-guarantee-button" type="button">Eliminar garantía</button>
+          <a class="record-button record-button--secondary" href="guarantees.html">Volver</a>
           <a class="record-button record-button--primary" id="edit-guarantee-link" href="guarantee-edit.html">Editar garantía</a>
         </div>
       </div>
     </main>
-    <dialog class="delete-dialog" id="delete-dialog" aria-labelledby="delete-dialog-title" aria-describedby="delete-dialog-description">
-      <div class="delete-dialog-content">
-        <span class="delete-dialog-icon" aria-hidden="true">!</span>
-        <h2 id="delete-dialog-title">¿Eliminar esta garantía?</h2>
-        <p id="delete-dialog-description">Se borrarán la garantía y su factura o comprobante. Esta acción no se puede deshacer.</p>
-        <p class="delete-dialog-error" id="delete-dialog-error" role="alert" hidden></p>
-        <div class="delete-dialog-actions">
-          <button class="record-button record-button--secondary" id="delete-cancel-button" type="button">Cancelar</button>
-          <button class="record-button record-button--danger" id="delete-confirm-button" type="button">Sí, eliminar</button>
-        </div>
-      </div>
-    </dialog>
     <nav class="dashboard-nav" aria-label="Navegación principal">
       <a class="nav-link" href="dashboard.html"><span aria-hidden="true">⌂</span>Inicio</a>
-      <a class="nav-link nav-link--active" href="dashboard.html"><span aria-hidden="true">▤</span>Mis garantías</a>
+      <a class="nav-link nav-link--active" href="guarantees.html"><span aria-hidden="true">▤</span>Mis garantías</a>
       <a class="nav-link" href="settings.html"><span aria-hidden="true">⚙</span>Configuración</a>
       <a class="nav-link nav-link--logout" href="login.html"><span aria-hidden="true">↪</span>Cerrar sesión</a>
     </nav>

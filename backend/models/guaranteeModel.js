@@ -3,10 +3,6 @@
 // ======================================================================
 const { pool } = require('../database/connection');
 
-// "Hoy" en hora de Colombia. El servidor de la BD corre en UTC, y después de las 7 p. m.
-// (hora Bogotá) ya es "mañana" para UTC: eso hacía que las garantías salieran vencidas antes de tiempo.
-const TODAY = "(CURRENT_TIMESTAMP AT TIME ZONE 'America/Bogota')::date";
-
 // Campos que se devuelven; calcula estado y días restantes según la fecha de vencimiento
 const SELECT_FIELDS = `
     id, product_name, brand, model, serial_number, price, store,
@@ -14,10 +10,10 @@ const SELECT_FIELDS = `
     duration_value, duration_unit,
     to_char(expiration_date, 'YYYY-MM-DD') AS expiration_date,
     category, notes, created_at,
-    (expiration_date - ${TODAY}) AS remaining_days,
+    (expiration_date - CURRENT_DATE) AS remaining_days,
     CASE
-        WHEN expiration_date < ${TODAY} THEN 'expired'
-        WHEN expiration_date - ${TODAY} <= 30 THEN 'expiring'
+        WHEN expiration_date < CURRENT_DATE THEN 'expired'
+        WHEN expiration_date - CURRENT_DATE <= 30 THEN 'expiring'
         ELSE 'active'
     END AS status,
     EXISTS (SELECT 1 FROM guarantee_documents d WHERE d.guarantee_id = guarantees.id) AS has_document
@@ -52,9 +48,9 @@ async function create(userId, g) {
 // status opcional: 'active' | 'expiring' | 'expired'
 async function listByUser(userId, status) {
     let filter = '';
-    if (status === 'expired') filter = `AND expiration_date < ${TODAY}`;
-    else if (status === 'expiring') filter = `AND expiration_date >= ${TODAY} AND expiration_date - ${TODAY} <= 30`;
-    else if (status === 'active') filter = `AND expiration_date - ${TODAY} > 30`;
+    if (status === 'expired') filter = 'AND expiration_date < CURRENT_DATE';
+    else if (status === 'expiring') filter = 'AND expiration_date >= CURRENT_DATE AND expiration_date - CURRENT_DATE <= 30';
+    else if (status === 'active') filter = 'AND expiration_date - CURRENT_DATE > 30';
 
     const result = await pool.query(
         `SELECT ${SELECT_FIELDS}
@@ -70,9 +66,9 @@ async function summaryByUser(userId) {
     const result = await pool.query(
         `SELECT
             COUNT(*)::int AS total,
-            COUNT(*) FILTER (WHERE expiration_date - ${TODAY} > 30)::int AS active,
-            COUNT(*) FILTER (WHERE expiration_date >= ${TODAY} AND expiration_date - ${TODAY} <= 30)::int AS expiring,
-            COUNT(*) FILTER (WHERE expiration_date < ${TODAY})::int AS expired
+            COUNT(*) FILTER (WHERE expiration_date - CURRENT_DATE > 30)::int AS active,
+            COUNT(*) FILTER (WHERE expiration_date >= CURRENT_DATE AND expiration_date - CURRENT_DATE <= 30)::int AS expiring,
+            COUNT(*) FILTER (WHERE expiration_date < CURRENT_DATE)::int AS expired
          FROM public.guarantees WHERE user_id = $1`,
         [userId]
     );
