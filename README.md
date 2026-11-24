@@ -71,7 +71,7 @@ Tablas principales
 - **`js/guarantee-records.js`** y **`js/guarantee-links.js`**: datos de ejemplo del historial y conexión de los botones «Detalles» al registro correspondiente.
 - **`css/styles_guarantee_record.css`**: estilos compartidos de las páginas de detalles, edición y documentos; cada vista tiene además su hoja CSS específica.
 - **`js/`**: Scripts de interacción de las páginas que necesitan comportamiento dinámico.
-- El historial de garantías usa `pages/guarantees.html` para la vista general y `pages/guarantees-active.html`, `pages/guarantees-expiring.html` y `pages/guarantees-expired.html` para sus filtros. Las cuatro vistas comparten los estilos de `css/styles_guarantees.css` y permiten filtrar por categoría y búsqueda mediante `js/guarantee-filter.js`.
+- El dashboard (`pages/dashboard.html`) es la entrada al historial de garantías. Sus tarjetas y los filtros antiguos abren el dashboard con `?status=active`, `?status=expiring` o `?status=expired`; sin parámetro, muestra todas las garantías.
 
 
 **Backend (`backend/`) — arquitectura MVC**
